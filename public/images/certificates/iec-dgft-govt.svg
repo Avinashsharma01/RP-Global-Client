@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <!-- Clean Off-White Official Govt Document Background -->
+  <rect x="0" y="0" width="600" height="850" fill="#ffffff" />
+  
+  <!-- Outer Double Border -->
+  <rect x="20" y="20" width="560" height="810" fill="none" stroke="#334155" stroke-width="2" />
+  <rect x="25" y="25" width="550" height="800" fill="none" stroke="#64748b" stroke-width="0.75" />
+
+  <!-- Ashoka Emblem Simulation -->
+  <g transform="translate(300, 75)" text-anchor="middle">
+    <!-- Pillar Capital Silhouette -->
+    <path d="M -16 0 L 16 0 L 12 -22 L 18 -26 L 16 -38 L 8 -42 L 0 -44 L -8 -42 L -16 -38 L -18 -26 L -12 -22 Z" fill="#92400e" opacity="0.85" />
+    <circle cx="0" cy="-6" r="6" fill="none" stroke="#1e3a8a" stroke-width="1.5" />
+    <!-- सत्यमेव जयते -->
+    <text x="0" y="14" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#92400e" letter-spacing="1">सत्यमेव जयते</text>
+  </g>
+
+  <!-- Govt Header -->
+  <text x="300" y="115" font-family="'Inter', sans-serif" font-size="13" font-weight="800" fill="#0f172a" text-anchor="middle" letter-spacing="0.5">
+    GOVERNMENT OF INDIA
+  </text>
+  <text x="300" y="132" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">
+    MINISTRY OF COMMERCE AND INDUSTRY
+  </text>
+  <text x="300" y="148" font-family="'Inter', sans-serif" font-size="10" fill="#475569" text-anchor="middle">
+    DIRECTORATE GENERAL OF FOREIGN TRADE (DGFT)
+  </text>
+
+  <!-- Black Title Bar -->
+  <rect x="140" y="170" width="320" height="34" rx="4" fill="#0f172a" />
+  <text x="300" y="192" font-family="'Montserrat', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+    IMPORTER-EXPORTER CODE (IEC)
+  </text>
+
+  <!-- Certificate Subtext -->
+  <text x="300" y="225" font-family="'Inter', sans-serif" font-size="9.5" fill="#475569" text-anchor="middle">
+    This is to certify that R P GLOBAL PROJECTS has been issued Importer-Exporter Code
+  </text>
+  <text x="300" y="240" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">
+    IEC: 0212019727 with details as follows:
+  </text>
+
+  <!-- Official Record Table -->
+  <g transform="translate(45, 260)" font-family="'Inter', sans-serif" font-size="10.5">
+    <!-- Outer Table Frame -->
+    <rect x="0" y="0" width="510" height="360" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="4" />
+
+    <!-- Rows -->
+    <g fill="#0f172a">
+      <!-- Row 1 -->
+      <line x1="0" y1="45" x2="510" y2="45" stroke="#e2e8f0" stroke-width="1" />
+      <line x1="160" y1="0" x2="160" y2="360" stroke="#cbd5e1" stroke-width="1.5" />
+      
+      <text x="15" y="28" font-weight="700" fill="#475569">IEC Number</text>
+      <text x="175" y="28" font-weight="800" font-family="monospace" font-size="13" fill="#0077b6">0212019727</text>
+
+      <!-- Row 2 -->
+      <line x1="0" y1="90" x2="510" y2="90" stroke="#e2e8f0" stroke-width="1" />
+      <text x="15" y="73" font-weight="700" fill="#475569">PAN of Enterprise</text>
+      <text x="175" y="73" font-weight="700" font-family="monospace">AAIFR7541D</text>
+
+      <!-- Row 3 -->
+      <line x1="0" y1="140" x2="510" y2="140" stroke="#e2e8f0" stroke-width="1" />
+      <text x="15" y="118" font-weight="700" fill="#475569">Firm / Company</text>
+      <text x="175" y="118" font-weight="800" font-size="12" fill="#0f2d38">R P GLOBAL PROJECTS</text>
+      <text x="175" y="132" font-size="9" fill="#64748b">Water &amp; Wastewater Treatment Engineering</text>
+
+      <!-- Row 4 -->
+      <line x1="0" y1="185" x2="510" y2="185" stroke="#e2e8f0" stroke-width="1" />
+      <text x="15" y="168" font-weight="700" fill="#475569">Nature of Concern</text>
+      <text x="175" y="168" font-weight="600">Proprietorship / Industrial EPC</text>
+
+      <!-- Row 5 -->
+      <line x1="0" y1="230" x2="510" y2="230" stroke="#e2e8f0" stroke-width="1" />
+      <text x="15" y="213" font-weight="700" fill="#475569">Date of Issue</text>
+      <text x="175" y="213" font-weight="600">18/05/2023</text>
+
+      <!-- Row 6 -->
+      <line x1="0" y1="295" x2="510" y2="295" stroke="#e2e8f0" stroke-width="1" />
+      <text x="15" y="260" font-weight="700" fill="#475569">Registered Address</text>
+      <text x="175" y="255" font-size="9.5" fill="#1e293b">House No. 97, Vill-Maharana, PO-Madana,</text>
+      <text x="175" y="272" font-size="9.5" fill="#1e293b">NOIDA / DELHI NCR, HARYANA - 134107</text>
+
+      <!-- Row 7 -->
+      <text x="15" y="330" font-weight="700" fill="#475569">Proprietor / Signatory</text>
+      <text x="175" y="325" font-weight="700">Prabhakar Kumar Shrivastava</text>
+      <text x="175" y="342" font-size="9" fill="#16a34a" font-weight="600">Designation: Key Managerial Personnel</text>
+    </g>
+  </g>
+
+  <!-- Bottom Section: Official QR Code & Digital Signature Verification -->
+  <g transform="translate(60, 645)">
+    <!-- QR Code Placeholder Block -->
+    <rect x="0" y="0" width="90" height="90" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+    <rect x="10" y="10" width="22" height="22" fill="#0f172a" />
+    <rect x="14" y="14" width="14" height="14" fill="#ffffff" />
+    <rect x="17" y="17" width="8" height="8" fill="#0f172a" />
+
+    <rect x="58" y="10" width="22" height="22" fill="#0f172a" />
+    <rect x="62" y="14" width="14" height="14" fill="#ffffff" />
+    <rect x="65" y="17" width="8" height="8" fill="#0f172a" />
+
+    <rect x="10" y="58" width="22" height="22" fill="#0f172a" />
+    <rect x="14" y="62" width="14" height="14" fill="#ffffff" />
+    <rect x="17" y="65" width="8" height="8" fill="#0f172a" />
+
+    <g fill="#0f172a">
+      <rect x="38" y="12" width="6" height="12" />
+      <rect x="42" y="30" width="14" height="6" />
+      <rect x="36" y="44" width="18" height="6" />
+      <rect x="40" y="60" width="14" height="12" />
+      <rect x="60" y="40" width="16" height="8" />
+      <rect x="62" y="62" width="16" height="16" />
+    </g>
+
+    <text x="110" y="25" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#0f172a">
+      Digitally Authenticated Certificate
+    </text>
+    <text x="110" y="42" font-family="'Inter', sans-serif" font-size="9" fill="#475569">
+      DGFT Central Server Cryptographic Hash Verification
+    </text>
+    <text x="110" y="58" font-family="'Inter', sans-serif" font-size="8.5" fill="#0077b6">
+      Scan QR to verify live authorization at dgft.gov.in
+    </text>
+
+    <!-- Green Stamp -->
+    <rect x="360" y="10" width="115" height="55" rx="4" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5" />
+    <text x="417" y="32" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#15803d" text-anchor="middle">
+      VALIDATED
+    </text>
+    <text x="417" y="48" font-family="'Inter', sans-serif" font-size="8.5" font-weight="600" fill="#15803d" text-anchor="middle">
+      DGFT GOVT OF INDIA
+    </text>
+  </g>
+
+  <!-- Bottom Legal Note -->
+  <text x="300" y="780" font-family="'Inter', sans-serif" font-size="8" fill="#64748b" text-anchor="middle">
+    Note: This is a system-generated certificate. Authenticity can be verified at https://dgft.gov.in
+  </text>
+</svg>

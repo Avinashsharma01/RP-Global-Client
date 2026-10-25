@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <!-- Clean Legal White Background -->
+  <rect x="0" y="0" width="600" height="850" fill="#ffffff" />
+  
+  <!-- Outer Frame -->
+  <rect x="20" y="20" width="560" height="810" fill="none" stroke="#475569" stroke-width="1.5" />
+  <rect x="25" y="25" width="550" height="800" fill="none" stroke="#cbd5e1" stroke-width="0.75" />
+
+  <!-- Government of Haryana Seal Simulation (left) -->
+  <g transform="translate(60, 65)">
+    <circle cx="28" cy="28" r="24" fill="#0284c7" opacity="0.1" stroke="#0284c7" stroke-width="1.5" />
+    <path d="M 28 14 L 36 28 L 28 42 L 20 28 Z" fill="#0284c7" />
+    <circle cx="28" cy="28" r="4" fill="#ffffff" />
+  </g>
+
+  <!-- Header Text -->
+  <g transform="translate(300, 60)" text-anchor="middle" font-family="'Inter', sans-serif">
+    <text x="0" y="16" font-size="14" font-weight="900" fill="#0f172a" letter-spacing="1">GOVERNMENT OF HARYANA</text>
+    <text x="0" y="32" font-size="11" font-weight="700" fill="#0077b6">Contractor Profile Summary</text>
+    <text x="0" y="47" font-size="9.5" font-weight="600" fill="#475569">Haryana Engineering Works Portal (HEWP)</text>
+    <text x="0" y="60" font-size="8.5" fill="#64748b">https://works.haryana.gov.in</text>
+  </g>
+
+  <!-- QR Code (Right Header) -->
+  <g transform="translate(485, 45)">
+    <rect x="0" y="0" width="60" height="60" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+    <rect x="6" y="6" width="16" height="16" fill="#0f172a" />
+    <rect x="9" y="9" width="10" height="10" fill="#ffffff" />
+    <rect x="12" y="12" width="4" height="4" fill="#0f172a" />
+
+    <rect x="38" y="6" width="16" height="16" fill="#0f172a" />
+    <rect x="41" y="9" width="10" height="10" fill="#ffffff" />
+    <rect x="44" y="12" width="4" height="4" fill="#0f172a" />
+
+    <rect x="6" y="38" width="16" height="16" fill="#0f172a" />
+    <rect x="9" y="41" width="10" height="10" fill="#ffffff" />
+    <rect x="12" y="44" width="4" height="4" fill="#0f172a" />
+
+    <rect x="26" y="12" width="6" height="14" fill="#0f172a" />
+    <rect x="28" y="32" width="16" height="6" fill="#0f172a" />
+    <rect x="40" y="42" width="12" height="12" fill="#0f172a" />
+  </g>
+
+  <line x1="45" y1="130" x2="555" y2="130" stroke="#cbd5e1" stroke-width="1" />
+
+  <!-- Meta Info Bar -->
+  <g transform="translate(45, 150)" font-family="'Inter', sans-serif" font-size="9.5" fill="#334155">
+    <text x="0" y="15"><tspan font-weight="700">Contractor ID:</tspan> 2004918724</text>
+    <text x="0" y="32"><tspan font-weight="700">Portal File No:</tspan> DCH/RTIC/D/ENGG/2024</text>
+
+    <text x="360" y="15"><tspan font-weight="700">Dated:</tspan> 15/01/2024</text>
+    <text x="360" y="32" fill="#16a34a" font-weight="700">Portal Status: APPROVED</text>
+  </g>
+
+  <text x="45" y="210" font-family="'Inter', sans-serif" font-size="9" fill="#475569">
+    R P GLOBAL PROJECTS, Co-Dir/Shri PRABHAKAR KUMAR SHRIVASTAVA (Contractor) has created an account on Haryana
+  </text>
+  <text x="45" y="224" font-family="'Inter', sans-serif" font-size="9" fill="#475569">
+    Engineering Works Portal, Govt. of Haryana with verified credentials:
+  </text>
+
+  <!-- Contractor Official Data Table -->
+  <g transform="translate(45, 245)" font-family="'Inter', sans-serif" font-size="9.5">
+    <!-- Frame -->
+    <rect x="0" y="0" width="510" height="360" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" rx="4" />
+    <line x1="170" y1="0" x2="170" y2="360" stroke="#cbd5e1" stroke-width="1.5" />
+
+    <!-- Row 1 -->
+    <line x1="0" y1="40" x2="510" y2="40" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="25" font-weight="700" fill="#475569">1. Contractor ID</text>
+    <text x="185" y="25" font-weight="800" font-family="monospace" font-size="12" fill="#0077b6">2004918724</text>
+
+    <!-- Row 2 -->
+    <line x1="0" y1="85" x2="510" y2="85" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="65" font-weight="700" fill="#475569">2. Name of Contractor/Agency</text>
+    <text x="185" y="60" font-weight="800" font-size="11" fill="#0f2d38">R P GLOBAL PROJECTS</text>
+    <text x="185" y="75" font-size="8.5" fill="#64748b">Proprietor: Shri Prabhakar Kumar Shrivastava</text>
+
+    <!-- Row 3 -->
+    <line x1="0" y1="135" x2="510" y2="135" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="112" font-weight="700" fill="#475569">3. Registered Address</text>
+    <text x="185" y="105" font-size="9" fill="#1e293b">House No. 97, Vill-Maharana, PO-Madana, Dist-Panchkula /</text>
+    <text x="185" y="122" font-size="9" fill="#1e293b">NOIDA, NCR, HARYANA - 134107</text>
+
+    <!-- Row 4 -->
+    <line x1="0" y1="190" x2="510" y2="190" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="165" font-weight="700" fill="#475569">4. Departments Enlisted</text>
+    <text x="185" y="158" font-weight="700" fill="#0f2d38">Public Health Engineering Dept (PHED)</text>
+    <text x="185" y="174" font-size="8.5" fill="#475569">Irrigation &amp; Water Resources, Urban Local Bodies (ULB)</text>
+
+    <!-- Row 5 -->
+    <line x1="0" y1="240" x2="510" y2="240" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="218" font-weight="700" fill="#475569">5. Works Classification</text>
+    <text x="185" y="218" font-weight="700" fill="#16a34a">WATER SUPPLY, SEWERAGE, STP &amp; ETP TURNKEY</text>
+
+    <!-- Row 6 -->
+    <line x1="0" y1="290" x2="510" y2="290" stroke="#e2e8f0" stroke-width="1" />
+    <text x="15" y="268" font-weight="700" fill="#475569">6. Official Email ID</text>
+    <text x="185" y="268" font-family="monospace" font-size="9.5" fill="#0077b6">rpglobalprojects@gmail.com</text>
+
+    <!-- Row 7 -->
+    <text x="15" y="325" font-weight="700" fill="#475569">7. Permanent Account (PAN)</text>
+    <text x="185" y="325" font-family="monospace" font-weight="700">AAIFR7541D</text>
+  </g>
+
+  <!-- Note Box -->
+  <g transform="translate(45, 625)" font-family="'Inter', sans-serif" font-size="8.5" fill="#475569">
+    <rect x="0" y="0" width="510" height="75" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1" />
+    <text x="15" y="20" font-weight="700" fill="#166534">NOTE / VERIFICATION SUMMARY:</text>
+    <text x="15" y="38" fill="#14532d">
+      • Account creation is mandatory for all types of Contractors, Consultants, Labour &amp; Construction (L&amp;C) Societies.
+    </text>
+    <text x="15" y="54" fill="#14532d">
+      • This is an acknowledgement regarding the creation of Legal Contractor ID: 2004918724 for Govt. Tender participation.
+    </text>
+  </g>
+
+  <!-- Signature Stamp -->
+  <g transform="translate(380, 715)">
+    <text x="0" y="25" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#0f172a">Executive Engineer / Nodal Desk</text>
+    <text x="0" y="38" font-family="'Inter', sans-serif" font-size="7.5" fill="#64748b">Haryana Engineering Works Portal</text>
+  </g>
+
+  <!-- Bottom Legal Text -->
+  <text x="300" y="805" font-family="'Inter', sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">
+    Government of Haryana • Haryana Engineering Works Portal • Computer Generated Statutory Record
+  </text>
+</svg>

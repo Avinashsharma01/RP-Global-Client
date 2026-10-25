@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <!-- Clean Legal White Background -->
+  <rect x="0" y="0" width="600" height="850" fill="#ffffff" />
+  
+  <!-- Outer Slate Frame -->
+  <rect x="20" y="20" width="560" height="810" fill="none" stroke="#64748b" stroke-width="1.5" />
+  <rect x="25" y="25" width="550" height="800" fill="none" stroke="#cbd5e1" stroke-width="0.75" />
+
+  <!-- EPFO Emblem Simulation (Sunburst wheel in blue/red) -->
+  <g transform="translate(65, 65)">
+    <circle cx="28" cy="28" r="24" fill="#1e3a8a" />
+    <circle cx="28" cy="28" r="18" fill="#ffffff" />
+    <circle cx="28" cy="28" r="14" fill="#dc2626" />
+    <circle cx="28" cy="28" r="6" fill="#ffffff" />
+  </g>
+
+  <!-- Header Text -->
+  <g transform="translate(130, 60)" font-family="'Inter', sans-serif">
+    <text x="0" y="16" font-size="12" font-weight="900" fill="#1e3a8a" letter-spacing="0.5">EMPLOYEES' PROVIDENT FUND</text>
+    <text x="0" y="32" font-size="9.5" font-weight="600" fill="#475569">(A Statutory Body under the Ministry of Labour and Employment, Govt. of India)</text>
+    <text x="0" y="47" font-size="9" fill="#0077b6">Official Portal: www.epfindia.gov.in</text>
+  </g>
+
+  <line x1="45" y1="130" x2="555" y2="130" stroke="#cbd5e1" stroke-width="1" />
+
+  <!-- Title Banner -->
+  <rect x="110" y="150" width="380" height="32" rx="4" fill="#0f172a" />
+  <text x="300" y="171" font-family="'Montserrat', sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+    PROVIDENT FUND CODE NUMBER INTIMATION
+  </text>
+
+  <!-- Intimation Meta -->
+  <g transform="translate(45, 205)" font-family="'Inter', sans-serif" font-size="9.5" fill="#334155">
+    <text x="0" y="15"><tspan font-weight="700">To:</tspan> PRABHAKAR KUMAR SHRIVASTAVA</text>
+    <text x="0" y="32">Proprietor / Managing Entity</text>
+    <text x="0" y="48"><tspan font-weight="700">M/s R P GLOBAL PROJECTS</tspan></text>
+    <text x="0" y="64">DELHI NCR / HARYANA - 134107</text>
+
+    <text x="360" y="15"><tspan font-weight="700">Letter Date:</tspan> 28/05/2023</text>
+    <text x="360" y="32"><tspan font-weight="700">Regional Office:</tspan> GURGAON / NCR</text>
+    <text x="360" y="48" fill="#16a34a" font-weight="700">Status: Verified Active</text>
+  </g>
+
+  <!-- Subject -->
+  <rect x="45" y="295" width="510" height="38" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+  <text x="58" y="312" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#0f172a">
+    Sub: Allotment of Code Number to establishment M/s R P GLOBAL PROJECTS under Employees'
+  </text>
+  <text x="58" y="325" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#0f172a">
+    Provident Fund and Miscellaneous Provisions Act, 1952 regarding.
+  </text>
+
+  <!-- Official Letter Body -->
+  <g transform="translate(45, 355)" font-family="'Inter', sans-serif" font-size="9" fill="#334155">
+    <text x="0" y="15">Sir/Madam,</text>
+    <text x="0" y="35">Based on the information submitted online, your establishment has been verified and registered with</text>
+    <text x="0" y="50">Employees' Provident Fund Organisation with the following code number:</text>
+  </g>
+
+  <!-- Highlighted Code Box -->
+  <rect x="80" y="430" width="440" height="58" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+  <text x="300" y="453" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">
+    ALLOTTED EPFO CODE NUMBER
+  </text>
+  <text x="300" y="475" font-family="monospace" font-size="16" font-weight="900" fill="#0f2d38" text-anchor="middle" letter-spacing="2">
+    GNGGN1344804000
+  </text>
+
+  <!-- Establishment Specifics -->
+  <g transform="translate(45, 515)" font-family="'Inter', sans-serif" font-size="9" fill="#475569">
+    <rect x="0" y="0" width="510" height="135" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    
+    <text x="15" y="25" font-weight="700" fill="#0f172a">1. Name of Establishment:</text>
+    <text x="165" y="25" font-weight="700">M/s R P GLOBAL PROJECTS</text>
+
+    <text x="15" y="50" font-weight="700" fill="#0f172a">2. Primary Activity:</text>
+    <text x="165" y="50">ENGINEERS - ENGG. CONTRACTORS &amp; WATER TREATMENT EPC</text>
+
+    <text x="15" y="75" font-weight="700" fill="#0f172a">3. Ownership Type:</text>
+    <text x="165" y="75">Proprietorship Firm</text>
+
+    <text x="15" y="100" font-weight="700" fill="#0f172a">4. Compliance Guarantee:</text>
+    <text x="165" y="100" fill="#16a34a" font-weight="700">100% On-Site Erection Personnel Coverage (Statutory EPF/EPS/EDLI)</text>
+
+    <text x="15" y="122" font-weight="700" fill="#0f172a">5. Coverage Act:</text>
+    <text x="165" y="122">Section 1(3)(b) of the EPF &amp; MP Act, 1952</text>
+  </g>
+
+  <!-- Official Authority Stamp & Digital Signature -->
+  <g transform="translate(350, 675)">
+    <!-- Round EPFO Stamp Simulation -->
+    <circle cx="50" cy="40" r="32" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 2" />
+    <circle cx="50" cy="40" r="25" fill="none" stroke="#dc2626" stroke-width="0.75" />
+    <text x="50" y="37" font-family="'Inter', sans-serif" font-size="6.5" font-weight="800" fill="#dc2626" text-anchor="middle">EPFO GURGAON</text>
+    <text x="50" y="47" font-family="'Inter', sans-serif" font-size="6" font-weight="700" fill="#dc2626" text-anchor="middle">RO REGIONAL DESK</text>
+
+    <text x="120" y="42" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#0f172a">Assistant PF Commissioner</text>
+    <text x="120" y="55" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">Govt. of India Statutory Authority</text>
+  </g>
+
+  <!-- Footer Legal Text -->
+  <text x="300" y="805" font-family="'Inter', sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">
+    Official EPFO Allotment Notice • Formulated &amp; Verified by Ministry of Labour and Employment, Govt. of India
+  </text>
+</svg>

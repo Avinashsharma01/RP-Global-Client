@@ -1,0 +1,616 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f7f3;
+  --foreground: #172e34;
+  --brand-navy: #0077b6;
+  --brand-cobalt: #0077b6;
+  --brand-cyan: #a9d9d2;
+  --brand-eco: #527c61;
+  --brand-dark: #122a31;
+  --brand-surface: #ffffff;
+  --brand-border: #dfe5df;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-cobalt: var(--brand-cobalt);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-eco: var(--brand-eco);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-border: var(--brand-border);
+
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+button,
+[role="button"],
+[data-magnetic],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+[data-magnetic][aria-disabled="true"],
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled {
+  cursor: not-allowed;
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.011em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f3ef;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4cfca;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #98aaa4;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.no-scrollbar *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-track,
+.no-scrollbar *::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb,
+.no-scrollbar *::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(to right, rgba(26, 89, 98, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 89, 98, 0.05) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(26, 89, 98, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(223, 229, 223, 0.85);
+}
+
+.glass-panel-dark {
+  background: rgba(23, 52, 59, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Defer rendering work for offscreen content */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 750px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid #26717a;
+  outline-offset: 3px;
+}
+
+/* Stationary #205962 liquid tethers for buttons on fine-pointer devices. */
+.magnetic-button-tether {
+  position: fixed;
+  inset: 0;
+  /* z-index: 110; */
+  z-index: 99999 !important;
+  overflow: visible;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+}
+
+/* Shared, restrained controls for the operations console. */
+.admin-page {
+  --admin-accent: #0077b6;
+  --admin-line: #dbe2e8;
+}
+
+.admin-page :is(input, select, textarea):not([type="range"]):not([type="file"]):not([type="checkbox"]):not([type="radio"]) {
+  border-radius: 0.5rem;
+  border-color: #cbd5e1;
+  background-color: #fff;
+  color: #0f172a;
+}
+
+.admin-page :is(input, select, textarea):not([type="range"]):not([type="file"]):not([type="checkbox"]):not([type="radio"]):focus-visible {
+  border-color: #0077b6;
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.16);
+}
+
+.admin-page button:focus-visible,
+.admin-page a:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: 2px;
+}
+
+.admin-page table {
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-page th {
+  color: #475569;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes waveDrift {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes waveDriftReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes waterGleam {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1) translateY(0);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.06) translateY(-4px);
+  }
+}
+
+@keyframes waterCausticPulse {
+  0% {
+    transform: scale(0.92) translate3d(0, 0, 0);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.1) translate3d(20px, -15px, 0);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: scale(0.96) translate3d(-15px, 10px, 0);
+    opacity: 0.7;
+  }
+}
+
+@keyframes streamDrift {
+  0% {
+    stroke-dashoffset: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    stroke-dashoffset: -200;
+    transform: translate3d(-30px, 0, 0);
+  }
+}
+
+@keyframes streamDriftReverse {
+  0% {
+    stroke-dashoffset: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    stroke-dashoffset: 200;
+    transform: translate3d(30px, 0, 0);
+  }
+}
+
+@keyframes waterBubbleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.7);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translate3d(12px, -320px, 0) scale(1);
+    opacity: 0.28;
+  }
+
+  85% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate3d(-8px, -650px, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes waterDropSwellAndFall {
+
+  /* Phase 1: Slow Organic Growth at Header Border (0% to ~56%) */
+  0% {
+    transform: translate3d(0, -3px, 0) scaleX(0.2) scaleY(0.1);
+    opacity: 0;
+  }
+
+  6% {
+    transform: translate3d(0, -1px, 0) scaleX(0.4) scaleY(0.2);
+    opacity: 0.7;
+  }
+
+  16% {
+    transform: translate3d(0, 0px, 0) scaleX(0.6) scaleY(0.4);
+    opacity: 0.85;
+  }
+
+  28% {
+    transform: translate3d(0, 1px, 0) scaleX(0.8) scaleY(0.65);
+    opacity: 0.92;
+  }
+
+  38% {
+    transform: translate3d(0, 2px, 0) scaleX(0.95) scaleY(0.9);
+    opacity: 0.96;
+  }
+
+  48% {
+    transform: translate3d(0, 4px, 0) scaleX(0.96) scaleY(1.15);
+    opacity: 1;
+  }
+
+  53% {
+    transform: translate3d(0, 6px, 0) scaleX(0.88) scaleY(1.35);
+    opacity: 1;
+  }
+
+  56% {
+    transform: translate3d(0, 9px, 0) scaleX(0.78) scaleY(1.52);
+    opacity: 1;
+  }
+
+  /* Phase 2: Detachment & Rapid Gravitational Fall Top-to-Bottom (58% to 100%) */
+  59% {
+    transform: translate3d(0, 18px, 0) scaleX(0.82) scaleY(1.35);
+    opacity: 1;
+  }
+
+  66% {
+    transform: translate3d(0, calc(var(--fall-distance, 100vh) * 0.12), 0) scaleX(0.85) scaleY(1.28);
+    opacity: 0.98;
+  }
+
+  74% {
+    transform: translate3d(0, calc(var(--fall-distance, 100vh) * 0.3), 0) scaleX(0.87) scaleY(1.22);
+    opacity: 0.96;
+  }
+
+  83% {
+    transform: translate3d(0, calc(var(--fall-distance, 100vh) * 0.58), 0) scaleX(0.88) scaleY(1.18);
+    opacity: 0.94;
+  }
+
+  92% {
+    transform: translate3d(0, calc(var(--fall-distance, 100vh) * 0.88), 0) scaleX(0.9) scaleY(1.12);
+    opacity: 0.9;
+  }
+
+  98% {
+    transform: translate3d(0, calc(var(--fall-distance, 100vh) * 0.98), 0) scaleX(1.15) scaleY(0.85);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate3d(0, var(--fall-distance, 100vh), 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================================
+   FLUID WATER BUTTON SYSTEM (HYDRATION & CAUSTIC LIQUID)
+   ======================================================== */
+
+@keyframes waterFluidWave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(1.15);
+  }
+
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+@keyframes waterFluidWaveReverse {
+  0% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.88);
+  }
+
+  100% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+}
+
+@keyframes waterRippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.9;
+    border-width: 3px;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(3.2);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes waterGleamSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.85;
+  }
+
+  80% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateX(350%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+/* Global Water Droplet Ripple Effect attached to all clicked buttons */
+.water-fluid-interactive {
+  overflow: hidden !important;
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+.water-global-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(0, 229, 255, 0.45) 35%, rgba(0, 119, 182, 0.15) 65%, transparent 80%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.85), inset 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: waterRippleExpand 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  z-index: 30;
+}
+
+/* Primary Water Fluid Button Styling (Living Water Droplet Aesthetic) */
+.btn-water-fluid,
+.water-fluid-primary,
+button[class*="from-[#0077B6]"],
+a[class*="from-[#0077B6]"],
+button[class*="from-[#0077b6]"],
+a[class*="from-[#0077b6]"],
+button[class*="to-[#0284c7]"],
+a[class*="to-[#0284c7]"],
+button[class*="bg-[#0077B6]"]:not([class*="text-"]):not([class*="admin-"]),
+a[class*="bg-[#0077B6]"]:not([class*="text-"]):not([class*="admin-"]),
+button[class*="bg-[#0077b6]"]:not([class*="text-"]):not([class*="admin-"]),
+a[class*="bg-[#0077b6]"]:not([class*="text-"]):not([class*="admin-"]) {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 9999px !important; /* Smooth water droplet pill */
+  background: linear-gradient(135deg, #0077b6 0%, #0096c7 45%, #0284c7 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 5px rgba(2, 62, 138, 0.4),
+    0 8px 22px -4px rgba(0, 119, 182, 0.38),
+    0 2px 6px rgba(0, 180, 216, 0.25) !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease !important;
+}
+
+/* Dynamic Hover and Active States for Water Fluid Buttons */
+.btn-water-fluid:hover,
+.water-fluid-primary:hover,
+button[class*="from-[#0077B6]"]:hover,
+a[class*="from-[#0077B6]"]:hover,
+button[class*="from-[#0077b6]"]:hover,
+a[class*="from-[#0077b6]"]:hover,
+button[class*="to-[#0284c7]"]:hover,
+a[class*="to-[#0284c7]"]:hover,
+button[class*="bg-[#0077B6]"]:not([class*="admin-"]):hover,
+a[class*="bg-[#0077B6]"]:not([class*="admin-"]):hover,
+button[class*="bg-[#0077b6]"]:not([class*="admin-"]):hover,
+a[class*="bg-[#0077b6]"]:not([class*="admin-"]):hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 6px rgba(2, 62, 138, 0.5),
+    0 12px 28px -4px rgba(0, 119, 182, 0.48),
+    0 3px 10px rgba(0, 180, 216, 0.35) !important;
+}
+
+.btn-water-fluid:active,
+.water-fluid-primary:active,
+button[class*="from-[#0077B6]"]:active,
+a[class*="from-[#0077B6]"]:active,
+button[class*="from-[#0077b6]"]:active,
+a[class*="from-[#0077b6]"]:active,
+button[class*="to-[#0284c7]"]:active,
+a[class*="to-[#0284c7]"]:active,
+button[class*="bg-[#0077B6]"]:not([class*="admin-"]):active,
+a[class*="bg-[#0077B6]"]:not([class*="admin-"]):active,
+button[class*="bg-[#0077b6]"]:not([class*="admin-"]):active,
+a[class*="bg-[#0077b6]"]:not([class*="admin-"]):active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 2px 4px rgba(2, 62, 138, 0.6),
+    0 4px 10px rgba(0, 119, 182, 0.3) !important;
+}
+
+/* Secondary / Clear Glass Water Button Style */
+.btn-water-fluid-secondary,
+.water-fluid-secondary {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  color: #0077b6 !important;
+  border: 1.5px solid rgba(0, 119, 182, 0.35) !important;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(0, 119, 182, 0.08),
+    0 6px 20px -3px rgba(0, 119, 182, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.25s ease !important;
+}
+
+.btn-water-fluid-secondary::before,
+.water-fluid-secondary::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 8%;
+  right: 8%;
+  height: 45%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-water-fluid-secondary:hover,
+.water-fluid-secondary:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(240, 249, 255, 0.9) !important;
+  border-color: rgba(0, 119, 182, 0.65) !important;
+  box-shadow:
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.98),
+    0 10px 24px -4px rgba(0, 119, 182, 0.25) !important;
+}
+
+/* Universal Water Droplet Shape and Fluid Springs for interactive action buttons across the site */
+button:not(.admin-page *):not(.no-water),
+[role="button"]:not(.admin-page *):not(.no-water) {
+  border-radius: 9999px;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+}
+
+button:not(.admin-page *):not(.no-water):hover,
+[role="button"]:not(.admin-page *):not(.no-water):hover {
+  transform: translateY(-1.5px);
+}
+
+button:not(.admin-page *):not(.no-water):active,
+[role="button"]:not(.admin-page *):not(.no-water):active {
+  transform: translateY(1px) scale(0.97);
+}

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <!-- Clean Legal White Background -->
+  <rect x="0" y="0" width="600" height="850" fill="#ffffff" />
+  
+  <!-- Outer Slate Frame -->
+  <rect x="22" y="22" width="556" height="806" fill="none" stroke="#94a3b8" stroke-width="1.5" />
+  <rect x="26" y="26" width="548" height="798" fill="none" stroke="#cbd5e1" stroke-width="0.75" />
+
+  <!-- ESIC Round Emblem Simulation -->
+  <g transform="translate(70, 70)">
+    <circle cx="25" cy="25" r="22" fill="#0f172a" />
+    <circle cx="25" cy="25" r="18" fill="none" stroke="#ffffff" stroke-width="1" />
+    <!-- Symbolic Lamp / Wings -->
+    <path d="M 17 25 Q 25 15 33 25 T 25 35 Z" fill="#ffffff" />
+    <circle cx="25" cy="25" r="3" fill="#f59e0b" />
+  </g>
+
+  <!-- Header Text -->
+  <g transform="translate(130, 60)" font-family="'Inter', sans-serif">
+    <text x="0" y="15" font-size="10.5" font-weight="700" fill="#475569" letter-spacing="0.5">Regional Office</text>
+    <text x="0" y="32" font-size="13" font-weight="900" fill="#0f172a" letter-spacing="0.5">EMPLOYEES' STATE INSURANCE CORPORATION</text>
+    <text x="0" y="47" font-size="9.5" fill="#64748b">(Ministry of Labour &amp; Employment, Government of India)</text>
+    <text x="0" y="60" font-size="9" fill="#94a3b8">Panchdeep Bhawan, C.I.G. Road, New Delhi - 110002</text>
+  </g>
+
+  <line x1="45" y1="135" x2="555" y2="135" stroke="#cbd5e1" stroke-width="1" />
+
+  <!-- Dispatch Meta Details -->
+  <g transform="translate(45, 155)" font-family="'Inter', sans-serif" font-size="9.5" fill="#334155">
+    <text x="0" y="15"><tspan font-weight="700">To:</tspan> M/s R P GLOBAL PROJECTS</text>
+    <text x="0" y="32">House No. 97, Vill-Maharana, PO-Madana</text>
+    <text x="0" y="48">DELHI NCR / HARYANA - 134107</text>
+
+    <text x="360" y="15" text-anchor="start"><tspan font-weight="700">Letter Date:</tspan> 12/06/2023</text>
+    <text x="360" y="32" text-anchor="start"><tspan font-weight="700">ESIC Code:</tspan> 11000582960000606</text>
+    <text x="360" y="48" text-anchor="start" fill="#16a34a" font-weight="700">Status: Active Compliant</text>
+  </g>
+
+  <!-- Subject Header -->
+  <rect x="45" y="225" width="510" height="42" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <text x="60" y="244" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#0f172a">
+    Subject: Implementation of the E.S.I. Act, 1948 and Registration of Employees of the
+  </text>
+  <text x="60" y="258" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#0f172a">
+    Factory/Establishment under Section 1(3) of the Act, as amended.
+  </text>
+
+  <!-- Official Paragraphs -->
+  <g transform="translate(45, 290)" font-family="'Inter', sans-serif" font-size="9" fill="#334155" text-anchor="start">
+    <text x="0" y="15">Dear Sir/Madam,</text>
+    
+    <text x="0" y="40">1. It is informed that under Section 1(3) of the ESI Act, 1948 is applicable to all</text>
+    <text x="0" y="55">engineering &amp; construction manufacturing sites under the purview of R P GLOBAL PROJECTS.</text>
+
+    <text x="0" y="80">2. It is further informed that the appropriate government has extended the provisions of the Act</text>
+    <text x="0" y="95">to your establishment for fabrication, turnkey mechanical works, and on-site EPC erection.</text>
+
+    <text x="0" y="120">3. Under Section 2 of the Act, such a factory/establishment is required to register personnel</text>
+    <text x="0" y="135">under the said Act and chapter provisions enforce legal social security and healthcare rights.</text>
+
+    <text x="0" y="160">4. On the basis of the particulars in respect of your factory/establishment submitted by you,</text>
+    <text x="0" y="175">the permanent employer registration code number allotted to your establishment is:</text>
+  </g>
+
+  <!-- Code Highlight Box -->
+  <rect x="90" y="490" width="420" height="55" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
+  <text x="300" y="513" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#1e40af" text-anchor="middle">
+    PERMANENT EMPLOYER ESI CODE NUMBER
+  </text>
+  <text x="300" y="534" font-family="monospace" font-size="16" font-weight="900" fill="#0077b6" text-anchor="middle" letter-spacing="2">
+    11000582960000606
+  </text>
+
+  <!-- Compliance Checklist & Authority Signoff -->
+  <g transform="translate(45, 575)" font-family="'Inter', sans-serif" font-size="8.5" fill="#475569">
+    <rect x="0" y="0" width="510" height="90" rx="4" fill="#fafafa" stroke="#e5e5e5" stroke-width="1" />
+    <text x="15" y="25" font-weight="700" fill="#0f172a">• Nature of Work:</text>
+    <text x="130" y="25">Turnkey Water &amp; Wastewater Treatment Plant Engineering &amp; Operations</text>
+    
+    <text x="15" y="48" font-weight="700" fill="#0f172a">• Sub-Code Unit:</text>
+    <text x="130" y="48">Site Erection, Commissioning &amp; Annual Maintenance Contracts (AMC)</text>
+
+    <text x="15" y="72" font-weight="700" fill="#0f172a">• Statutory Validity:</text>
+    <text x="130" y="72" font-weight="700" fill="#16a34a">PERMANENTLY ALLOTTED &amp; ACTIVE RECORD</text>
+  </g>
+
+  <!-- Signature & Official Seal -->
+  <g transform="translate(360, 685)">
+    <!-- Round Stamp Simulation -->
+    <circle cx="45" cy="40" r="34" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 2" />
+    <circle cx="45" cy="40" r="26" fill="none" stroke="#2563eb" stroke-width="0.75" />
+    <text x="45" y="36" font-family="'Inter', sans-serif" font-size="6.5" font-weight="800" fill="#1d4ed8" text-anchor="middle">ESIC NEW DELHI</text>
+    <text x="45" y="48" font-family="'Inter', sans-serif" font-size="6" font-weight="700" fill="#1d4ed8" text-anchor="middle">REGIONAL OFFICE</text>
+
+    <text x="115" y="45" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#0f172a">Deputy Director</text>
+    <text x="115" y="58" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">For Regional Director, ESIC</text>
+  </g>
+
+  <!-- Footer Legal Text -->
+  <text x="300" y="805" font-family="'Inter', sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">
+    Government of India Statutory Document • Verification Portal: https://www.esic.gov.in
+  </text>
+</svg>

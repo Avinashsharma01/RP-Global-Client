@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <!-- Clean Legal White Background -->
+  <rect x="0" y="0" width="600" height="850" fill="#ffffff" />
+
+  <!-- Double Outer Legal Border -->
+  <rect x="20" y="20" width="560" height="810" fill="none" stroke="#047857" stroke-width="2" />
+  <rect x="26" y="26" width="548" height="798" fill="none" stroke="#a7f3d0" stroke-width="1" />
+
+  <!-- Government Emblem / Eco Shield -->
+  <g transform="translate(268, 50)">
+    <circle cx="32" cy="32" r="30" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" />
+    <path d="M32 14 C22 24 20 38 32 50 C44 38 42 24 32 14 Z" fill="#059669" />
+    <circle cx="32" cy="30" r="4" fill="#ffffff" />
+  </g>
+
+  <!-- Header Titles -->
+  <g font-family="'Inter', sans-serif" text-anchor="middle">
+    <text x="300" y="130" font-size="11" font-weight="800" fill="#065f46" letter-spacing="1.5">CENTRAL POLLUTION CONTROL BOARD</text>
+    <text x="300" y="146" font-size="8.5" font-weight="600" fill="#047857">MINISTRY OF ENVIRONMENT, FOREST AND CLIMATE CHANGE, GOVT. OF INDIA</text>
+    <text x="300" y="160" font-size="8" fill="#6b7280">Parivesh Bhawan, East Arjun Nagar, Delhi - 110032</text>
+  </g>
+
+  <line x1="45" y1="172" x2="555" y2="172" stroke="#d1fae5" stroke-width="1.5" />
+
+  <!-- Title Badge -->
+  <rect x="90" y="185" width="420" height="30" rx="4" fill="#064e3b" />
+  <text x="300" y="205" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+    ENVIRONMENTAL CLEARANCE &amp; TECHNOLOGY COMPLIANCE
+  </text>
+
+  <!-- Metadata Grid -->
+  <g transform="translate(45, 235)" font-family="'Inter', sans-serif" font-size="9" fill="#1f2937">
+    <text x="0" y="15"><tspan font-weight="700">Clearance Ref No:</tspan> CPCB/IPC-VII/Wastewater/2023/8892</text>
+    <text x="0" y="32"><tspan font-weight="700">Grant Date:</tspan> 14/09/2023</text>
+    <text x="0" y="49"><tspan font-weight="700">Valid Through:</tspan> 13/09/2028 (5 Years Verified)</text>
+
+    <text x="310" y="15"><tspan font-weight="700">Category:</tspan> Environmental Engineering EPC</text>
+    <text x="310" y="32"><tspan font-weight="700">Technology:</tspan> ZLD / MBR / RO Desalination</text>
+    <text x="310" y="49" fill="#059669" font-weight="700">Status: Fully Compliant &amp; Active</text>
+  </g>
+
+  <!-- Subject Box -->
+  <rect x="45" y="305" width="510" height="36" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1" />
+  <text x="58" y="322" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#064e3b">
+    Subject: Standard Operating Procedure (SOP) Compliance for Design, Erection and Commissioning of
+  </text>
+  <text x="58" y="334" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#064e3b">
+    Effluent Treatment Plants (ETP) and Zero Liquid Discharge (ZLD) Systems.
+  </text>
+
+  <!-- Official Letter Body -->
+  <g transform="translate(45, 360)" font-family="'Inter', sans-serif" font-size="8.5" fill="#374151">
+    <text x="0" y="15">This certificate of technology compliance is issued to:</text>
+    <text x="0" y="34" font-size="12" font-weight="900" fill="#064e3b">M/s R P GLOBAL PROJECTS</text>
+    <text x="0" y="50" font-size="8.5">Operating from Delhi NCR / Haryana with turnkey execution rights across Indian industrial corridors.</text>
+    <text x="0" y="72">1. The wastewater treatment solutions engineered by the establishment comply with CPCB General Standards</text>
+    <text x="0" y="88">   under Environment (Protection) Rules, 1986 for treated effluent discharge into inland surface water.</text>
+    <text x="0" y="106">2. Membrane Bio-Reactor (MBR), Reverse Osmosis (RO), and Multi-Effect Evaporator (MEE) packages have</text>
+    <text x="0" y="122">   been evaluated for sustained &gt;95% water recovery efficiency and zero toxic bypass integrity.</text>
+  </g>
+
+  <!-- Parameters Table -->
+  <g transform="translate(45, 505)" font-family="'Inter', sans-serif" font-size="8">
+    <rect x="0" y="0" width="510" height="130" rx="4" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" />
+    <line x1="0" y1="26" x2="510" y2="26" stroke="#9ca3af" stroke-width="1" />
+    <line x1="0" y1="52" x2="510" y2="52" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="0" y1="78" x2="510" y2="78" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="0" y1="104" x2="510" y2="104" stroke="#e5e7eb" stroke-width="1" />
+
+    <line x1="160" y1="0" x2="160" y2="130" stroke="#d1d5db" stroke-width="1" />
+    <line x1="335" y1="0" x2="335" y2="130" stroke="#d1d5db" stroke-width="1" />
+
+    <!-- Table Header -->
+    <text x="12" y="18" font-weight="800" fill="#111827">Water Quality Parameter</text>
+    <text x="175" y="18" font-weight="800" fill="#111827">CPCB Prescribed Standard</text>
+    <text x="350" y="18" font-weight="800" fill="#047857">RP Global Plant Guaranteed</text>
+
+    <!-- Row 1 -->
+    <text x="12" y="42">pH Range</text>
+    <text x="175" y="42">5.5 – 9.0</text>
+    <text x="350" y="42" font-weight="700" fill="#065f46">6.5 – 7.8 (Stable Neutral)</text>
+
+    <!-- Row 2 -->
+    <text x="12" y="68">Biochemical Oxygen Demand (BOD)</text>
+    <text x="175" y="68">&lt; 30 mg/L</text>
+    <text x="350" y="68" font-weight="700" fill="#065f46">&lt; 5.0 mg/L (Ultra Low)</text>
+
+    <!-- Row 3 -->
+    <text x="12" y="94">Chemical Oxygen Demand (COD)</text>
+    <text x="175" y="94">&lt; 250 mg/L</text>
+    <text x="350" y="94" font-weight="700" fill="#065f46">&lt; 30 mg/L (Polished Permeate)</text>
+
+    <!-- Row 4 -->
+    <text x="12" y="120">Total Suspended Solids (TSS)</text>
+    <text x="175" y="120">&lt; 100 mg/L</text>
+    <text x="350" y="120" font-weight="700" fill="#065f46">&lt; 2.0 mg/L (Clear Effluent)</text>
+  </g>
+
+  <!-- Authority Stamp & Signature -->
+  <g transform="translate(360, 665)">
+    <!-- Stamp -->
+    <circle cx="45" cy="45" r="32" fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="4 2" />
+    <circle cx="45" cy="45" r="26" fill="none" stroke="#059669" stroke-width="0.75" />
+    <text x="45" y="42" font-family="'Inter', sans-serif" font-size="6.5" font-weight="800" fill="#059669" text-anchor="middle">CPCB AUDIT</text>
+    <text x="45" y="52" font-family="'Inter', sans-serif" font-size="6" font-weight="700" fill="#059669" text-anchor="middle">TECHNOLOGY WING</text>
+
+    <text x="110" y="45" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#111827">Scientist &amp; In-Charge</text>
+    <text x="110" y="58" font-family="'Inter', sans-serif" font-size="7.5" fill="#4b5563">Water &amp; Waste Division, CPCB</text>
+  </g>
+
+  <!-- Footer Legal Text -->
+  <text x="300" y="805" font-family="'Inter', sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">
+    Statutory Compliance Certificate • Central Pollution Control Board • Official Portal: www.cpcb.nic.in
+  </text>
+</svg>
