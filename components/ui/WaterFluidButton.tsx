@@ -1,3 +1,6 @@
+
+
+
 "use client";
 
 import React, { useRef, useState, useCallback, type ReactNode, type MouseEvent } from "react";
@@ -74,17 +77,17 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
 
   const variantClasses = {
     primary:
-      "bg-gradient-to-r from-[#0077b6] to-[#0284c7] text-white border border-white/35 shadow-lg shadow-[#0077b6]/30 hover:shadow-xl hover:shadow-[#0077b6]/40",
+      "text-white border border-cyan-400/80 bg-gradient-to-r from-[#0077b6] via-[#0096c7] to-[#0284c7] shadow-[0_0_20px_rgba(0,229,255,0.45),0_8px_24px_-4px_rgba(0,119,182,0.55)] hover:shadow-[0_0_28px_rgba(0,229,255,0.65),0_12px_32px_-4px_rgba(0,119,182,0.7)]",
     cyan:
-      "bg-gradient-to-r from-[#0096c7] via-[#00b4d8] to-[#48cae4] text-[#03045e] border border-white/50 shadow-md shadow-[#00b4d8]/30",
+      "text-white border border-white/70 bg-gradient-to-r from-[#0096c7] to-[#00b4d8] shadow-[0_0_18px_rgba(0,180,216,0.35)]",
     secondary:
-      "bg-white/85 text-[#0077b6] border border-[#0077b6]/30 shadow-md shadow-[#0077b6]/10 hover:bg-[#f0f9ff] hover:border-[#0077b6]/50",
+      "text-white border border-cyan-300/70 bg-gradient-to-r from-[#0077b6]/90 via-[#0096c7]/90 to-[#0284c7]/90 shadow-[0_0_18px_rgba(0,229,255,0.35)] hover:shadow-[0_0_24px_rgba(0,229,255,0.5)]",
     ghost:
-      "bg-transparent text-[#0077b6] border border-transparent hover:bg-[#0077b6]/10",
+      "bg-transparent text-white border border-white/40 hover:bg-white/10",
   }[variant];
 
   const commonClasses = `
-    group relative inline-flex items-center justify-center font-semibold rounded-full
+    btn-water-fluid group relative inline-flex items-center justify-center font-semibold rounded-full
     overflow-hidden select-none cursor-pointer isolate backdrop-blur-sm
     transition-all duration-200 ease-out focus-visible:outline focus-visible:outline-2
     focus-visible:outline-offset-2 focus-visible:outline-[#0077b6]
@@ -96,20 +99,116 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
 
   const innerContent = (
     <>
-      {/* 1. Subtle top meniscus gloss reflection */}
-      <span
+      {/* 1. Living Animated Water Inside Chamber */}
+      <div
+        className="water-inside-chamber"
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-4 top-0.5 h-[38%] rounded-full bg-gradient-to-b from-white/35 via-white/10 to-transparent"
-      />
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+          borderRadius: "inherit",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      >
+        {/* Deep liquid volume filling bottom of button */}
+        <div
+          className="water-liquid-volume"
+          style={{
+            position: "absolute",
+            left: "-25%",
+            right: "-25%",
+            width: "150%",
+            bottom: 0,
+            height: "56%",
+            background: "linear-gradient(180deg, #00b4d8 0%, #0077b6 45%, #023e8a 85%, #03045e 100%)",
+            boxShadow: "0 -4px 18px rgba(0, 229, 255, 0.75)",
+          }}
+        >
+          {/* Back wave layer */}
+          <div
+            className="water-wave-layer water-wave-back"
+            style={{
+              position: "absolute",
+              bottom: "100%",
+              left: 0,
+              width: "250%",
+              height: "22px",
+              marginBottom: "-1px",
+            }}
+          >
+            <svg viewBox="0 0 1000 60" preserveAspectRatio="none" className="water-wave-svg" style={{ width: "100%", height: "100%", display: "block" }}>
+              <path
+                d="M 0,25 Q 62.5,5 125,25 T 250,25 Q 312.5,5 375,25 T 500,25 Q 562.5,5 625,25 T 750,25 Q 812.5,5 875,25 T 1000,25 L 1000,60 L 0,60 Z"
+                fill="#0077b6"
+                opacity="0.8"
+              />
+            </svg>
+          </div>
+
+          {/* Front wave layer with glowing cyan crest & white foam stroke */}
+          <div
+            className="water-wave-layer water-wave-front"
+            style={{
+              position: "absolute",
+              bottom: "100%",
+              left: 0,
+              width: "250%",
+              height: "22px",
+              marginBottom: "-1px",
+            }}
+          >
+            <svg viewBox="0 0 1000 60" preserveAspectRatio="none" className="water-wave-svg" style={{ width: "100%", height: "100%", display: "block" }}>
+              <path
+                d="M 0,25 Q 62.5,45 125,25 T 250,25 Q 312.5,45 375,25 T 500,25 Q 562.5,45 625,25 T 750,25 Q 812.5,45 875,25 T 1000,25 L 1000,60 L 0,60 Z"
+                fill="#00e5ff"
+                stroke="rgba(255, 255, 255, 0.95)"
+                strokeWidth="2.5"
+                opacity="0.95"
+                style={{ filter: "drop-shadow(0 0 6px #00e5ff)" }}
+              />
+            </svg>
+          </div>
+
+          {/* Floating micro-bubbles */}
+          <span className="water-bubble b1" style={{ left: "15%", width: "5px", height: "5px", animationDelay: "0.1s" }} />
+          <span className="water-bubble b2" style={{ left: "35%", width: "4px", height: "4px", animationDelay: "0.8s" }} />
+          <span className="water-bubble b3" style={{ left: "55%", width: "6px", height: "6px", animationDelay: "1.4s" }} />
+          <span className="water-bubble b4" style={{ left: "75%", width: "4.5px", height: "4.5px", animationDelay: "0.4s" }} />
+          <span className="water-bubble b5" style={{ left: "90%", width: "3.5px", height: "3.5px", animationDelay: "1.9s" }} />
+        </div>
+
+        {/* Ambient liquid light caustic shimmer */}
+        <div className="water-caustic-mesh" />
+
+        {/* Curved glass meniscus reflection at top */}
+        <div
+          className="water-top-meniscus"
+          style={{
+            position: "absolute",
+            top: "1px",
+            left: "6%",
+            right: "6%",
+            height: "36%",
+            borderRadius: "9999px",
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%)",
+            pointerEvents: "none",
+            zIndex: 3,
+          }}
+        />
+      </div>
 
       {/* 2. Shimmer sweep on hover */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full"
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full z-[4]"
       />
 
       {/* 3. Water droplet click ripples */}
-      <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
+      <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-full z-[5]">
         {ripples.map((ripple) => (
           <span
             key={ripple.id}
@@ -125,7 +224,7 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
       </span>
 
       {/* 4. Perfectly Centered Content */}
-      <span className="relative z-10 flex items-center justify-center gap-2">
+      <span className="relative z-10 flex items-center justify-center gap-2 text-white font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
         {children}
       </span>
     </>
@@ -139,6 +238,8 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
         target={target}
         rel={rel}
         data-magnetic="true"
+        data-water-fluid="true"
+        data-water-btn="true"
         aria-label={ariaLabel}
         className={commonClasses}
         onClick={handlePointerDown}
@@ -155,6 +256,8 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
       type={type}
       disabled={disabled}
       data-magnetic="true"
+      data-water-fluid="true"
+      data-water-btn="true"
       aria-label={ariaLabel}
       whileHover={{ scale: 1.025, y: -2 }}
       whileTap={{ scale: 0.965 }}

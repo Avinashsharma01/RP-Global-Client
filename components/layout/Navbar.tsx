@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowUpRight } from "lucide-react";
@@ -33,22 +33,22 @@ export const Navbar: FC = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#e4e8e4] bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[76px] max-w-[1640px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[68px] max-w-[1640px] items-center justify-between px-3 sm:h-[76px] sm:px-6 lg:px-8">
         <Link
           href="/"
           onClick={handleLogoClick}
-          className="group flex shrink-0 items-center gap-3 cursor-pointer"
+          className="group flex min-w-0 shrink items-center gap-2 cursor-pointer sm:gap-3"
           aria-label="R P Global Projects home - Scroll to top"
         >
           <img
             id="navbar-logo-img"
             src="https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png"
             alt="R P Global Projects logo"
-            className="h-12 w-auto object-contain md:h-14"
+            className="h-10 w-auto object-contain sm:h-12 md:h-14"
           />
-          <span className="leading-tight">
+          <span className="min-w-0 leading-tight">
             <span className="block text-[15px] font-bold tracking-[0.04em] text-[#172e34]">R P GLOBAL</span>
-            <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6c7978]">Projects · Water Engineering</span>
+            <span className="mt-1 hidden text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6c7978] sm:block">Projects · Water Engineering</span>
           </span>
         </Link>
 
@@ -115,27 +115,41 @@ export const Navbar: FC = () => {
           })}
         </nav>
 
-        <WaterFluidButton
-          href="/contact-us#rfq"
-          size="sm"
-          className="hidden min-h-11 px-5 text-[13px] lg:inline-flex"
-        >
-          Request a proposal <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </WaterFluidButton>
+        {/* Desktop Action CTA Button */}
+        <div className="hidden lg:flex lg:items-center lg:gap-3">
+          <WaterFluidButton
+            href="/contact-us#rfq"
+            size="sm"
+            className="px-5 py-2 text-xs font-semibold tracking-wide shadow-md shadow-[#0077b6]/25"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.dispatchEvent(
+                  new CustomEvent("open-quick-rfq", {
+                    detail: { plant: "Sewage Treatment Plant (STP)" },
+                  })
+                );
+              }
+            }}
+          >
+            <span>Request a proposal</span>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </WaterFluidButton>
+        </div>
 
         <button
           type="button"
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
-          className="flex h-11 w-11 items-center justify-center text-[#263e43] hover:text-[#0077B6] hover:bg-[#f0f9ff] focus-visible:outline-[#0077B6] lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center text-[#263e43] hover:text-[#0077B6] hover:bg-[#f0f9ff] focus-visible:outline-[#0077B6] lg:hidden"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-[#e4e8e4] bg-white px-4 pb-5 pt-2 shadow-lg lg:hidden">
+        <div className="border-t border-[#e4e8e4] bg-white px-3 pb-5 pt-2 shadow-lg sm:px-6 lg:hidden">
           <nav aria-label="Mobile navigation" className="mx-auto max-w-[1640px]">
             {NAV_LINKS.map((link) => link.hasDropdown ? (
               <div key={link.label} className="border-b border-[#edf0ed] py-1">
@@ -147,8 +161,8 @@ export const Navbar: FC = () => {
                 >
                   {link.label}<ChevronDown className={`h-4 w-4 text-[#6c7978] transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
                 </button>
-                {solutionsOpen && <div className="grid grid-cols-2 gap-x-3 pb-3 pl-3">
-                  {PLANT_SOLUTIONS.map((plant) => <Link key={plant.slug} href={`/solutions/${plant.slug}`} className="py-2 text-xs text-[#53666a] hover:text-[#0077B6]">{plant.shortName}</Link>)}
+                {solutionsOpen && <div className="grid grid-cols-1 gap-x-3 pb-3 pl-3 sm:grid-cols-2">
+                  {PLANT_SOLUTIONS.map((plant) => <Link key={plant.slug} href={`/solutions/${plant.slug}`} className="flex min-h-11 items-center py-2 text-xs text-[#53666a] hover:text-[#0077B6]">{plant.shortName}</Link>)}
                 </div>}
               </div>
             ) : (

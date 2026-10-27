@@ -13,9 +13,10 @@ import {
   Gauge,
 } from "lucide-react";
 import { WaterWaveDivider } from "@/components/ui/WaterWaveDivider";
+import { WaterPurificationFlowData, TreatmentStageItem } from "@/lib/types";
 
 interface TreatmentStage {
-  id: "etp" | "stp" | "ro" | "wtp";
+  id: string;
   name: string;
   shortName: string;
   tagline: string;
@@ -28,7 +29,7 @@ interface TreatmentStage {
   complianceBadge: string;
 }
 
-const TREATMENT_STAGES: TreatmentStage[] = [
+const FALLBACK_STAGES: TreatmentStage[] = [
   {
     id: "etp",
     name: "Industrial Effluent (ETP & ZLD)",
@@ -83,13 +84,30 @@ const TREATMENT_STAGES: TreatmentStage[] = [
   },
 ];
 
-export const WaterPurificationFlow: React.FC = () => {
-  const [selectedId, setSelectedId] = useState<"etp" | "stp" | "ro" | "wtp">("etp");
+interface WaterPurificationFlowProps {
+  data?: Partial<WaterPurificationFlowData>;
+}
+
+export const WaterPurificationFlow: React.FC<WaterPurificationFlowProps> = ({ data }) => {
+  const stages = data?.stages && data.stages.length > 0 ? (data.stages as TreatmentStage[]) : FALLBACK_STAGES;
+  const badge = data?.badge || "Interactive Hydro-Dynamics Telemetry";
+  const title = data?.title || "Watch Industrial Water Clarification in Real-Time";
+  const description =
+    data?.description ||
+    "Experience how RP Global transforms heavily contaminated raw effluent, saline groundwater, and domestic sewage into crystal-clear, CPCB-compliant reusable water.";
+
+  const [selectedId, setSelectedId] = useState<string>(() => stages[0]?.id || "etp");
   const [flowSpeed, setFlowSpeed] = useState<number>(100); // 50 to 200 KLD
   const [isSurgeActive, setIsSurgeActive] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const stage = TREATMENT_STAGES.find((s) => s.id === selectedId) || TREATMENT_STAGES[0];
+  useEffect(() => {
+    if (stages.length > 0 && !stages.some((s) => s.id === selectedId)) {
+      setSelectedId(stages[0].id);
+    }
+  }, [stages, selectedId]);
+
+  const stage = stages.find((s) => s.id === selectedId) || stages[0];
 
   // Canvas fluid particle animation
   useEffect(() => {
@@ -278,25 +296,25 @@ export const WaterPurificationFlow: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#00E5FF]/30 bg-[#00E5FF]/10 px-3.5 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-[#00E5FF]">
               <Droplets className="h-3.5 w-3.5 animate-pulse text-[#00E5FF]" />
-              Interactive Hydro-Dynamics Telemetry
+              {badge}
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-4xl text-white">
-              Watch Industrial Water Clarification in Real-Time
+              {title}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Experience how RP Global transforms heavily contaminated raw effluent, saline groundwater, and domestic sewage into crystal-clear, CPCB-compliant reusable water.
+              {description}
             </p>
           </div>
 
           {/* Plant Selector Tabs */}
-          <div className="flex flex-wrap gap-2 rounded-xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-md">
-            {TREATMENT_STAGES.map((s) => {
+          <div className="no-scrollbar flex max-w-full flex-nowrap gap-2 overflow-x-auto rounded-xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-md md:flex-wrap">
+            {stages.map((s) => {
               const isSelected = s.id === selectedId;
               return (
                 <button
                   key={s.id}
                   onClick={() => setSelectedId(s.id)}
-                  className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition-all ${
+                  className={`min-h-11 shrink-0 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all ${
                     isSelected
                       ? "bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/30"
                       : "text-slate-300 hover:bg-white/10 hover:text-white"
@@ -312,15 +330,15 @@ export const WaterPurificationFlow: React.FC = () => {
         {/* Interactive Simulation Console */}
         <div className="mt-10 overflow-hidden rounded-2xl border border-white/15 bg-slate-900/90 shadow-2xl backdrop-blur-xl">
           {/* Top Bar: Telemetry Stage Info */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-4 bg-slate-950/60 font-mono text-xs">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 bg-slate-950/60 px-4 py-4 font-mono text-xs sm:px-6">
+            <div className="flex min-w-0 items-center gap-3">
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#10B981] animate-ping" />
-              <span className="font-bold text-white uppercase">{stage.name}</span>
+              <span className="truncate font-bold uppercase text-white">{stage.name}</span>
               <span className="hidden sm:inline text-slate-400">· {stage.technology}</span>
             </div>
-            <div className="flex items-center gap-2 text-[#00E5FF]">
+            <div className="flex min-w-0 items-center gap-2 text-[#00E5FF]">
               <ShieldCheck className="h-4 w-4" />
-              <span className="text-[11px] font-semibold">{stage.complianceBadge}</span>
+              <span className="truncate text-[11px] font-semibold">{stage.complianceBadge}</span>
             </div>
           </div>
 
@@ -329,20 +347,20 @@ export const WaterPurificationFlow: React.FC = () => {
             <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 
             {/* Inflow & Outflow HUD Overlays */}
-            <div className="pointer-events-none absolute top-4 left-6 z-10 flex items-center gap-2 rounded-md bg-black/60 px-3 py-1.5 backdrop-blur-md border border-amber-500/30 text-amber-300 text-[11px] font-mono">
+            <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[46%] items-center gap-2 overflow-hidden rounded-md border border-amber-500/30 bg-black/60 px-2.5 py-1.5 font-mono text-[10px] text-amber-300 backdrop-blur-md sm:left-6 sm:top-4 sm:max-w-none sm:px-3 sm:text-[11px]">
               <Activity className="h-3.5 w-3.5" />
-              <span>RAW INLET: {stage.rawWaterLabel}</span>
+              <span className="truncate">RAW INLET: {stage.rawWaterLabel}</span>
             </div>
 
-            <div className="pointer-events-none absolute top-4 right-6 z-10 flex items-center gap-2 rounded-md bg-black/60 px-3 py-1.5 backdrop-blur-md border border-[#00E5FF]/40 text-[#00E5FF] text-[11px] font-mono">
+            <div className="pointer-events-none absolute right-3 top-3 z-10 flex max-w-[46%] items-center gap-2 overflow-hidden rounded-md border border-[#00E5FF]/40 bg-black/60 px-2.5 py-1.5 font-mono text-[10px] text-[#00E5FF] backdrop-blur-md sm:right-6 sm:top-4 sm:max-w-none sm:px-3 sm:text-[11px]">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>TREATED OUTLET: Crystal Permeate</span>
+              <span className="truncate">TREATED OUTLET: Crystal Permeate</span>
             </div>
 
             {/* Filter Core Badge in Middle */}
-            <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 rounded-full bg-slate-900/90 px-3 py-1 text-[10px] font-mono text-slate-300 border border-white/20">
+            <div className="pointer-events-none absolute bottom-3 left-1/2 z-10 flex max-w-[82%] -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/90 px-3 py-1 text-[9px] font-mono text-slate-300 sm:bottom-4 sm:text-[10px]">
               <Filter className="h-3 w-3 text-[#00E5FF]" />
-              <span>Membrane / Media Barrier</span>
+              <span className="truncate">Membrane / Media Barrier</span>
             </div>
           </div>
 
@@ -406,7 +424,6 @@ export const WaterPurificationFlow: React.FC = () => {
               <div className="mt-4 flex items-center justify-between gap-3 pt-2">
                 <button
                   type="button"
-                  data-magnetic="true"
                   onClick={triggerSurge}
                   className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#00E5FF]/40 bg-[#00E5FF]/10 px-3 py-2 text-xs font-semibold text-[#00E5FF] hover:bg-[#00E5FF]/20 transition-colors"
                 >
@@ -416,7 +433,6 @@ export const WaterPurificationFlow: React.FC = () => {
 
                 <Link
                   href="/solutions"
-                  data-magnetic="true"
                   className="inline-flex items-center gap-1 rounded-lg bg-[#0077B6] hover:bg-[#005f92] px-3.5 py-2 text-xs font-semibold text-white transition-colors"
                 >
                   <span>Specs</span>

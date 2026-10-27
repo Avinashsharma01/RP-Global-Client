@@ -16,7 +16,8 @@ import {
   Droplets,
 } from "lucide-react";
 import { api } from "@/lib/api";
-import { FAQItem } from "@/lib/types";
+import { FAQItem, FAQSectionSettingsData } from "@/lib/types";
+import { WaterFluidButton } from "@/components/ui/WaterFluidButton";
 
 // Standard fallback FAQs to ensure immediate rendering without waiting or when offline
 const FALLBACK_FAQS: FAQItem[] = [
@@ -95,10 +96,17 @@ const FALLBACK_FAQS: FAQItem[] = [
 ];
 
 interface FAQSectionProps {
+  data?: Partial<FAQSectionSettingsData>;
   onOpenRFQ?: () => void;
 }
 
-export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
+export const FAQSection: React.FC<FAQSectionProps> = ({ data, onOpenRFQ }) => {
+  const badge = data?.badge || "Industrial Clarifications & FAQ";
+  const title = data?.title || "Clear Answers for Your Water EPC Projects";
+  const description =
+    data?.description ||
+    "Comprehensive technical and statutory insights into plant sizing, CPCB/SPCB discharge guidelines, operational guarantees, and turnkey commissioning.";
+
   const [faqs, setFaqs] = useState<FAQItem[]>(FALLBACK_FAQS);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -187,7 +195,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
             className="inline-flex items-center gap-2 rounded-full border border-[#1a5962]/20 bg-[#1a5962]/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1a5962]"
           >
             <HelpCircle className="h-4 w-4 text-[#1a5962]" />
-            <span>Industrial Clarifications & FAQ</span>
+            <span>{badge}</span>
           </motion.div>
 
           <motion.h2
@@ -198,7 +206,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-3xl font-extrabold tracking-tight text-[#17343b] sm:text-4xl lg:text-5xl"
           >
-            Clear Answers for Your Water EPC Projects
+            {title}
           </motion.h2>
 
           <motion.p
@@ -208,8 +216,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-base text-slate-600 sm:text-lg"
           >
-            Comprehensive technical and statutory insights into plant sizing, CPCB/SPCB discharge
-            guidelines, operational guarantees, and turnkey commissioning.
+            {description}
           </motion.p>
         </div>
 
@@ -235,7 +242,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all ${
+                  className={`min-h-11 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all ${
                     isSelected
                       ? "bg-[#1a5962] text-white shadow-md shadow-[#1a5962]/20 scale-[1.02]"
                       : "bg-white text-slate-600 border border-slate-200/80 hover:border-slate-300 hover:text-slate-900 hover:bg-slate-50"
@@ -263,7 +270,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
                 type="button"
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search query"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-1 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-slate-400 hover:text-slate-600"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -443,19 +450,18 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenRFQ }) => {
 
             <div className="flex flex-wrap items-center gap-3 shrink-0">
               {onOpenRFQ && (
-                <button
-                  type="button"
-                  data-magnetic="true"
+                <WaterFluidButton
+                  id="faq-section-rfq-btn"
+                  size="md"
+                  className="px-6 py-3.5 text-sm font-bold"
                   onClick={onOpenRFQ}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#0077B6] px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-[#006296] transition-all cursor-pointer hover:shadow-cyan-500/20"
                 >
                   <Droplets className="h-4 w-4" />
                   <span>Request Plant Quote</span>
-                </button>
+                </WaterFluidButton>
               )}
               <a
                 href="tel:+919811223344"
-                data-magnetic="true"
                 className="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-white/5 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:text-white transition-all"
               >
                 <span>Call Process Desk</span>

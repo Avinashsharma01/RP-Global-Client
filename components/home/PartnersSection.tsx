@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Handshake, Building2 } from "lucide-react";
 import { api } from "@/lib/api";
-import { Partner } from "@/lib/types";
+import { Partner, PartnersSectionData } from "@/lib/types";
 
 const FALLBACK_PARTNERS: Partner[] = [
   {
@@ -155,7 +155,16 @@ const PartnerLogoCard: React.FC<PartnerLogoCardProps> = ({ partner }) => {
   return <div className="cursor-pointer">{content}</div>;
 };
 
-export const PartnersSection: React.FC = () => {
+interface PartnersSectionProps {
+  data?: Partial<PartnersSectionData>;
+}
+
+export const PartnersSection: React.FC<PartnersSectionProps> = ({ data }) => {
+  const badge = data?.badge || "Our Partners & Clients";
+  const title = data?.title || "Trusted by India’s Leading Industrial Enterprises";
+  const description =
+    data?.description ||
+    "Engineering zero liquid discharge and mission-critical water treatment systems for premier manufacturing giants.";
   const [partners, setPartners] = useState<Partner[]>(FALLBACK_PARTNERS);
 
   useEffect(() => {
@@ -198,15 +207,15 @@ export const PartnersSection: React.FC = () => {
       <div className="mx-auto max-w-[1600px] px-4 text-center sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#0077B6]/20 bg-[#e0f2fe]/60 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0077B6] shadow-sm">
           <Handshake className="h-3.5 w-3.5 text-[#0077B6]" />
-          <span>Our Partners & Clients</span>
+          <span>{badge}</span>
         </div>
 
         <h2 className="mt-3.5 text-2xl font-bold tracking-tight text-[#0f2d38] sm:text-3xl md:text-4xl">
-          Trusted by India’s Leading Industrial Enterprises
+          {title}
         </h2>
 
         <p className="mx-auto mt-2.5 max-w-xl text-xs text-[#45616b] sm:text-sm">
-          Engineering zero liquid discharge and mission-critical water treatment systems for premier manufacturing giants.
+          {description}
         </p>
       </div>
 

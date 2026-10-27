@@ -26,6 +26,23 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
 import { WaterWaveDivider } from "@/components/ui/WaterWaveDivider";
+import { WaterFluidButton } from "@/components/ui/WaterFluidButton";
+import { ClientMarqueeSectionData, SectorItemData } from "@/lib/types";
+
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Pill,
+  Shirt,
+  Coffee,
+  Car,
+  FlaskConical,
+  Hotel,
+  Zap,
+  Building2,
+  Wheat,
+  SlidersHorizontal,
+  Droplets,
+  Waves,
+};
 
 export type SectorCategory = "all" | "heavy" | "process" | "civic";
 
@@ -406,18 +423,33 @@ const SECTORS: SectorItem[] = [
 ];
 
 interface ClientMarqueeProps {
+  data?: Partial<ClientMarqueeSectionData>;
   onOpenRFQ?: (plantType?: string) => void;
 }
 
-export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
+export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ data, onOpenRFQ }) => {
+  const badge = data?.badge || "Where Our Water Systems Work";
+  const title = data?.title || "Engineered water infrastructure for critical industries.";
+  const description =
+    data?.description ||
+    "Inlet chemical matrices and discharge compliance standards vary widely across sectors. Process engineering always starts with your unique effluent and water analysis.";
+
+  const sectors: SectorItem[] =
+    data?.sectors && data.sectors.length > 0
+      ? data.sectors.map((s: SectorItemData) => ({
+          ...s,
+          icon: ICON_MAP[s.iconName] || Building2,
+        }))
+      : SECTORS;
+
   const [activeCategory, setActiveCategory] = useState<SectorCategory>("all");
   const [selectedSector, setSelectedSector] = useState<SectorItem | null>(null);
 
   // Filter sectors based on selected category tab
   const filteredSectors =
     activeCategory === "all"
-      ? SECTORS
-      : SECTORS.filter((s) => s.category === activeCategory);
+      ? sectors
+      : sectors.filter((s) => s.category === activeCategory);
 
   // Close modal on Escape key
   useEffect(() => {
@@ -447,15 +479,15 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-[#0077b6]/30 bg-white/85 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0077b6] backdrop-blur-md shadow-sm">
                 <Waves className="h-3.5 w-3.5 text-[#0077b6] animate-pulse" />
-                <span>Where Our Water Systems Work</span>
+                <span>{badge}</span>
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF] animate-ping" />
               </div>
 
               <h2 className="mt-3.5 text-2xl font-bold tracking-tight text-[#0f2d38] sm:text-3xl lg:text-4xl">
-                Engineered water infrastructure for critical industries.
+                {title}
               </h2>
               <p className="mt-2.5 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#45616b]">
-                Inlet chemical matrices and discharge compliance standards vary widely across sectors. Process engineering always starts with your unique effluent and water analysis.
+                {description}
               </p>
             </div>
 
@@ -464,7 +496,7 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
               <button
                 type="button"
                 onClick={() => setActiveCategory("all")}
-                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+                className={`relative min-h-11 px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   activeCategory === "all"
                     ? "bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/30"
                     : "text-[#45616b] hover:text-[#0f2d38] hover:bg-white/60"
@@ -475,7 +507,7 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
               <button
                 type="button"
                 onClick={() => setActiveCategory("heavy")}
-                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+                className={`relative min-h-11 px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   activeCategory === "heavy"
                     ? "bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/30"
                     : "text-[#45616b] hover:text-[#0f2d38] hover:bg-white/60"
@@ -486,7 +518,7 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
               <button
                 type="button"
                 onClick={() => setActiveCategory("process")}
-                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+                className={`relative min-h-11 px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   activeCategory === "process"
                     ? "bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/30"
                     : "text-[#45616b] hover:text-[#0f2d38] hover:bg-white/60"
@@ -497,7 +529,7 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
               <button
                 type="button"
                 onClick={() => setActiveCategory("civic")}
-                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+                className={`relative min-h-11 px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   activeCategory === "civic"
                     ? "bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/30"
                     : "text-[#45616b] hover:text-[#0f2d38] hover:bg-white/60"
@@ -607,15 +639,15 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
               </p>
             </div>
             {onOpenRFQ && (
-              <button
-                type="button"
-                data-magnetic="true"
+              <WaterFluidButton
+                id="client-marquee-sizing-btn"
+                size="sm"
+                className="mt-3 sm:mt-0 shrink-0 px-4 py-2 text-xs font-bold"
                 onClick={() => onOpenRFQ("Effluent Treatment Plants (ETP)")}
-                className="mt-3 sm:mt-0 shrink-0 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0077b6] to-[#0096c7] px-4 py-2 text-xs font-bold text-white shadow-md shadow-[#0077b6]/20 transition-all hover:shadow-[#0077b6]/35 hover:-translate-y-0.5"
               >
                 <span>Request Plant Sizing</span>
                 <ArrowRight className="h-3.5 w-3.5" />
-              </button>
+              </WaterFluidButton>
             )}
           </div>
         </div>
@@ -778,18 +810,19 @@ export const ClientMarquee: React.FC<ClientMarqueeProps> = ({ onOpenRFQ }) => {
                     Close
                   </button>
                   {onOpenRFQ && (
-                    <button
-                      type="button"
+                    <WaterFluidButton
+                      id="client-marquee-sector-rfq-btn"
+                      size="sm"
+                      className="px-5 py-2.5 text-xs font-bold"
                       onClick={() => {
                         const plantType = selectedSector.recommendedPlant;
                         setSelectedSector(null);
                         onOpenRFQ(plantType);
                       }}
-                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0077b6] to-[#0096c7] px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-[#0077b6]/20 transition-all hover:shadow-[#0077b6]/35 hover:-translate-y-0.5"
                     >
                       <span>Request {selectedSector.name} Plant Proposal</span>
                       <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
+                    </WaterFluidButton>
                   )}
                 </div>
               </div>

@@ -112,13 +112,13 @@ export const QuickRFQModal: React.FC<QuickRFQModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.93, y: 18 }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
-            className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden max-h-[90vh] flex flex-col z-10"
+            className="rfq-modal relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] flex flex-col z-10"
           >
             {/* Modal Header */}
-            <div className="bg-[#0A192F] text-white p-5 flex items-center justify-between border-b border-white/10">
-              <div>
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <span>Request Technical Proposal & Sizing</span>
+            <div className="bg-[#0A192F] text-white p-4 sm:p-5 flex items-start justify-between gap-3 border-b border-white/10">
+              <div className="min-w-0">
+                <h3 className="text-base font-bold text-white flex items-start gap-2">
+                  <span className="min-w-0 break-words">Request Technical Proposal & Sizing</span>
                   <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                 </h3>
                 <p className="text-xs text-slate-300 mt-0.5">
@@ -130,7 +130,7 @@ export const QuickRFQModal: React.FC<QuickRFQModalProps> = ({
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.2 }}
                 onClick={handleClose}
-                className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="flex h-10 w-10 shrink-0 items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -138,7 +138,7 @@ export const QuickRFQModal: React.FC<QuickRFQModalProps> = ({
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 overflow-y-auto">
+            <div className="p-4 sm:p-6 overflow-y-auto">
               {success ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -165,7 +165,7 @@ export const QuickRFQModal: React.FC<QuickRFQModalProps> = ({
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={handleClose}
-                    className="px-6 py-2.5 rounded-lg bg-[#0077B6] text-white text-xs font-semibold hover:bg-[#005f92] transition-colors shadow-md"
+                    className="min-h-11 px-6 py-2.5 rounded-lg bg-[#0077B6] text-white text-xs font-semibold hover:bg-[#005f92] transition-colors shadow-md"
                   >
                     Done
                   </motion.button>

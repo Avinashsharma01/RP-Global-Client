@@ -21,10 +21,12 @@ import {
   Maximize2,
 } from "lucide-react";
 import { api } from "@/lib/api";
-import { ProjectGallery } from "@/lib/types";
+import { ProjectGallery, ProjectTrackerSectionData } from "@/lib/types";
 import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
+import { WaterFluidButton } from "@/components/ui/WaterFluidButton";
 
 interface ProjectsTrackerProps {
+  data?: Partial<ProjectTrackerSectionData>;
   onOpenRFQ?: (plantType?: string, capacityKLD?: number) => void;
 }
 
@@ -421,7 +423,6 @@ const ProjectCard: React.FC<{
         <div className="mt-3.5 flex items-center gap-2">
           <button
             type="button"
-            data-magnetic="true"
             onClick={() => onOpenGallery?.(project)}
             className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2 text-xs font-semibold text-slate-700 shadow-xs transition-all hover:border-[#0077B6] hover:bg-sky-50 hover:text-[#0077B6] cursor-pointer"
           >
@@ -430,7 +431,6 @@ const ProjectCard: React.FC<{
           </button>
           <button
             type="button"
-            data-magnetic="true"
             onClick={() => onOpenRFQ?.(project.title, capacity)}
             className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#0077B6] px-2 text-xs font-semibold text-white shadow-xs transition-all hover:bg-[#005f92] cursor-pointer"
           >
@@ -443,7 +443,13 @@ const ProjectCard: React.FC<{
   );
 };
 
-export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ onOpenRFQ }) => {
+export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ data, onOpenRFQ }) => {
+  const badge = data?.badge || "Live Plant Delivery & Operations";
+  const title = data?.title || "Project delivery, shown in active practice.";
+  const description =
+    data?.description ||
+    "A verified selection of industrial treatment plants currently in progress and turnkey systems commissioned for manufacturing, power, and municipal water schemes.";
+
   const [projects, setProjects] = useState<ProjectGallery[]>(FALLBACK_PROJECTS);
   const [statusFilter, setStatusFilter] = useState<"ALL" | "RUNNING" | "COMPLETED">("ALL");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
@@ -517,13 +523,13 @@ export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ onOpenRFQ }) =
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0077b6] backdrop-blur-sm">
                 <Waves className="h-3 w-3 text-[#0077b6] animate-pulse" />
-                <span>Live Plant Delivery & Operations</span>
+                <span>{badge}</span>
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-[#0f2d38] sm:text-4xl">
-                Project delivery, shown in active practice.
+                {title}
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-[#45616b] sm:text-base">
-                A verified selection of industrial treatment plants currently in progress and turnkey systems commissioned for manufacturing, power, and municipal water schemes.
+                {description}
               </p>
             </div>
 
@@ -646,12 +652,15 @@ export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ onOpenRFQ }) =
               Share your daily flow rate (KLD) and water quality analysis for a detailed engineering proposal.
             </p>
           </div>
-          <Link
+          <WaterFluidButton
             href="/contact-us#rfq"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-[#0077B6] px-6 text-sm font-semibold text-white shadow-md shadow-[#0077B6]/20 transition-all hover:bg-[#0284c7] hover:shadow-lg"
+            id="projects-tracker-rfq-link"
+            size="md"
+            className="px-6 py-3 text-sm font-semibold"
           >
-            Talk to Our Engineering Team <ArrowRight className="h-4 w-4" />
-          </Link>
+            <span>Talk to Our Engineering Team</span>
+            <ArrowRight className="h-4 w-4" />
+          </WaterFluidButton>
         </div>
       </div>
     </WaterBackgroundEffect>

@@ -15,20 +15,17 @@ export const ClientLayoutWrapper: FC<{ children: ReactNode }> = ({ children }) =
   useWaterFluidButtons();
 
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
-  const [forceIntro, setForceIntro] = useState(false);
-  const [introDuration, setIntroDuration] = useState(1800);
+  const isAdmin = Boolean(pathname?.startsWith("/admin"));
+  const [forceIntro, setForceIntro] = useState(!isAdmin);
+  const [introDuration, setIntroDuration] = useState(2000);
   const [replayKey, setReplayKey] = useState(0);
 
   const handleIntroComplete = useCallback(() => setForceIntro(false), []);
 
   useEffect(() => {
+    // Clean up any legacy sessionStorage key that was suppressing intro on reload
     try {
-      const hasSeen = sessionStorage.getItem("rp_global_intro_seen");
-      if (!hasSeen) {
-        sessionStorage.setItem("rp_global_intro_seen", "true");
-        setForceIntro(true);
-      }
+      sessionStorage.removeItem("rp_global_intro_seen");
     } catch {
       // In private browsing or environments where sessionStorage is blocked
     }

@@ -14,6 +14,8 @@ import {
   Zap,
 } from "lucide-react";
 import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
+import { WaterFluidButton } from "@/components/ui/WaterFluidButton";
+import { PlantCalculatorSectionData, CalculatorApplication } from "@/lib/types";
 
 interface ApplicationOption {
   id: string;
@@ -27,7 +29,7 @@ interface ApplicationOption {
   processChain: string[];
 }
 
-const APPLICATIONS: ApplicationOption[] = [
+const FALLBACK_APPLICATIONS: ApplicationOption[] = [
   {
     id: "sewage",
     name: "Residential & Commercial Sewage",
@@ -115,16 +117,34 @@ const APPLICATIONS: ApplicationOption[] = [
   },
 ];
 
-const PRESETS = [25, 100, 250, 500, 1000];
+const FALLBACK_PRESETS = [25, 100, 250, 500, 1000];
 
-export const PlantCalculator: React.FC<{
+interface PlantCalculatorProps {
+  data?: Partial<PlantCalculatorSectionData>;
   onSelectEstimate?: (plantType: string, capacityKLD: number) => void;
-}> = ({ onSelectEstimate }) => {
-  const [selectedAppId, setSelectedAppId] = useState("sewage");
+}
+
+export const PlantCalculator: React.FC<PlantCalculatorProps> = ({
+  data,
+  onSelectEstimate,
+}) => {
+  const applications =
+    data?.applications && data.applications.length > 0
+      ? data.applications
+      : FALLBACK_APPLICATIONS;
+  const presets =
+    data?.presets && data.presets.length > 0 ? data.presets : FALLBACK_PRESETS;
+  const badge = data?.badge || "Hydraulic Capacity Sizing & Design";
+  const title = data?.title || "Estimate plant capacity and compare treatment sequences.";
+  const description =
+    data?.description ||
+    "Select your industrial water application and target flow rate to simulate real-time hydraulic sizing, recovery metrics, and treatment stages.";
+
+  const [selectedAppId, setSelectedAppId] = useState(applications[0]?.id || "sewage");
   const [capacityKLD, setCapacityKLD] = useState(100);
 
   const selectedApp =
-    APPLICATIONS.find((app) => app.id === selectedAppId) ?? APPLICATIONS[0];
+    applications.find((app) => app.id === selectedAppId) ?? applications[0];
 
   // Daily flow in m³ (1 KLD = 1 m³/day). Hourly flow assumes 20 operating hours.
   const dailyFlowM3 = capacityKLD;
@@ -153,13 +173,13 @@ export const PlantCalculator: React.FC<{
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/80 px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0077b6] backdrop-blur-md shadow-sm">
                 <Waves className="h-3 w-3 text-[#0077b6] animate-pulse" />
-                <span>Hydraulic Capacity Sizing & Design</span>
+                <span>{badge}</span>
               </div>
               <h2 className="mt-3.5 text-3xl font-semibold leading-tight tracking-[-0.035em] text-[#0f2d38] sm:text-4xl">
-                Estimate plant capacity and compare treatment sequences.
+                {title}
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#45616b] sm:text-base">
-                Select your industrial water application and target flow rate to simulate real-time hydraulic sizing, recovery metrics, and treatment stages.
+                {description}
               </p>
             </div>
 
@@ -199,7 +219,7 @@ export const PlantCalculator: React.FC<{
                     <span className="text-xs font-normal text-[#0077B6]">5 Engineering Systems</span>
                   </legend>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {APPLICATIONS.map((app) => {
+                    {applications.map((app) => {
                       const isSelected = app.id === selectedAppId;
                       return (
                         <motion.button
@@ -305,7 +325,7 @@ export const PlantCalculator: React.FC<{
 
                   {/* Preset Buttons */}
                   <div className="mt-5 flex flex-wrap gap-2" aria-label="Quick capacity values">
-                    {PRESETS.map((preset) => {
+                    {presets.map((preset) => {
                       const isActive = capacityKLD === preset;
                       return (
                         <button
@@ -314,7 +334,7 @@ export const PlantCalculator: React.FC<{
                           id={`preset-btn-${preset}`}
                           aria-pressed={isActive}
                           onClick={() => setCapacityKLD(preset)}
-                          className={`rounded-xl border px-3.5 py-1.5 font-mono text-xs font-semibold transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077B6] ${
+                          className={`min-h-11 rounded-xl border px-3.5 py-1.5 font-mono text-xs font-semibold transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077B6] ${
                             isActive
                               ? "border-[#0077B6] bg-[#0077B6] text-white shadow-md shadow-[#0077B6]/25"
                               : "border-[#bce1f1] bg-white text-[#45616b] hover:border-[#0077B6]/50 hover:bg-[#f0f9ff]"
@@ -485,11 +505,11 @@ export const PlantCalculator: React.FC<{
 
                 {/* CTAs */}
                 <div className="mt-auto pt-7 space-y-3">
-                  <motion.button
+                  <WaterFluidButton
                     type="button"
                     id="plant-calculator-rfq-btn"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    size="md"
+                    className="w-full py-3.5 text-sm font-semibold"
                     onClick={() => {
                       if (onSelectEstimate) {
                         onSelectEstimate(selectedApp.plantType, capacityKLD);
@@ -499,12 +519,10 @@ export const PlantCalculator: React.FC<{
                         )}&capacity=${capacityKLD}#rfq`;
                       }
                     }}
-                    data-magnetic="true"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0077B6] to-[#0284c7] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#0077B6]/25 transition-all hover:shadow-[#0077B6]/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077B6]"
                   >
                     <span>Request Engineering Proposal ({capacityKLD} KLD)</span>
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </motion.button>
+                  </WaterFluidButton>
 
                   <div className="text-center">
                     <Link

@@ -248,4 +248,204 @@ export interface Certificate {
   updatedAt?: string;
 }
 
+// Landing Page Section CMS Types
+export interface HeroSectionData {
+  badge: string;
+  titleLine1: string;
+  titleLine2: string;
+  titleHighlight: string;
+  description: string;
+  primaryCtaText: string;
+  primaryCtaLink: string;
+  secondaryCtaText: string;
+  secondaryCtaLink: string;
+  checkpoints: string[];
+  phoneNumber: string;
+  mediaType: "image" | "video";
+  mediaUrl: string;
+  mediaPosterUrl?: string;
+  telemetryText: string;
+  overlayCaption: string;
+}
+
+export interface MetricItem {
+  id: string;
+  value: number;
+  suffix: string;
+  decimals: number;
+  label: string;
+  detail: string;
+}
+
+export interface MetricsSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  items: MetricItem[];
+}
+
+export interface WhoWeAreSectionData {
+  badge: string;
+  title: string;
+  paragraphs: string[];
+  deliveryPoints: string[];
+  primaryBtnText: string;
+  primaryBtnLink: string;
+  secondaryBtnText: string;
+  secondaryBtnLink: string;
+  mediaType: "image" | "video";
+  mediaUrl: string;
+  mediaPosterUrl?: string;
+  imageBadgeTitle: string;
+  imageBadgeSubtitle: string;
+  isoBadgeTitle: string;
+  isoBadgeSubtitle: string;
+}
+
+export interface TreatmentStageItem {
+  id: string;
+  name: string;
+  shortName: string;
+  tagline: string;
+  rawWaterLabel: string;
+  rawWaterColor: string;
+  rawWaterDesc: string;
+  purifiedWaterColor: string;
+  technology: string;
+  keyMetric: {
+    label: string;
+    raw: string;
+    treated: string;
+    unit: string;
+  };
+  complianceBadge: string;
+}
+
+export interface WaterPurificationFlowData {
+  badge: string;
+  title: string;
+  description: string;
+  stages: TreatmentStageItem[];
+}
+
+export interface SolutionsGridSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  featuredSlug: string;
+  viewAllText: string;
+  viewAllLink: string;
+}
+
+export interface CalculatorApplication {
+  id: string;
+  name: string;
+  plantType: string;
+  plantSlug: string;
+  technology: string;
+  designObjective: string;
+  reusePercent: number;
+  description: string;
+  processChain: string[];
+}
+
+export interface PlantCalculatorSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  presets: number[];
+  applications: CalculatorApplication[];
+}
+
+export interface ProjectTrackerSectionData {
+  badge: string;
+  title: string;
+  description: string;
+}
+
+export interface CapabilityItem {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface QualityPillItem {
+  text: string;
+  iconType: string;
+}
+
+export interface ValuePropositionSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  qualityPills: QualityPillItem[];
+  capabilities: CapabilityItem[];
+}
+
+export interface CertificationsSectionData {
+  badge: string;
+  title: string;
+  description: string;
+}
+
+export interface PartnersSectionData {
+  badge: string;
+  title: string;
+  description: string;
+}
+
+export interface SectorStep {
+  title: string;
+  desc: string;
+}
+
+export interface SectorItemData {
+  id: string;
+  name: string;
+  category: "heavy" | "process" | "civic";
+  iconName: string;
+  detail: string;
+  badge: string;
+  challenge: string;
+  keyMetric: { label: string; value: string };
+  secondaryMetric: { label: string; value: string };
+  gradient: string;
+  iconBg: string;
+  borderColor: string;
+  recommendedPlant: string;
+  processSummary: string;
+  steps: SectorStep[];
+}
+
+export interface ClientMarqueeSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  sectors: SectorItemData[];
+}
+
+export interface FAQSectionSettingsData {
+  badge: string;
+  title: string;
+  description: string;
+}
+
+export interface LandingContentCollection {
+  hero: HeroSectionData;
+  metrics: MetricsSectionData;
+  whoWeAre: WhoWeAreSectionData;
+  waterPurificationFlow: WaterPurificationFlowData;
+  solutionsGrid: SolutionsGridSectionData;
+  plantCalculator: PlantCalculatorSectionData;
+  projectTracker: ProjectTrackerSectionData;
+  valueProposition: ValuePropositionSectionData;
+  certifications: CertificationsSectionData;
+  partners: PartnersSectionData;
+  clientMarquee: ClientMarqueeSectionData;
+  faqs: FAQSectionSettingsData;
+}
+
+
 

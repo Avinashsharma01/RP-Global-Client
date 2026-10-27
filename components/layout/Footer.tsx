@@ -21,7 +21,7 @@ export const Footer = () => {
     <footer className="bg-gradient-to-b from-[#0077B6] via-[#006fa8] to-[#005785] text-white">
       {/* Pre-Footer Action Banner */}
       <div className="border-b border-white/15 bg-black/10">
-        <div className="mx-auto flex max-w-[1640px] flex-col gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-12">
+        <div className="mx-auto flex max-w-[1640px] flex-col gap-5 px-4 py-8 sm:px-6 sm:py-10 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-12">
           <div className="max-w-2xl">
             <p className="text-[10px] font-semibold uppercase tracking-[0.17em] text-cyan-200">
               A practical next step
@@ -33,16 +33,16 @@ export const Footer = () => {
               Share your process and water requirements with our engineering team.
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <a
               href={`tel:${COMPANY_INFO.phoneRaw}`}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 text-sm font-semibold text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:text-[#0077B6]"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 text-sm font-semibold text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:text-[#0077B6] sm:w-auto"
             >
               <Phone className="h-4 w-4" /> Call engineering
             </a>
             <Link
               href="/contact-us#rfq"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-[#0077B6] shadow-md transition-all hover:bg-cyan-50 hover:shadow-lg"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-[#0077B6] shadow-md transition-all hover:bg-cyan-50 hover:shadow-lg sm:w-auto"
             >
               Send an enquiry <ArrowRight className="h-4 w-4" />
             </Link>
@@ -51,7 +51,7 @@ export const Footer = () => {
       </div>
 
       {/* Main Multi-Column Links Area */}
-      <div className="mx-auto grid max-w-[1640px] gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.35fr_1fr_1fr_1fr] lg:px-8 lg:py-14">
+      <div className="mx-auto grid max-w-[1640px] gap-8 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 lg:grid-cols-[1.35fr_1fr_1fr_1fr] lg:px-8 lg:py-14">
         <div>
           <Link
             href="/"
@@ -136,7 +136,7 @@ export const Footer = () => {
               className="inline-flex items-center gap-2 text-cyan-200 hover:text-white transition-colors"
             >
               <Mail className="h-3.5 w-3.5 text-[#00E5FF]" />
-              {COMPANY_INFO.email}
+              <span className="break-all">{COMPANY_INFO.email}</span>
             </a>
           </div>
         </div>

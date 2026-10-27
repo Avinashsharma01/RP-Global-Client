@@ -18,12 +18,12 @@ import {
   ShieldCheck,
   Handshake,
   HelpCircle,
+  Globe,
 } from "lucide-react";
-import { useMagneticButtons } from "@/components/ui/useMagneticButtons";
-import { useWaterFluidButtons } from "@/components/ui/useWaterFluidButtons";
 
 const ADMIN_NAV = [
   { label: "Dashboard Overview", href: "/admin", icon: LayoutDashboard },
+  { label: "Landing Page CMS", href: "/admin/landing", icon: Globe },
   { label: "Leads CRM & RFQ", href: "/admin/leads", icon: Inbox },
   { label: "Product Catalog CMS", href: "/admin/products", icon: Layers },
   { label: "Careers & ATS Pipeline", href: "/admin/jobs", icon: Briefcase },
@@ -44,9 +44,6 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  useMagneticButtons();
-  useWaterFluidButtons();
-
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileOpen, setIsMobileOpen] = useState(false);

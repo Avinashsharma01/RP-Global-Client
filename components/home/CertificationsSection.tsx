@@ -12,7 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { api } from "@/lib/api";
-import { Certificate } from "@/lib/types";
+import { Certificate, CertificationsSectionData } from "@/lib/types";
 import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
 
 // Authentic Fallback Data directly matching the official certificates & accreditations
@@ -131,7 +131,13 @@ const FALLBACK_CERTIFICATES: Certificate[] = [
   },
 ];
 
-export const CertificationsSection: React.FC = () => {
+interface CertificationsSectionProps {
+  data?: Partial<CertificationsSectionData>;
+}
+
+export const CertificationsSection: React.FC<CertificationsSectionProps> = ({ data }) => {
+  const badge = data?.badge || "Our Certified";
+  const title = data?.title || "Certified for Excellence";
   const [certificates, setCertificates] = useState<Certificate[]>(FALLBACK_CERTIFICATES);
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -276,7 +282,7 @@ export const CertificationsSection: React.FC = () => {
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.16em] text-[#0077b6]"
               >
                 <ShieldCheck className="h-4 w-4" />
-                <span>Our Certified</span>
+                <span>{badge}</span>
               </motion.div>
 
               <motion.h2
@@ -286,7 +292,7 @@ export const CertificationsSection: React.FC = () => {
                 transition={{ duration: 0.45, delay: 0.06 }}
                 className="mt-1 text-3xl font-extrabold tracking-[-0.03em] text-[#0f2d38] sm:text-4xl lg:text-[42px]"
               >
-                Certified for Excellence
+                {title}
               </motion.h2>
             </div>
 

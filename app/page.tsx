@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Hero } from "@/components/home/Hero";
 import { WhoWeAre } from "@/components/home/WhoWeAre";
 import { PlantCalculator } from "@/components/home/PlantCalculator";
@@ -15,11 +15,39 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { QuickRFQModal } from "@/components/home/QuickRFQModal";
 import { WaterPurificationFlow } from "@/components/home/WaterPurificationFlow";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { LandingContentCollection } from "@/lib/types";
+import { api } from "@/lib/api";
 
 export default function HomePage() {
+  const [content, setContent] = useState<Partial<LandingContentCollection>>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState<string | undefined>(undefined);
   const [selectedCapacity, setSelectedCapacity] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    let isMounted = true;
+    api
+      .getLandingContent()
+      .then((res) => {
+        if (isMounted && res.success && res.data) {
+          setContent(res.data);
+        }
+      })
+      .catch((err) => {
+        console.warn("Using offline landing defaults:", err);
+      });
+
+    const handleGlobalRFQ = (e: Event) => {
+      const customEvent = e as CustomEvent<{ plant?: string; capacity?: number }>;
+      handleOpenRFQ(customEvent.detail?.plant);
+    };
+    window.addEventListener("open-quick-rfq", handleGlobalRFQ);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener("open-quick-rfq", handleGlobalRFQ);
+    };
+  }, []);
 
   const handleOpenRFQ = (plantType?: string) => {
     setSelectedPlant(plantType || "Sewage Treatment Plant (STP)");
@@ -39,54 +67,54 @@ export default function HomePage() {
       <ScrollProgressBar />
 
       {/* Hero Section with Interactive Water Ripple Canvas */}
-      <Hero onOpenRFQ={handleOpenRFQ} />
+      <Hero data={content.hero} onOpenRFQ={handleOpenRFQ} />
 
       {/* Company credentials and delivery history */}
-      <MetricsSection />
+      <MetricsSection data={content.metrics} />
 
       {/* Who We Are: Engineering Excellence (Original Site Core Section) */}
-      <WhoWeAre />
+      <WhoWeAre data={content.whoWeAre} />
 
       {/* Interactive Water Clarification & EPC Process Simulator */}
-      <WaterPurificationFlow />
+      <WaterPurificationFlow data={content.waterPurificationFlow} />
 
       {/* 6 Core Industrial Plant Solutions Grid */}
-      <SolutionsGrid />
+      <SolutionsGrid data={content.solutionsGrid} />
 
       {/* Deferred heavy sections for ultra-smooth scrolling and fast initial TBT */}
       <div className="content-visibility-auto">
         {/* Interactive Plant Capacity Estimator */}
-        <PlantCalculator onSelectEstimate={handleSelectEstimate} />
+        <PlantCalculator data={content.plantCalculator} onSelectEstimate={handleSelectEstimate} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Live EPC Project Tracker (Active Running & Commissioned Plants) */}
-        <ProjectsTracker onOpenRFQ={(plant) => handleOpenRFQ(plant)} />
+        <ProjectsTracker data={content.projectTracker} onOpenRFQ={(plant) => handleOpenRFQ(plant)} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Why Choose RP Global (Value Proposition) */}
-        <ValueProposition />
+        <ValueProposition data={content.valueProposition} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Official Government & ISO Accreditations (Certified for Excellence) */}
-        <CertificationsSection />
+        <CertificationsSection data={content.certifications} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Trusted Industrial Partners & Clients Showcase */}
-        <PartnersSection />
+        <PartnersSection data={content.partners} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Client Industries Marquee */}
-        <ClientMarquee onOpenRFQ={handleOpenRFQ} />
+        <ClientMarquee data={content.clientMarquee} onOpenRFQ={handleOpenRFQ} />
       </div>
 
       <div className="content-visibility-auto">
         {/* Industrial Clarifications & Frequently Asked Questions */}
-        <FAQSection onOpenRFQ={() => handleOpenRFQ()} />
+        <FAQSection data={content.faqs} onOpenRFQ={() => handleOpenRFQ()} />
       </div>
 
       {/* Interactive RFQ Modal */}

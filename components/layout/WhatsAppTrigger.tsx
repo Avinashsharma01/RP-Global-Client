@@ -30,7 +30,7 @@ export const WhatsAppTrigger: FC = () => {
 
   return (
     <div
-      className="fixed bottom-5 right-5 z-50 flex flex-col items-center gap-3 sm:bottom-6 sm:right-6 pointer-events-none"
+      className="fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-[calc(1.25rem+env(safe-area-inset-right))] z-50 flex flex-col items-center gap-3 pointer-events-none sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom))] sm:right-[calc(1.5rem+env(safe-area-inset-right))]"
       aria-label="Floating page actions"
     >
       {/* Scroll to Top Button (Positioned directly ABOVE WhatsApp icon) */}

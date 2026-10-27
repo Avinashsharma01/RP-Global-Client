@@ -8,6 +8,7 @@ import {
   FAQItem,
   AdminFAQResponse,
   Certificate,
+  LandingContentCollection,
 } from "./types";
 
 export interface AdminSummaryData {
@@ -419,6 +420,36 @@ export const api = {
   deleteCertificate: async (id: string) => {
     return fetcher(`/certificates/${id}`, {
       method: "DELETE",
+    });
+  },
+
+  // Landing Page CMS API (All Sections)
+  getLandingContent: async () => {
+    return fetcher<LandingContentCollection>("/landing");
+  },
+
+  getLandingSection: async <T>(sectionKey: string) => {
+    return fetcher<T>(`/landing/${sectionKey}`);
+  },
+
+  updateLandingSection: async <T>(sectionKey: string, data: any) => {
+    return fetcher<T>(`/landing/${sectionKey}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  },
+
+  uploadLandingMedia: async (formData: FormData) => {
+    return fetcher<{
+      url: string;
+      publicId: string;
+      resourceType: "image" | "video";
+      format: string;
+      message: string;
+    }>("/landing/upload", {
+      method: "POST",
+      body: formData,
     });
   },
 };

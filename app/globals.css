@@ -197,6 +197,10 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.rfq-modal :is(input, select, textarea) {
+  min-height: 2.75rem;
+}
+
 .admin-page th {
   color: #475569;
   font-size: 0.6875rem;
@@ -489,46 +493,260 @@ body {
   z-index: 30;
 }
 
+/* ==========================================================================
+   AUTHENTIC LIVING WATER INSIDE BUTTONS ANIMATION
+   ========================================================================== */
+
+.water-inside-chamber {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  contain: strict;
+}
+
+/* Water body volume filling the button capsule */
+.water-liquid-volume {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  width: 140%;
+  bottom: 0;
+  height: 62%;
+  background: linear-gradient(180deg, rgba(0, 180, 216, 0.65) 0%, rgba(0, 119, 182, 0.9) 50%, rgba(3, 4, 94, 0.98) 100%);
+  transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.1, 0.8, 0.3, 1);
+  transform: rotate(var(--water-tilt-deg, 0deg)) translateY(var(--water-slosh-y, 0px));
+  transform-origin: center bottom;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+/* Water level rises and reacts on button hover */
+.btn-water-fluid:hover .water-liquid-volume,
+.water-fluid-primary:hover .water-liquid-volume,
+.water-fluid-interactive:hover .water-liquid-volume,
+[data-water-fluid="true"]:hover .water-liquid-volume {
+  height: 88%;
+}
+
+/* On press/click, water sloshes intensely with a surge */
+.water-slosh-surge .water-liquid-volume {
+  height: 98% !important;
+  transition: height 0.15s ease-out;
+}
+
+/* Secondary / Light button crystal-clear water styling */
+.water-fluid-secondary .water-liquid-volume,
+.btn-water-fluid-secondary .water-liquid-volume {
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.35) 0%, rgba(0, 180, 216, 0.4) 50%, rgba(0, 119, 182, 0.5) 100%);
+}
+
+/* Continuous dual animated wave layers */
+.water-wave-layer {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 250%;
+  height: 20px;
+  margin-bottom: -1px;
+  pointer-events: none;
+}
+
+.water-wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.water-wave-back {
+  fill: rgba(0, 119, 182, 0.75);
+  animation: waterWaveDriftBack 3.8s linear infinite;
+  opacity: 0.8;
+}
+
+.water-wave-front {
+  fill: rgba(0, 229, 255, 0.7);
+  animation: waterWaveDriftFront 2.6s linear infinite;
+  opacity: 0.95;
+}
+
+.water-fluid-secondary .water-wave-back,
+.btn-water-fluid-secondary .water-wave-back {
+  fill: rgba(0, 119, 182, 0.45);
+}
+
+.water-fluid-secondary .water-wave-front,
+.btn-water-fluid-secondary .water-wave-front {
+  fill: rgba(0, 229, 255, 0.6);
+}
+
+.btn-water-fluid:hover .water-wave-back,
+.water-fluid-interactive:hover .water-wave-back,
+[data-water-fluid="true"]:hover .water-wave-back {
+  animation-duration: 2.4s;
+}
+
+.btn-water-fluid:hover .water-wave-front,
+.water-fluid-interactive:hover .water-wave-front,
+[data-water-fluid="true"]:hover .water-wave-front {
+  animation-duration: 1.7s;
+}
+
+@keyframes waterWaveDriftBack {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25%, -3px, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes waterWaveDriftFront {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25%, 3px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Micro rising water bubbles */
+.water-bubble {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(0, 229, 255, 0.6) 50%, rgba(0, 119, 182, 0.2) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 5px rgba(0, 229, 255, 0.85);
+  pointer-events: none;
+  animation: waterBubbleRise 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.water-bubble.b1 {
+  width: 4px;
+  height: 4px;
+  left: 18%;
+  animation-duration: 2.2s;
+  animation-delay: 0.1s;
+}
+
+.water-bubble.b2 {
+  width: 3px;
+  height: 3px;
+  left: 52%;
+  animation-duration: 3s;
+  animation-delay: 0.9s;
+}
+
+.water-bubble.b3 {
+  width: 4.5px;
+  height: 4.5px;
+  left: 76%;
+  animation-duration: 2.6s;
+  animation-delay: 1.6s;
+}
+
+.water-bubble.b4 {
+  width: 2.5px;
+  height: 2.5px;
+  left: 36%;
+  animation-duration: 3.3s;
+  animation-delay: 0.4s;
+}
+
+@keyframes waterBubbleRise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.95;
+    transform: translate3d(2px, -24px, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-2px, -36px, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Glass Meniscus curved reflection at top of container */
+.water-top-meniscus {
+  position: absolute;
+  top: 1px;
+  left: 6%;
+  right: 6%;
+  height: 36%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Internal liquid caustic glow */
+.water-caustic-mesh {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 120%, rgba(0, 229, 255, 0.45) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+  animation: waterCausticBreathe 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes waterCausticBreathe {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+/* Ensure button text and icons sit distinctly above the water */
+.btn-water-fluid > *:not(.water-inside-chamber):not(.water-global-ripple),
+.water-fluid-interactive > *:not(.water-inside-chamber):not(.water-global-ripple),
+[data-water-fluid="true"] > *:not(.water-inside-chamber):not(.water-global-ripple) {
+  position: relative;
+  z-index: 10;
+}
+
 /* Primary Water Fluid Button Styling (Living Water Droplet Aesthetic) */
 .btn-water-fluid,
 .water-fluid-primary,
-button[class*="from-[#0077B6]"],
-a[class*="from-[#0077B6]"],
-button[class*="from-[#0077b6]"],
-a[class*="from-[#0077b6]"],
-button[class*="to-[#0284c7]"],
-a[class*="to-[#0284c7]"],
-button[class*="bg-[#0077B6]"]:not([class*="text-"]):not([class*="admin-"]),
-a[class*="bg-[#0077B6]"]:not([class*="text-"]):not([class*="admin-"]),
-button[class*="bg-[#0077b6]"]:not([class*="text-"]):not([class*="admin-"]),
-a[class*="bg-[#0077b6]"]:not([class*="text-"]):not([class*="admin-"]) {
+.water-fluid-btn {
   position: relative !important;
   overflow: hidden !important;
   border-radius: 9999px !important; /* Smooth water droplet pill */
   background: linear-gradient(135deg, #0077b6 0%, #0096c7 45%, #0284c7 100%) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border: 1.5px solid rgba(0, 229, 255, 0.75) !important;
   box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 5px rgba(2, 62, 138, 0.4),
-    0 8px 22px -4px rgba(0, 119, 182, 0.38),
-    0 2px 6px rgba(0, 180, 216, 0.25) !important;
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 5px rgba(0, 229, 255, 0.3),
+    0 0 16px rgba(0, 229, 255, 0.35),
+    0 8px 24px -4px rgba(0, 119, 182, 0.5) !important;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease !important;
 }
 
 /* Dynamic Hover and Active States for Water Fluid Buttons */
 .btn-water-fluid:hover,
 .water-fluid-primary:hover,
-button[class*="from-[#0077B6]"]:hover,
-a[class*="from-[#0077B6]"]:hover,
-button[class*="from-[#0077b6]"]:hover,
-a[class*="from-[#0077b6]"]:hover,
-button[class*="to-[#0284c7]"]:hover,
-a[class*="to-[#0284c7]"]:hover,
-button[class*="bg-[#0077B6]"]:not([class*="admin-"]):hover,
-a[class*="bg-[#0077B6]"]:not([class*="admin-"]):hover,
-button[class*="bg-[#0077b6]"]:not([class*="admin-"]):hover,
-a[class*="bg-[#0077b6]"]:not([class*="admin-"]):hover {
+.water-fluid-btn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow:
     inset 0 1.5px 3px rgba(255, 255, 255, 0.8),
@@ -539,16 +757,7 @@ a[class*="bg-[#0077b6]"]:not([class*="admin-"]):hover {
 
 .btn-water-fluid:active,
 .water-fluid-primary:active,
-button[class*="from-[#0077B6]"]:active,
-a[class*="from-[#0077B6]"]:active,
-button[class*="from-[#0077b6]"]:active,
-a[class*="from-[#0077b6]"]:active,
-button[class*="to-[#0284c7]"]:active,
-a[class*="to-[#0284c7]"]:active,
-button[class*="bg-[#0077B6]"]:not([class*="admin-"]):active,
-a[class*="bg-[#0077B6]"]:not([class*="admin-"]):active,
-button[class*="bg-[#0077b6]"]:not([class*="admin-"]):active,
-a[class*="bg-[#0077b6]"]:not([class*="admin-"]):active {
+.water-fluid-btn:active {
   transform: translateY(1px) scale(0.97);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.5),
@@ -598,19 +807,27 @@ a[class*="bg-[#0077b6]"]:not([class*="admin-"]):active {
     0 10px 24px -4px rgba(0, 119, 182, 0.25) !important;
 }
 
-/* Universal Water Droplet Shape and Fluid Springs for interactive action buttons across the site */
-button:not(.admin-page *):not(.no-water),
-[role="button"]:not(.admin-page *):not(.no-water) {
-  border-radius: 9999px;
+/* Smooth micro-spring animations strictly for primary CTA water fluid buttons */
+.btn-water-fluid,
+.water-fluid-primary,
+.water-fluid-btn,
+[data-water-fluid="true"],
+.important-cta {
   transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
 }
 
-button:not(.admin-page *):not(.no-water):hover,
-[role="button"]:not(.admin-page *):not(.no-water):hover {
+.btn-water-fluid:hover,
+.water-fluid-primary:hover,
+.water-fluid-btn:hover,
+[data-water-fluid="true"]:hover,
+.important-cta:hover {
   transform: translateY(-1.5px);
 }
 
-button:not(.admin-page *):not(.no-water):active,
-[role="button"]:not(.admin-page *):not(.no-water):active {
+.btn-water-fluid:active,
+.water-fluid-primary:active,
+.water-fluid-btn:active,
+[data-water-fluid="true"]:active,
+.important-cta:active {
   transform: translateY(1px) scale(0.97);
 }
