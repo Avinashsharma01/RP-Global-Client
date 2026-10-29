@@ -120,7 +120,7 @@ const SECTORS: SectorItem[] = [
     borderColor: "hover:border-sky-400",
     recommendedPlant: "Effluent Treatment Plants (ETP)",
     processSummary:
-      "Comprehensive Zero Liquid Discharge (ZLD) train combining color coagulation, advanced biological degradation, high-pressure RO membranes, and mechanical vapor recompression evaporators.",
+      "Zero Liquid Discharge (ZLD) train combining colour coagulation, biological treatment, high-pressure RO membranes, and mechanical vapour recompression where required.",
     steps: [
       {
         title: "Physico-Chemical De-color",
@@ -202,7 +202,7 @@ const SECTORS: SectorItem[] = [
       },
       {
         title: "High-Rate Lamella Settling",
-        desc: "Inclined honeycomb plates accelerating settling velocity for crystal-clear top effluent.",
+        desc: "Inclined honeycomb plates increase settling area before downstream filtration.",
       },
       {
         title: "Sludge Cake Dehydration",
@@ -311,7 +311,7 @@ const SECTORS: SectorItem[] = [
       },
       {
         title: "Pressurized Dual-Line Booster",
-        desc: "Automated hydro-pneumatic pumping supplying crystal-clear water for HVAC cooling & flush lines.",
+        desc: "Automated hydro-pneumatic pumping for HVAC cooling and flush lines.",
       },
     ],
   },
@@ -404,7 +404,7 @@ const SECTORS: SectorItem[] = [
     steps: [
       {
         title: "Ultrafiltration SDI Barrier",
-        desc: "0.02-micron membrane removing colloidal silica to guarantee Silt Density Index (SDI) < 2.5.",
+        desc: "0.02-micron membrane removing colloidal silica to target a Silt Density Index (SDI) below 2.5.",
       },
       {
         title: "Two-Pass Brackish RO",

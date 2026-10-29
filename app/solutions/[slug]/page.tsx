@@ -49,9 +49,9 @@ const FALLBACK_SPECS: Record<string, PlantSolutionDetail> = {
     summary:
       "Engineered two-bed and mixed-bed ion exchange demineralization systems producing high-purity water with conductivity < 0.1 µS/cm and silica < 0.02 ppm.",
     description:
-      "R P Global Projects designs, fabricates, and commissions state-of-the-art Demineralization (DM) Plants engineered to remove dissolved mineral salts, ions, and reactive silica from process feed water. Utilizing premium Strong Acid Cation (SAC) and Strong Base Anion (SBA) resins alongside optional Mixed Bed (MB) polishers, our systems ensure ultra-pure deionized water compliance for critical boiler feeds and pharmaceutical formulations.",
+      "R P Global Projects designs, fabricates, and commissions Demineralization (DM) Plants that remove dissolved mineral salts, ions, and reactive silica from process feed water. Strong Acid Cation (SAC) and Strong Base Anion (SBA) resins, with optional Mixed Bed (MB) polishers, are selected for boiler feed and pharmaceutical process requirements.",
     keyFeatures: [
-      "Conductivity guaranteed below 0.1 µS/cm with mixed bed polishing",
+      "Conductivity target below 0.1 µS/cm with mixed bed polishing",
       "Automatic acid (HCl) and caustic (NaOH) regeneration skids with zero leak containment",
       "FRP / Rubber-Lined Mild Steel (MSRL) pressure vessels resistant to corrosive reagents",
       "Digital PLC/SCADA control panel with online conductivity & silica monitoring",
@@ -89,11 +89,11 @@ const FALLBACK_SPECS: Record<string, PlantSolutionDetail> = {
     tagline: "Industrial Wastewater Remediation, Heavy Metal Removal & Zero Liquid Discharge (ZLD)",
     capacityRange: "10 KLD to 2,000+ KLD",
     summary:
-      "Heavy-duty turnkey industrial wastewater plants combining physico-chemical precipitation, biological treatment, and tertiary filtration guaranteeing 100% CPCB compliance.",
+      "Turnkey industrial wastewater plants combining physico-chemical precipitation, biological treatment, and tertiary filtration for applicable CPCB requirements.",
     description:
-      "R P Global Projects delivers robust industrial Effluent Treatment Plants (ETP) tailored to treat hazardous, chemical-laden, high-COD/BOD industrial discharge. From textile dye houses and chemical refineries to electroplating units and food processing facilities, our plants utilize advanced dissolved air flotation (DAF), moving bed biofilm reactors (MBBR), and membrane bioreactors (MBR) engineered to achieve Zero Liquid Discharge (ZLD).",
+      "R P Global Projects delivers industrial Effluent Treatment Plants (ETP) for hazardous, chemical-laden, and high-COD/BOD discharge. For textile dye houses, chemical refineries, electroplating units, and food processing facilities, the process may include dissolved air flotation (DAF), moving bed biofilm reactors (MBBR), membrane bioreactors (MBR), and Zero Liquid Discharge (ZLD).",
     keyFeatures: [
-      "Guaranteed discharge meeting state (SPCB) and central (CPCB) pollution control parameters",
+      "Discharge targets set against state (SPCB) and central (CPCB) pollution control parameters",
       "Over 90% COD and 95% BOD reduction",
       "Compact Skid-Mounted ETP options for space-constrained premises",
       "Automated chemical dosing (Coagulant, Flocculant, Lime, Alum, Poly-electrolyte)",
@@ -172,7 +172,7 @@ const FALLBACK_SPECS: Record<string, PlantSolutionDetail> = {
     tagline: "Odourless Biological Domestic Sewage Treatment for Water Recycling in High-Rises & Campuses",
     capacityRange: "25 KLD to 5,000+ KLD",
     summary:
-      "Modern biological sewage treatment plants employing MBBR, SBR, and MBR technologies designed to produce odor-free, crystal-clear water compliant with CPCB standards for flushing and horticulture.",
+      "Biological sewage treatment plants using MBBR, SBR, and MBR technologies for treated water reuse in flushing and horticulture, with targets set against CPCB standards.",
     description:
       "R P Global Projects is a market leader in designing and constructing odorless, high-efficiency Sewage Treatment Plants (STP). Serving residential gated communities, commercial IT tech parks, educational campuses, and hotels, our systems treat domestic black and grey water with maximum nutrient removal and zero nuisance.",
     keyFeatures: [
@@ -301,8 +301,8 @@ export default async function SolutionDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
-      {/* Hero Header Banner with Live Streamlines */}
+    <div className="min-h-screen bg-[#f7f7f3]">
+      {/* Solution introduction */}
       <section className="relative overflow-hidden border-b border-[#bce1f1]/60">
         <WaterBackgroundEffect variant="hydraulic" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
           <div className="max-w-7xl mx-auto">
@@ -319,7 +319,7 @@ export default async function SolutionDetailPage({
             <div className="lg:col-span-8 space-y-4">
               <div className="inline-flex items-center gap-2 border border-[#cbd9d3] bg-white px-3 py-1 text-xs font-semibold text-[#26717a]">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
-                <span>Turnkey EPC • CPCB / SPCB Norms Guaranteed</span>
+                <span>Turnkey EPC • CPCB / SPCB Norms Review</span>
               </div>
 
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">

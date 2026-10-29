@@ -38,7 +38,7 @@ export default function NotFound() {
         {/* Status Badge */}
         <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono tracking-wider mb-6">
           <AlertTriangle className="w-4 h-4 text-amber-400 animate-pulse" />
-          <span>STATUS CODE: 404 // HYDRAULIC_NODE_OFFLINE</span>
+          <span>PAGE NOT FOUND // CHECK THE ADDRESS</span>
         </div>
 
         {/* Big Glitch Numeric 404 */}
@@ -47,12 +47,12 @@ export default function NotFound() {
         </h1>
 
         <h2 className="mt-4 text-2xl sm:text-3xl font-bold tracking-tight text-white max-w-2xl">
-          Industrial Pipeline or Engineering Asset Unreachable
+          This page is not available
         </h2>
 
         <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
-          The requested plant specification, drawing document, or portal page is not available.
-          It may have been re-commissioned, moved, or is temporarily offline for maintenance.
+          The link may be out of date, or the address may have been entered incorrectly.
+          Use one of the links below to continue.
         </p>
 
         {/* Action Controls */}
@@ -95,7 +95,7 @@ export default function NotFound() {
           <div className="flex items-center justify-between pb-4 border-b border-white/10">
             <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-[#00E5FF]">
               <Droplets className="w-4 h-4" />
-              <span>Verified Plant Directories</span>
+              <span>Plant solution directory</span>
             </div>
             <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
               CPCB / SPCB Compliant EPC

@@ -16,7 +16,7 @@ export const ClientLayoutWrapper: FC<{ children: ReactNode }> = ({ children }) =
 
   const pathname = usePathname();
   const isAdmin = Boolean(pathname?.startsWith("/admin"));
-  const [forceIntro, setForceIntro] = useState(!isAdmin);
+  const [forceIntro, setForceIntro] = useState(false);
   const [introDuration, setIntroDuration] = useState(2000);
   const [replayKey, setReplayKey] = useState(0);
 

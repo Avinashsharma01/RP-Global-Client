@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Check, PhoneCall, Droplets, Activity } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, PhoneCall, Droplets } from "lucide-react";
 import dynamic from "next/dynamic";
 import { COMPANY_INFO } from "@/lib/constants";
 import { WaterWaveDivider } from "@/components/ui/WaterWaveDivider";
@@ -28,7 +27,7 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
   const titleHighlight = data?.titleHighlight ?? "the long run.";
   const description =
     data?.description ||
-    "Turnkey water and wastewater treatment plants designed around your inlet water chemistry, fabricated in-house to guarantee CPCB/SPCB discharge limits, and supported through long-term operation.";
+    "Turnkey water and wastewater treatment plants designed around your inlet water chemistry, fabricated in-house, and supported through commissioning and ongoing operation.";
   const primaryCtaText = data?.primaryCtaText || "Talk to an Engineer";
   const primaryCtaLink = data?.primaryCtaLink || "";
   const secondaryCtaText = data?.secondaryCtaText || "Explore Our Solutions";
@@ -41,7 +40,6 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
   const rawPhone = phoneNumber.replace(/[^\d+]/g, "").replace(/^\+/, "");
   const mediaType = data?.mediaType || "image";
   const mediaUrl = data?.mediaUrl || "/images/hero-bg.jpg";
-  const telemetryText = data?.telemetryText || "Real-Time Plant Telemetry • Active";
   const overlayCaption = data?.overlayCaption || "Industrial wastewater treatment";
 
   const handlePrimaryClick = () => {
@@ -55,34 +53,22 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-[#f0f9ff]/60 to-[#e0f2fe]/40">
-      {/* Subtle aquatic background ambient caustics with breathing glow */}
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.28, 0.15] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-[#00E5FF]/20 blur-3xl"
-      />
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.22, 0.12] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="pointer-events-none absolute top-1/2 left-1/4 h-80 w-80 rounded-full bg-[#0077B6]/20 blur-3xl"
-      />
-
+    <section className="relative overflow-hidden border-b border-[#dfe5df] bg-[#f7f7f3]">
       <div className="mx-auto grid min-h-0 max-w-[1640px] grid-cols-1 px-4 sm:px-6 lg:px-8 lg:min-h-[580px] lg:grid-cols-[0.92fr_1.08fr]">
         {/* Left Column: Headline & Technical Value Props */}
         <div className="relative z-10 flex flex-col justify-center py-10 sm:py-14 sm:pr-8 lg:py-14 lg:pr-10">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#0077b6] backdrop-blur-sm shadow-sm sm:mb-6 sm:gap-2.5 sm:px-3.5 sm:text-[11px] sm:tracking-[0.16em]"
+            className="mb-5 inline-flex max-w-full items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#0077b6] shadow-sm sm:mb-6 sm:gap-2.5 sm:px-3.5 sm:text-[11px] sm:tracking-[0.16em]"
           >
             <Droplets className="h-3.5 w-3.5 text-[#00E5FF] animate-pulse" />
             <span className="min-w-0 break-words">{badge}</span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
             className="max-w-[650px] text-[2.15rem] font-semibold leading-[1.06] tracking-[-0.045em] text-[#0A192F] sm:text-[2.8rem] xl:text-[3.8rem]"
@@ -99,13 +85,13 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
                 <br />
               </>
             )}
-            <span className="bg-gradient-to-r from-[#0077B6] to-[#00B4D8] bg-clip-text text-transparent font-bold">
+            <span className="text-[#0077B6] font-bold">
               {titleHighlight}
             </span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.16, ease: "easeOut" }}
             className="mt-5 max-w-[510px] text-[0.95rem] leading-6 text-[#475569] sm:mt-6 sm:text-lg sm:leading-7"
@@ -114,7 +100,7 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.24, ease: "easeOut" }}
             className="mt-7 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
@@ -141,7 +127,7 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.35 }}
             className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-slate-200/80 pt-5 text-xs text-[#53666a] sm:mt-10 sm:gap-x-6"
@@ -175,7 +161,7 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
               muted
               playsInline
               poster={data?.mediaPosterUrl}
-              className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className="h-full w-full object-cover object-center"
             />
           ) : (
             <Image
@@ -186,7 +172,7 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
               quality={85}
               unoptimized={/^https?:\/\//i.test(mediaUrl)}
               sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-center"
             />
           )}
 
@@ -200,22 +186,11 @@ export const Hero: FC<HeroProps> = ({ data, onOpenRFQ }) => {
             className="absolute inset-0 z-10 cursor-crosshair"
           />
 
-          {/* Floating Live Telemetry Badge */}
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-6 right-6 z-20 hidden sm:flex items-center gap-2 rounded-xl border border-white/20 bg-[#0A192F]/85 px-4 py-2 text-xs font-mono text-cyan-200 backdrop-blur-md shadow-xl"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5FF] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00E5FF]"></span>
-            </span>
-            <Activity className="h-3.5 w-3.5 text-[#00E5FF]" />
-            <span>{telemetryText}</span>
-          </motion.div>
-
-          <div className="absolute bottom-4 left-4 right-4 z-20 w-fit max-w-[calc(100%-2rem)] rounded-md bg-white/95 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#0A192F] shadow-md sm:bottom-7 sm:left-7 sm:right-auto sm:text-[10px] sm:tracking-[0.12em]">
-            {overlayCaption}
+          <div className="absolute bottom-4 left-4 right-4 z-20 max-w-[calc(100%-2rem)] border-l-2 border-[#00E5FF] bg-[#0A192F]/90 px-4 py-3 text-white shadow-lg sm:bottom-7 sm:left-7 sm:right-auto sm:max-w-sm">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[#8ed9e7]">
+              Typical project view
+            </p>
+            <p className="mt-1 text-sm font-medium">{overlayCaption}</p>
           </div>
         </div>
       </div>

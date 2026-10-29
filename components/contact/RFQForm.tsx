@@ -101,9 +101,9 @@ export const RFQForm: React.FC = () => {
   };
 
   return (
-    <div id="rfq" className="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
+    <div id="rfq" className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_36px_rgba(20,45,49,0.08)] overflow-hidden">
       <div className="bg-[#0A192F] text-white p-6 sm:p-8">
-        <span className="text-[11px] uppercase font-bold tracking-widest text-[#00E5FF] bg-[#00E5FF]/10 px-3 py-1 rounded-full border border-[#00E5FF]/20">
+        <span className="text-[11px] uppercase font-bold tracking-widest text-[#8ed9e7] border-l-2 border-[#00E5FF] pl-3">
           Official Engineering Desk
         </span>
         <h3 className="text-2xl font-bold text-white mt-3">

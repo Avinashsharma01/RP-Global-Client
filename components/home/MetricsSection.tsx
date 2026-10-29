@@ -2,7 +2,7 @@
 
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
-import { Droplets, Sparkles } from "lucide-react";
+import { Droplets } from "lucide-react";
 import { motion } from "framer-motion";
 import type { FC } from "react";
 import { MetricsSectionData } from "@/lib/types";
@@ -77,7 +77,6 @@ export const MetricsSection: FC<MetricsSectionProps> = ({ data }) => {
                       duration={1.6}
                     />
                   </p>
-                  <Sparkles className="h-3.5 w-3.5 text-[#00E5FF] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
                 <p className="mt-2 text-xs font-semibold text-[#163c46] sm:text-sm">
                   {metric.label}

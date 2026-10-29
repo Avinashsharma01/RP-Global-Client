@@ -26,7 +26,7 @@ const EPC_STAGES = [
     stage: "01",
     title: "Water Testing & Feasibility Sizing",
     description:
-      "We begin every project by analyzing inlet water chemistry (pH, TDS, COD, BOD, TSS, heavy metals) to formulate a tailored, mathematically validated process design.",
+      "We begin every project by analyzing inlet water chemistry (pH, TDS, COD, BOD, TSS, and heavy metals) before preparing the process design.",
   },
   {
     stage: "02",
@@ -56,12 +56,12 @@ const EPC_STAGES = [
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
+    <div className="min-h-screen bg-[#f7f7f3]">
       {/* Header Banner with Aquatic Fluid Simulation */}
       <section className="relative overflow-hidden border-b border-[#bce1f1]/60">
         <WaterBackgroundEffect variant="azure" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3.5 py-1 text-xs font-semibold text-[#0077b6] backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-[#0077b6]">
               <ShieldCheck className="w-4 h-4 text-[#10B981]" />
               <span>ISO 9001:2015 Certified Engineering Firm</span>
             </div>
@@ -69,7 +69,7 @@ export default function AboutUsPage() {
               About R P Global Projects
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[#45616b] sm:text-base">
-              Pure Solutions for a Better Tomorrow — Dedicated to delivering state-of-the-art
+              Water and wastewater treatment systems — designed for practical operation and
               industrial water and wastewater infrastructure across industrial and municipal sectors.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function AboutUsPage() {
               Our Engineering Heritage
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-              Over 12 Years of Industrial Water Treatment Leadership
+              Over 12 Years in Industrial Water Treatment
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Founded on the principles of engineering precision and environmental integrity,
@@ -97,7 +97,7 @@ export default function AboutUsPage() {
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Our interdisciplinary team of chemical process engineers, mechanical fabricators, and
               automation programmers work hand-in-hand to design high-performance plants that not only
-              guarantee 100% CPCB/SPCB regulatory compliance but also maximize treated water reuse.
+              meet applicable CPCB/SPCB requirements while making sensible use of treated water.
             </p>
 
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
@@ -122,7 +122,7 @@ export default function AboutUsPage() {
               </div>
               <h3 className="text-lg font-bold text-[#0A192F]">Our Mission</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                To engineer robust, energy-efficient water and wastewater treatment plants that safeguard
+                To engineer dependable, energy-conscious water and wastewater treatment plants that safeguard
                 groundwater resources, restore industrial effluents to reusable quality, and ensure
                 continuous environmental regulatory compliance.
               </p>
@@ -134,8 +134,8 @@ export default function AboutUsPage() {
               </div>
               <h3 className="text-lg font-bold text-white">Our Vision</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                To be India&apos;s foremost benchmark in industrial environmental engineering, championing
-                Zero Liquid Discharge (ZLD) technologies and sustainable water circularity for industry.
+                To build practical industrial environmental systems, including Zero Liquid Discharge
+                (ZLD) where the process and site requirements call for it.
               </p>
             </div>
           </div>
@@ -145,14 +145,14 @@ export default function AboutUsPage() {
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-wider text-[#0077B6] bg-[#0077B6]/10 px-3 py-1 rounded-full">
-              Full-Stack Delivery
+            Project delivery
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0A192F] mt-3">
               Our Turnkey EPC Execution Lifecycle
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-1">
               From raw water sampling to commercial handover, our single-point accountability model
-              guarantees on-time project completion and zero scope gaps.
+              keeps project scope, timelines, and handover requirements clear.
             </p>
           </div>
 

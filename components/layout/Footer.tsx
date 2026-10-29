@@ -61,7 +61,7 @@ export const Footer = () => {
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 p-1.5 backdrop-blur-sm border border-white/20 shadow-sm">
               <img
-                src="https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png"
+                src="/images/Logo.png"
                 alt="R P Global Projects logo"
                 className="h-full w-auto object-contain"
               />

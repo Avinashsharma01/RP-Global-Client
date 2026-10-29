@@ -161,7 +161,7 @@ interface PartnersSectionProps {
 
 export const PartnersSection: React.FC<PartnersSectionProps> = ({ data }) => {
   const badge = data?.badge || "Our Partners & Clients";
-  const title = data?.title || "Trusted by India’s Leading Industrial Enterprises";
+  const title = data?.title || "Clients and project partners";
   const description =
     data?.description ||
     "Engineering zero liquid discharge and mission-critical water treatment systems for premier manufacturing giants.";

@@ -228,12 +228,12 @@ export default function GalleryPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
-      {/* Header Banner with Live Streamlines */}
+    <div className="min-h-screen bg-[#f7f7f3]">
+      {/* Page introduction */}
       <section className="relative overflow-hidden border-b border-[#bce1f1]/60">
-        <WaterBackgroundEffect variant="hydraulic" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
+        <WaterBackgroundEffect variant="hydraulic" className="px-4 py-12 sm:px-10 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3.5 py-1 text-xs font-semibold text-[#0077b6] backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-[#0077b6]">
               <Camera className="w-4 h-4 text-[#10B981]" />
               <span>Turnkey EPC Execution Portfolio</span>
             </div>
@@ -246,7 +246,7 @@ export default function GalleryPage() {
             </p>
 
             {/* Quick Status Stats Pill */}
-            <div className="mt-7 flex items-center justify-start gap-3 text-xs font-mono">
+            <div className="mt-7 flex flex-wrap items-center justify-start gap-3 text-xs font-mono">
               <span className="flex items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50/90 px-3 py-1.5 text-amber-800 shadow-sm backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <span>{runningCount} Active Site Projects</span>
@@ -596,11 +596,11 @@ export default function GalleryPage() {
                 </div>
               )}
 
-              {/* Quality & Assurance Guarantee */}
+              {/* Quality and compliance */}
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center space-x-3 text-slate-600">
                 <ShieldCheck className="w-5 h-5 text-[#0077B6] shrink-0" />
                 <span className="text-[11px] leading-relaxed">
-                  Turnkey EPC fabrication with ISO 9001:2015 certified quality controls and guaranteed CPCB/SPCB discharge compliance.
+                  Turnkey EPC fabrication with ISO 9001:2015 quality controls and designs aligned with CPCB/SPCB discharge requirements.
                 </span>
               </div>
 

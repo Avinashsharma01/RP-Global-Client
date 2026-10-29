@@ -12,7 +12,17 @@ interface Droplet {
 
 export const HeaderWaterDrop: React.FC = () => {
   const [droplets, setDroplets] = useState<Droplet[]>([]);
+  const [isDesktop, setIsDesktop] = useState(false);
   const nextId = useRef(0);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const updateDesktopState = () => setIsDesktop(mediaQuery.matches);
+
+    updateDesktopState();
+    mediaQuery.addEventListener("change", updateDesktopState);
+    return () => mediaQuery.removeEventListener("change", updateDesktopState);
+  }, []);
 
   // Spawns a single transparent glass water droplet
   const spawnDroplet = useCallback((customX?: number) => {
@@ -65,6 +75,8 @@ export const HeaderWaterDrop: React.FC = () => {
 
   // Interval timer for frequent, continuous water dripping
   useEffect(() => {
+    if (!isDesktop) return;
+
     // Initial staggered drops right after page load so user sees them immediately
     const t1 = setTimeout(() => spawnDroplet(), 250);
     const t2 = setTimeout(() => spawnDroplet(), 800);
@@ -96,7 +108,9 @@ export const HeaderWaterDrop: React.FC = () => {
       clearTimeout(intervalTimer);
       window.removeEventListener("trigger-water-drop", handleCustomTrigger);
     };
-  }, [spawnDroplet]);
+  }, [isDesktop, spawnDroplet]);
+
+  if (!isDesktop) return null;
 
   return (
     <div

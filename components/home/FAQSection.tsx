@@ -6,7 +6,6 @@ import {
   HelpCircle,
   ChevronDown,
   Search,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   FileQuestion,
@@ -33,7 +32,7 @@ const FALLBACK_FAQS: FAQItem[] = [
   {
     _id: "faq-2",
     question: "How does RP Global ensure compliance with CPCB and State Pollution Control Board (SPCB) discharge norms?",
-    answer: "Every plant is custom-engineered around the client's inlet effluent characteristics (BOD, COD, TSS, TDS, Heavy Metals, pH) and designed strictly to meet or exceed CPCB/SPCB discharge standards. We provide treated effluent quality guarantees, process validation reports, and integrate online Continuous Emission/Effluent Monitoring Systems (OCEMS) with cloud telemetry directly linked to SPCB/CPCB server gateways.",
+    answer: "Every plant is designed around the client's inlet effluent characteristics (BOD, COD, TSS, TDS, heavy metals, and pH) and checked against CPCB/SPCB discharge standards. We provide process validation reports and can integrate online monitoring systems (OCEMS) where required.",
     category: "Compliance & Approvals",
     order: 2,
     isActive: true,
@@ -42,7 +41,7 @@ const FALLBACK_FAQS: FAQItem[] = [
   {
     _id: "faq-3",
     question: "What is the difference between MBBR, SBR, and MBR technologies for STP plants?",
-    answer: "Moving Bed Biofilm Reactor (MBBR) uses virgin plastic media carriers for compact biological digestion with minimal footprint and low maintenance. Sequencing Batch Reactor (SBR) operates in batch phases (fill, react, settle, decant) offering high biological nutrient removal without separate clarifiers. Membrane Bioreactor (MBR) combines biological treatment with ultrafiltration membranes (<0.04 micron), producing crystal-clear water with BOD < 5 mg/L suitable for direct cooling tower reuse and flushing.",
+    answer: "Moving Bed Biofilm Reactor (MBBR) uses plastic media carriers for compact biological treatment. Sequencing Batch Reactor (SBR) operates in fill, react, settle, and decant phases. Membrane Bioreactor (MBR) combines biological treatment with ultrafiltration membranes for low-solids treated water suitable for reuse, subject to the design target.",
     category: "STP & ETP Plants",
     order: 3,
     isActive: true,
@@ -105,7 +104,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, onOpenRFQ }) => {
   const title = data?.title || "Clear Answers for Your Water EPC Projects";
   const description =
     data?.description ||
-    "Comprehensive technical and statutory insights into plant sizing, CPCB/SPCB discharge guidelines, operational guarantees, and turnkey commissioning.";
+    "Practical guidance on plant sizing, CPCB/SPCB discharge guidelines, commissioning, and maintenance.";
 
   const [faqs, setFaqs] = useState<FAQItem[]>(FALLBACK_FAQS);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");

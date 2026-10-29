@@ -1,7 +1,7 @@
 export const COMPANY_INFO = {
   name: "R P Global Projects",
-  tagline: "Pure Solutions for a Better Tomorrow",
-  subtitle: "Engineering Excellence in Industrial Water and Wastewater Management",
+  tagline: "Water and wastewater treatment systems",
+  subtitle: "Industrial water treatment engineering and project delivery",
   phone: "+91 7739283565",
   phoneRaw: "917739283565",
   email: "info@rpglobalprojects.com",

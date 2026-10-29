@@ -281,7 +281,7 @@ export const WaterLoadingScreen: React.FC<WaterLoadingScreenProps> = ({
             <div className="flex items-center gap-2.5 sm:gap-3.5">
               <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 p-1.5 shadow-md shadow-cyan-500/10 backdrop-blur-md">
                 <img
-                  src="https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png"
+                  src="/images/Logo.png"
                   alt="R P Global Projects logo"
                   className="h-full w-auto object-contain"
                 />
@@ -518,7 +518,7 @@ export const WaterLoadingScreen: React.FC<WaterLoadingScreenProps> = ({
                   {/* Holographic HUD Overlay Pins */}
                   <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[8.5px] sm:text-[10px] font-semibold tracking-wide text-white shadow-md backdrop-blur-md">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
-                    <span>RPGP EPC TELEMETRY</span>
+                    <span>RPGP EPC OPERATIONS</span>
                   </div>
 
                   <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-950/80 px-2 py-0.5 sm:px-3 sm:py-1 text-[8.5px] sm:text-[10px] font-semibold text-emerald-300 shadow-md backdrop-blur-md">

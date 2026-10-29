@@ -7,7 +7,7 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
     titleLine2: "engineered for",
     titleHighlight: "the long run.",
     description:
-      "Turnkey water and wastewater treatment plants designed around your inlet water chemistry, fabricated in-house to guarantee CPCB/SPCB discharge limits, and supported through long-term operation.",
+      "Turnkey water and wastewater treatment plants designed around your inlet water chemistry, fabricated in-house, and supported through commissioning and ongoing operation.",
     primaryCtaText: "Talk to an Engineer",
     primaryCtaLink: "",
     secondaryCtaText: "Explore Our Solutions",
@@ -16,7 +16,7 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
     phoneNumber: "+91 7739283565",
     mediaType: "image",
     mediaUrl: "/images/hero-bg.jpg",
-    telemetryText: "Real-Time Plant Telemetry • Active",
+    telemetryText: "Plant operations view",
     overlayCaption: "Industrial wastewater treatment",
   },
   metrics: {
@@ -85,10 +85,10 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
     isoBadgeSubtitle: "ISO 9001:2015",
   },
   waterPurificationFlow: {
-    badge: "Interactive EPC Simulator",
-    title: "Water Clarification & EPC Process Simulator",
+    badge: "Treatment process",
+    title: "Compare treatment routes for common water problems",
     description:
-      "Explore how raw industrial effluent and wastewater are transformed into high-purity recycled water across our 4 core treatment technologies.",
+      "Review the main treatment stages used for industrial effluent, domestic sewage, saline groundwater, and surface water.",
     stages: [
       {
         id: "etp",
@@ -299,12 +299,12 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
     title:
       "One accountable engineering partner across the entire water lifecycle.",
     description:
-      "From raw water lab assays and chemical process simulations through to workshop skid fabrication, on-site erection, and decades of guaranteed AMC operations.",
+      "From raw-water testing and process design through workshop skid fabrication, site erection, commissioning, and maintenance support.",
     ctaText: "Our EPC Delivery Methodology",
     ctaLink: "/about-us",
     qualityPills: [
       { text: "Zero Outsourced Skid Fabrication", iconType: "check" },
-      { text: "Performance Guarantee Contract", iconType: "shield" },
+      { text: "Documented performance targets", iconType: "shield" },
     ],
     capabilities: [
       {
@@ -321,9 +321,9 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
       },
       {
         number: "03",
-        title: "Compliance-Guaranteed Discharge",
+        title: "Compliance-focused discharge",
         description:
-          "Treatment trains guaranteed to meet Central and State Pollution Control Board (CPCB/SPCB) norms with online COD/BOD analyzers.",
+          "Treatment trains designed around Central and State Pollution Control Board (CPCB/SPCB) norms, with online COD/BOD analyzers where required.",
       },
       {
         number: "04",
@@ -341,19 +341,19 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
         number: "06",
         title: "Lifecycle Operations & AMC Support",
         description:
-          "Comprehensive annual maintenance, membrane chemical cleaning (CIP), consumable resin replenishments, and 24/7 technical callout.",
+          "Annual maintenance, membrane chemical cleaning (CIP), resin replenishment, and technical callout support.",
       },
     ],
   },
   certifications: {
-    badge: "Certified for Excellence",
+    badge: "Registrations and certifications",
     title: "Official Government & ISO Accreditations",
     description:
       "Every plant is engineered and certified under stringent national and global quality standards.",
   },
   partners: {
     badge: "Industrial Trust & Footprint",
-    title: "Trusted by India's Leading Industrial Enterprises",
+    title: "Clients and project partners",
     description:
       "Powering water security, zero-liquid discharge, and statutory compliance for leading manufacturers.",
   },
@@ -420,7 +420,7 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
         borderColor: "hover:border-sky-400",
         recommendedPlant: "Effluent Treatment Plants (ETP)",
         processSummary:
-          "Comprehensive Zero Liquid Discharge (ZLD) train combining color coagulation, advanced biological degradation, high-pressure RO membranes, and mechanical vapor recompression evaporators.",
+          "Zero Liquid Discharge (ZLD) train combining colour coagulation, biological treatment, high-pressure RO membranes, and mechanical vapour recompression where required.",
         steps: [
           {
             title: "Physico-Chemical De-color",
@@ -571,7 +571,7 @@ export const INITIAL_LANDING_DATA: LandingContentCollection = {
           },
           {
             title: "UF & Ozone Polishing",
-            desc: "0.04-micron ultrafiltration and ozonation generating crystal-clear water for chillers.",
+            desc: "0.04-micron ultrafiltration and ozonation for reuse in chiller systems.",
           },
         ],
       },

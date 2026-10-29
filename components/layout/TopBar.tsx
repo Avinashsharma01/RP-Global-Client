@@ -3,7 +3,7 @@ import { Clock3, Mail, Phone, ShieldCheck } from "lucide-react";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const TopBar = () => (
-  <div className="hidden bg-[#0077B6] text-[10px] text-white/95 sm:block border-b border-white/10 shadow-sm">
+  <div className="hidden bg-[#0A192F] text-[10px] text-white/95 sm:block border-b border-white/10">
     <div className="mx-auto flex min-h-9 max-w-[1640px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
       <div className="flex items-center gap-5">
         <span className="inline-flex items-center gap-1.5 font-medium">

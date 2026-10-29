@@ -22,7 +22,7 @@ export const Navbar: FC = () => {
   }
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches) {
       window.dispatchEvent(new CustomEvent("trigger-water-drop"));
     }
     if (pathname === "/") {
@@ -32,7 +32,7 @@ export const Navbar: FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#e4e8e4] bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#dfe5df] bg-white">
       <div className="mx-auto flex h-[68px] max-w-[1640px] items-center justify-between px-3 sm:h-[76px] sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -42,7 +42,7 @@ export const Navbar: FC = () => {
         >
           <img
             id="navbar-logo-img"
-            src="https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png"
+            src="/images/Logo.png"
             alt="R P Global Projects logo"
             className="h-10 w-auto object-contain sm:h-12 md:h-14"
           />

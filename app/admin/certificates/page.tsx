@@ -278,7 +278,7 @@ export default function AdminCertificatesPage() {
             Certifications &amp; ISO Compliance CMS
           </h1>
           <p className="mt-1 text-xs text-slate-500 max-w-2xl">
-            Upload and manage the official documents and statutory licenses displayed in the &quot;Certified for Excellence&quot; showcase on the landing page.
+            Upload and manage the official documents and statutory licenses displayed in the registrations and certifications section.
           </p>
         </div>
 

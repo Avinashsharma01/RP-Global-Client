@@ -23,9 +23,9 @@ const FALLBACK_CAPABILITIES: CapabilityItem[] = [
   },
   {
     number: "03",
-    title: "Compliance-Guaranteed Discharge",
+    title: "Compliance-focused discharge",
     description:
-      "Treatment trains guaranteed to meet Central and State Pollution Control Board (CPCB/SPCB) norms with online COD/BOD analyzers.",
+      "Treatment trains designed around Central and State Pollution Control Board (CPCB/SPCB) norms, with online COD/BOD analyzers where required.",
   },
   {
     number: "04",
@@ -43,13 +43,13 @@ const FALLBACK_CAPABILITIES: CapabilityItem[] = [
     number: "06",
     title: "Lifecycle Operations & AMC Support",
     description:
-      "Comprehensive annual maintenance, membrane chemical cleaning (CIP), consumable resin replenishments, and 24/7 technical callout.",
+      "Annual maintenance, membrane chemical cleaning (CIP), resin replenishment, and technical callout support.",
   },
 ];
 
 const FALLBACK_PILLS: QualityPillItem[] = [
   { text: "Zero Outsourced Skid Fabrication", iconType: "check" },
-  { text: "Performance Guarantee Contract", iconType: "shield" },
+  { text: "Documented performance targets", iconType: "shield" },
 ];
 
 interface ValuePropositionProps {
@@ -58,10 +58,10 @@ interface ValuePropositionProps {
 
 export const ValueProposition: FC<ValuePropositionProps> = ({ data }) => {
   const badge = data?.badge || "Turnkey EPC Accountability";
-  const title = data?.title || "One accountable engineering partner across the entire water lifecycle.";
+  const title = data?.title || "One engineering team from design through handover.";
   const description =
     data?.description ||
-    "From raw water lab assays and chemical process simulations through to workshop skid fabrication, on-site erection, and decades of guaranteed AMC operations.";
+    "From raw-water testing and process design through skid fabrication, site erection, commissioning, and maintenance support.";
   const ctaText = data?.ctaText || "Our EPC Delivery Methodology";
   const ctaLink = data?.ctaLink || "/about-us";
   const qualityPills =

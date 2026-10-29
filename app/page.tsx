@@ -98,7 +98,7 @@ export default function HomePage() {
       </div>
 
       <div className="content-visibility-auto">
-        {/* Official Government & ISO Accreditations (Certified for Excellence) */}
+        {/* Official Government and ISO registrations */}
         <CertificationsSection data={content.certifications} />
       </div>
 

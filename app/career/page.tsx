@@ -120,12 +120,12 @@ export default function CareerPage() {
       : jobListings.filter((j) => j.department === selectedDept);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
-      {/* Header Banner with Aquatic Streamlines */}
+    <div className="min-h-screen bg-[#f7f7f3]">
+      {/* Page introduction */}
       <section className="relative overflow-hidden border-b border-[#bce1f1]/60">
         <WaterBackgroundEffect variant="azure" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3.5 py-1 text-xs font-semibold text-[#0077b6] backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-[#0077b6]">
               <Users className="w-4 h-4 text-[#10B981]" />
               <span>Join Our Engineering Team</span>
             </div>
@@ -133,8 +133,8 @@ export default function CareerPage() {
               Careers at R P Global Projects
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[#45616b] sm:text-base">
-              Build your engineering career with one of India&apos;s fastest growing industrial water EPC contractors.
-              Solve critical environmental challenges across manufacturing, energy, and municipal sectors.
+              Work on water and wastewater projects across manufacturing, energy, commercial, and municipal sites.
+              Join a team that takes projects from process design through commissioning.
             </p>
           </div>
         </WaterBackgroundEffect>

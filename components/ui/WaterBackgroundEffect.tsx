@@ -119,7 +119,7 @@ const STATIC_BUBBLES = [
 
 export const WaterBackgroundEffect: React.FC<WaterBackgroundEffectProps> = ({
   variant = "azure",
-  showBubbles = true,
+  showBubbles = false,
   showStreamlines = true,
   showCaustics = true,
   className = "",

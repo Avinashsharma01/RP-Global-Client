@@ -7,17 +7,17 @@ import { WaterBackgroundEffect } from "@/components/ui/WaterBackgroundEffect";
 export const metadata = {
   title: "Industrial Water & Wastewater Plant Solutions — R P Global Projects",
   description:
-    "Explore our complete turnkey industrial water systems: DM Plants, ETP, RO, STP, Water Softeners, and WTP systems with guaranteed CPCB/SPCB compliance.",
+    "Explore our industrial water systems: DM Plants, ETP, RO, STP, Water Softeners, and WTP systems designed around CPCB/SPCB requirements.",
 };
 
 export default function SolutionsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
-      {/* Header Banner with Aquatic Streamlines */}
+    <div className="min-h-screen bg-[#f7f7f3]">
+      {/* Page introduction */}
       <div className="relative overflow-hidden border-b border-[#bce1f1]/60">
         <WaterBackgroundEffect variant="aquamarine" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3.5 py-1 text-xs font-semibold text-[#0077b6] backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-[#0077b6]">
               <ShieldCheck className="w-4 h-4 text-[#10B981]" />
               <span>Turnkey EPC Engineering • ISO 9001:2015</span>
             </div>
@@ -25,8 +25,8 @@ export default function SolutionsPage() {
               Industrial Water & Wastewater Plant Solutions
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[#45616b] sm:text-base">
-              Engineered systems designed to meet rigorous industrial discharge standards, high-purity
-              boiler feed demands, and zero-liquid-discharge water recycling targets.
+              Treatment systems selected around source-water quality, process demand, site constraints,
+              discharge requirements, and reuse targets.
             </p>
           </div>
         </WaterBackgroundEffect>
@@ -62,7 +62,7 @@ export default function SolutionsPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
-                    <span>CPCB Discharge Standard Guarantee</span>
+                    <span>CPCB Discharge Standard Review</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />

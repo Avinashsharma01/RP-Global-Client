@@ -90,11 +90,11 @@ interface WaterPurificationFlowProps {
 
 export const WaterPurificationFlow: React.FC<WaterPurificationFlowProps> = ({ data }) => {
   const stages = data?.stages && data.stages.length > 0 ? (data.stages as TreatmentStage[]) : FALLBACK_STAGES;
-  const badge = data?.badge || "Interactive Hydro-Dynamics Telemetry";
-  const title = data?.title || "Watch Industrial Water Clarification in Real-Time";
+  const badge = data?.badge || "Treatment process";
+  const title = data?.title || "Compare treatment routes for common water problems";
   const description =
     data?.description ||
-    "Experience how RP Global transforms heavily contaminated raw effluent, saline groundwater, and domestic sewage into crystal-clear, CPCB-compliant reusable water.";
+    "Review the main treatment stages used for industrial effluent, domestic sewage, saline groundwater, and surface water.";
 
   const [selectedId, setSelectedId] = useState<string>(() => stages[0]?.id || "etp");
   const [flowSpeed, setFlowSpeed] = useState<number>(100); // 50 to 200 KLD

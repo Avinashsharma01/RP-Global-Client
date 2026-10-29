@@ -22,12 +22,12 @@ export const metadata = {
 
 export default function ContactUsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff]/60 via-[#f8fafc] to-[#e6f4f8]/40">
-      {/* Header Banner with Aquatic Streamlines */}
+    <div className="min-h-screen bg-[#f7f7f3]">
+      {/* Page introduction */}
       <section className="relative overflow-hidden border-b border-[#bce1f1]/60">
         <WaterBackgroundEffect variant="azure" className="px-6 py-14 sm:px-10 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077b6]/25 bg-white/70 px-3.5 py-1 text-xs font-semibold text-[#0077b6] backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 border-l-2 border-[#0077b6] bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-[#0077b6]">
               <Headphones className="w-4 h-4 text-[#10B981]" />
               <span>Direct Engineering Consultations</span>
             </div>
@@ -169,7 +169,7 @@ export default function ContactUsPage() {
                 our engineering directors personally supervise all project milestones.
               </p>
               <div className="pt-2 text-[11px] font-semibold text-[#0077B6]">
-                Response Guaranteed Within 24 Business Hours
+                Response Within 24 Business Hours
               </div>
             </div>
           </div>

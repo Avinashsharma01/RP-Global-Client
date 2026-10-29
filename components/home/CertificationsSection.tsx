@@ -137,7 +137,7 @@ interface CertificationsSectionProps {
 
 export const CertificationsSection: React.FC<CertificationsSectionProps> = ({ data }) => {
   const badge = data?.badge || "Our Certified";
-  const title = data?.title || "Certified for Excellence";
+  const title = data?.title || "Registrations and certifications";
   const [certificates, setCertificates] = useState<Certificate[]>(FALLBACK_CERTIFICATES);
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);

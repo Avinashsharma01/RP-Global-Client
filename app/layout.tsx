@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | R P Global Projects",
   },
   description:
-    "ISO 9001:2015 certified turnkey EPC contractor specializing in Demineralization (DM), Effluent Treatment (ETP), Reverse Osmosis (RO), Sewage Treatment (STP), Water Softeners, and WTP systems with guaranteed CPCB/SPCB compliance.",
+    "ISO 9001:2015 certified turnkey EPC contractor specializing in Demineralization (DM), Effluent Treatment (ETP), Reverse Osmosis (RO), Sewage Treatment (STP), Water Softeners, and WTP systems designed for CPCB/SPCB requirements.",
   keywords: [
     "water treatment plant manufacturer",
     "effluent treatment plant ETP Noida",
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
     canonical: "https://rpglobalprojects.com",
   },
   icons: {
-    icon: "https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png",
-    shortcut: "https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png",
-    apple: "https://rpglobalprojects.com/wp-content/uploads/2025/08/cropped-cropped-imgi_34_LOGO-RPGP-removebg-preview.png",
+    icon: "/images/Logo.png",
+    shortcut: "/images/Logo.png",
+    apple: "/images/Logo.png",
   },
   openGraph: {
     title: "R P Global Projects — Industrial Water & Wastewater Treatment Plants",
     description:
-      "ISO 9001:2015 certified turnkey EPC contractor specializing in Demineralization (DM), Effluent Treatment (ETP), Reverse Osmosis (RO), Sewage Treatment (STP), Water Softeners, and WTP systems with guaranteed CPCB/SPCB compliance.",
+      "ISO 9001:2015 certified turnkey EPC contractor specializing in Demineralization (DM), Effluent Treatment (ETP), Reverse Osmosis (RO), Sewage Treatment (STP), Water Softeners, and WTP systems designed for CPCB/SPCB requirements.",
     url: "https://rpglobalprojects.com",
     siteName: "R P Global Projects",
     images: [
