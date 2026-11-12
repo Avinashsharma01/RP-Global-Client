@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useTransition } from "react";
-import Image from "next/image";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   Globe,
@@ -31,9 +30,6 @@ import {
   ChevronRight,
   X,
   Loader2,
-  Radio,
-  FileCode,
-  ArrowRight,
 } from "lucide-react";
 import { api } from "@/lib/api";
 import {
@@ -53,7 +49,6 @@ import {
   MetricItem,
   TreatmentStageItem,
   CalculatorApplication,
-  QualityPillItem,
   CapabilityItem,
   SectorItemData,
 } from "@/lib/types";
@@ -99,33 +94,40 @@ export default function AdminLandingCMSPage() {
   }, []);
 
   // Fetch current live content from server
-  const loadContent = useCallback(async () => {
-    setLoading(true);
-    try {
-      const res = await api.getLandingContent();
-      if (res.success && res.data) {
-        setContent((prev) => ({
-          ...prev,
-          ...res.data,
-        }));
-      }
-    } catch (err: any) {
-      console.warn("Using offline landing defaults:", err);
-      showToast("Could not connect to backend, loaded local defaults.", "error");
-    } finally {
-      setLoading(false);
-    }
-  }, [showToast]);
-
   useEffect(() => {
-    loadContent();
-  }, [loadContent]);
+    let isCancelled = false;
+    api.getLandingContent()
+      .then((res) => {
+        if (!isCancelled && res.success && res.data) {
+          setContent((prev) => ({
+            ...prev,
+            ...res.data,
+          }));
+        }
+      })
+      .catch((err: unknown) => {
+        if (!isCancelled) {
+          console.warn("Using offline landing defaults:", err);
+          showToast("Could not connect to backend, loaded local defaults.", "error");
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setLoading(false);
+        }
+      });
+    return () => {
+      isCancelled = true;
+    };
+  }, [showToast]);
 
   // Update a field in the active section
   const updateActiveSection = useCallback(
-    (updater: (prev: any) => any) => {
+    <T extends LandingContentCollection[keyof LandingContentCollection]>(
+      updater: (prev: T) => T
+    ) => {
       setContent((prev) => {
-        const currentSection = prev[activeTab];
+        const currentSection = prev[activeTab] as T;
         const nextSection = updater(currentSection);
         return {
           ...prev,
@@ -149,8 +151,9 @@ export default function AdminLandingCMSPage() {
       } else {
         showToast(res.message || "Failed to update landing section.", "error");
       }
-    } catch (err: any) {
-      showToast(err.message || "Network error while updating section.", "error");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Network error while updating section.";
+      showToast(msg, "error");
     } finally {
       setIsSaving(false);
     }
@@ -477,15 +480,16 @@ function MediaUploadField({
     setIsUploading(true);
     try {
       const res = await api.uploadLandingMedia(formData);
-      const uploadedUrl = res.data?.url || (res as any).url;
+      const uploadedUrl = res.data?.url || ('url' in res && typeof (res as Record<string, unknown>).url === 'string' ? ((res as Record<string, unknown>).url as string) : undefined);
       if (res.success && uploadedUrl) {
         onMediaUrlChange(uploadedUrl);
         showToast(`Uploaded ${targetType} directly to Cloudinary!`);
       } else {
         showToast(res.message || "Failed to upload file to Cloudinary.", "error");
       }
-    } catch (err: any) {
-      showToast(err.message || "Error uploading file.", "error");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Error uploading file.";
+      showToast(msg, "error");
     } finally {
       setIsUploading(false);
       e.target.value = "";

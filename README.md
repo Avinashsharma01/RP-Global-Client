@@ -149,4 +149,12 @@ pnpm start
 
 # Run linting
 pnpm lint
+
+# Run browser end-to-end tests
+pnpm test:e2e
 ```
+
+The Playwright suite starts the Next.js development server automatically and uses
+network fixtures for deterministic public RFQ and admin dashboard coverage. Install
+the Chromium browser once with `pnpm exec playwright install chromium` before the
+first local run.

@@ -31,6 +31,7 @@ export default function AdminLoginPage() {
 
       if (res.success && res.token) {
         localStorage.setItem("rpglobal_admin_token", res.token);
+        document.cookie = `rpglobal_admin_token=${res.token}; path=/; max-age=86400; SameSite=Lax`;
         if (res.user) {
           localStorage.setItem("rpglobal_admin_user", JSON.stringify(res.user));
         }
@@ -38,7 +39,9 @@ export default function AdminLoginPage() {
       } else {
         // Fallback demo login if server is offline during client evaluation
         if (email.includes("admin") && password.length >= 6) {
-          localStorage.setItem("rpglobal_admin_token", "demo_token_rpglobal_2026");
+          const demoToken = "demo_token_rpglobal_2026";
+          localStorage.setItem("rpglobal_admin_token", demoToken);
+          document.cookie = `rpglobal_admin_token=${demoToken}; path=/; max-age=86400; SameSite=Lax`;
           localStorage.setItem(
             "rpglobal_admin_user",
             JSON.stringify({
@@ -55,7 +58,9 @@ export default function AdminLoginPage() {
       }
     } catch {
       // Local fallback for offline mode
-      localStorage.setItem("rpglobal_admin_token", "demo_token_rpglobal_2026");
+      const demoToken = "demo_token_rpglobal_2026";
+      localStorage.setItem("rpglobal_admin_token", demoToken);
+      document.cookie = `rpglobal_admin_token=${demoToken}; path=/; max-age=86400; SameSite=Lax`;
       localStorage.setItem(
         "rpglobal_admin_user",
         JSON.stringify({

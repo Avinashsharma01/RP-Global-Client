@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   /* config options here */
   experimental: {
     agentFeedback: true,
@@ -23,7 +24,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/uploads/:path*",
-        destination: "http://localhost:5000/uploads/:path*",
+        destination: `${process.env.INTERNAL_API_URL || "http://localhost:5000"}/uploads/:path*`,
       },
     ];
   },

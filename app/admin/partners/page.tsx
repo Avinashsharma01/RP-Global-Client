@@ -1,27 +1,22 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import {
   Handshake,
   Plus,
   Search,
-  Filter,
   Trash2,
   Edit3,
   ExternalLink,
   Upload,
-  Check,
   X,
   AlertCircle,
   Building2,
   ShieldCheck,
   RefreshCw,
-  Eye,
   EyeOff,
   Link as LinkIcon,
   Layers,
-  ArrowUpDown,
   CheckCircle2,
 } from "lucide-react";
 import { api } from "@/lib/api";
@@ -141,13 +136,15 @@ const INITIAL_FORM: FormState = {
 };
 
 const PartnerTableLogo: React.FC<{ partner: Partner }> = ({ partner }) => {
+  const [prevLogoUrl, setPrevLogoUrl] = useState(partner.logoUrl);
   const [imgSrc, setImgSrc] = useState<string>(() => resolveLogoUrl(partner.logoUrl));
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
+  if (partner.logoUrl !== prevLogoUrl) {
+    setPrevLogoUrl(partner.logoUrl);
     setImgSrc(resolveLogoUrl(partner.logoUrl));
     setHasError(false);
-  }, [partner.logoUrl]);
+  }
 
   const handleError = () => {
     const defaultPartner = DEFAULT_FALLBACK_PARTNERS.find(
@@ -231,7 +228,31 @@ export default function AdminPartnersPage() {
   };
 
   useEffect(() => {
-    loadPartners();
+    let isCancelled = false;
+    api.getAllPartners()
+      .then((res) => {
+        if (!isCancelled) {
+          if (res.success && res.data && res.data.length > 0) {
+            setPartners(res.data);
+          } else {
+            setPartners(DEFAULT_FALLBACK_PARTNERS);
+          }
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setPartners(DEFAULT_FALLBACK_PARTNERS);
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setLoading(false);
+          setRefreshing(false);
+        }
+      });
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   const handleRefresh = () => {
@@ -340,8 +361,9 @@ export default function AdminPartnersPage() {
           showToast(res.message || "Failed to create partner.", "error");
         }
       }
-    } catch (err: any) {
-      showToast(err.message || "An unexpected error occurred.", "error");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "An unexpected error occurred.";
+      showToast(msg, "error");
     } finally {
       setSubmitting(false);
     }
@@ -361,8 +383,9 @@ export default function AdminPartnersPage() {
       } else {
         showToast(res.message || "Failed to delete partner.", "error");
       }
-    } catch (err: any) {
-      showToast(err.message || "Failed to delete partner.", "error");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Failed to delete partner.";
+      showToast(msg, "error");
     } finally {
       setDeleting(false);
     }

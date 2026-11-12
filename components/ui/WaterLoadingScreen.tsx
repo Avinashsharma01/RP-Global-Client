@@ -95,6 +95,15 @@ export const WaterLoadingScreen: React.FC<WaterLoadingScreenProps> = ({
   const [isVisible, setIsVisible] = useState(forceShow);
   const [progress, setProgress] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [prevForceShow, setPrevForceShow] = useState(forceShow);
+
+  if (forceShow !== prevForceShow) {
+    setPrevForceShow(forceShow);
+    if (forceShow) {
+      setIsVisible(true);
+      setProgress(0);
+    }
+  }
 
   const onCompleteRef = useRef(onComplete);
   const skipButtonRef = useRef<HTMLButtonElement>(null);
@@ -104,14 +113,6 @@ export const WaterLoadingScreen: React.FC<WaterLoadingScreenProps> = ({
   useEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
-
-  // Sync isVisible if forceShow changes
-  useEffect(() => {
-    if (forceShow) {
-      setIsVisible(true);
-      setProgress(0);
-    }
-  }, [forceShow]);
 
   // Trap and restore focus for accessibility
   useEffect(() => {

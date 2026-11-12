@@ -254,10 +254,12 @@ const GalleryThumbnail: React.FC<{
 }> = ({ img, idx, isActive, onSelect, category }) => {
   const fallback = resolvePlantImage(undefined, category);
   const [src, setSrc] = useState(() => resolvePlantImage(img, category));
+  const [prevImgState, setPrevImgState] = useState({ img, category });
 
-  useEffect(() => {
+  if (prevImgState.img !== img || prevImgState.category !== category) {
+    setPrevImgState({ img, category });
     setSrc(resolvePlantImage(img, category));
-  }, [img, category]);
+  }
 
   return (
     <button
@@ -458,10 +460,18 @@ export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ data, onOpenRF
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [mainImgError, setMainImgError] = useState(false);
 
-  // Reset main image error state whenever active image or project changes
-  useEffect(() => {
+  const [prevModalTrack, setPrevModalTrack] = useState({
+    proj: selectedGalleryProject,
+    idx: activeImageIndex,
+  });
+
+  if (
+    prevModalTrack.proj !== selectedGalleryProject ||
+    prevModalTrack.idx !== activeImageIndex
+  ) {
+    setPrevModalTrack({ proj: selectedGalleryProject, idx: activeImageIndex });
     setMainImgError(false);
-  }, [selectedGalleryProject, activeImageIndex]);
+  }
 
   // Active images for current selected project
   const modalImages: string[] = selectedGalleryProject

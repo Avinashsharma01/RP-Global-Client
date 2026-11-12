@@ -1511,7 +1511,7 @@ export default function GalleryAdminPage() {
                       )
                     </h3>
                     <p className="text-[11px] text-slate-500">
-                      The cover photo is featured on tracker cards. Click "Set Cover" on any photo to make it primary.
+                      The cover photo is featured on tracker cards. Click &quot;Set Cover&quot; on any photo to make it primary.
                     </p>
                   </div>
                 </div>

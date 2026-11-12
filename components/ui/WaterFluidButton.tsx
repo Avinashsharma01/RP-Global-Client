@@ -251,7 +251,7 @@ export const WaterFluidButton: React.FC<WaterFluidButtonProps> = ({
 
   return (
     <motion.button
-      ref={buttonRef as any}
+      ref={buttonRef as React.Ref<HTMLButtonElement>}
       id={id}
       type={type}
       disabled={disabled}

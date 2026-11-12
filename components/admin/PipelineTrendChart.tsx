@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import {
   AreaChart,
   Area,
@@ -15,17 +15,56 @@ import {
 import { TrendingUp, Clock, CheckCircle2 } from "lucide-react";
 import { TimeframeOption } from "./DashboardHeader";
 
+const emptySubscribe = () => () => {};
+
+interface TooltipPayloadItem {
+  dataKey: string;
+  name: string;
+  value: number | string;
+  color: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string;
+  metricMode?: "count" | "capacity";
+}
+
+const PipelineTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label, metricMode }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
+        <div className="mb-1.5 flex items-center justify-between gap-3 border-b border-slate-700 pb-1 font-semibold text-slate-200">
+          <span>{label}</span>
+          <span className="font-mono text-[10px] text-cyan-300">RP Global Pipeline</span>
+        </div>
+        <div className="space-y-1">
+          {payload.map((item) => (
+            <div key={item.dataKey} className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full" style={{ backgroundColor: item.color }} />
+                <span className="text-slate-300 text-[11px]">{item.name}:</span>
+              </div>
+              <span className="font-mono font-bold text-white tabular-nums text-[11px]">
+                {item.value} {metricMode === "capacity" && item.dataKey === "capacityKLD" ? "KLD" : "leads"}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
 interface PipelineTrendProps {
   timeframe: TimeframeOption;
 }
 
 export const PipelineTrendChart: React.FC<PipelineTrendProps> = ({ timeframe }) => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const [metricMode, setMetricMode] = useState<"count" | "capacity">("count");
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Timeframe dataset variations
   const dataMap: Record<TimeframeOption, Array<{ period: string; inquiries: number; proposals: number; won: number; capacityKLD: number }>> = {
@@ -66,34 +105,6 @@ export const PipelineTrendChart: React.FC<PipelineTrendProps> = ({ timeframe }) 
   };
 
   const chartData = dataMap[timeframe] || dataMap["30D"];
-
-  // Custom sleek tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
-          <div className="mb-1.5 flex items-center justify-between gap-3 border-b border-slate-700 pb-1 font-semibold text-slate-200">
-            <span>{label}</span>
-            <span className="font-mono text-[10px] text-cyan-300">RP Global Pipeline</span>
-          </div>
-          <div className="space-y-1">
-            {payload.map((item: any) => (
-              <div key={item.dataKey} className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full" style={{ backgroundColor: item.color }} />
-                  <span className="text-slate-300 text-[11px]">{item.name}:</span>
-                </div>
-                <span className="font-mono font-bold text-white tabular-nums text-[11px]">
-                  {item.value} {metricMode === "capacity" && item.dataKey === "capacityKLD" ? "KLD" : "leads"}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <div className="flex flex-col justify-between overflow-hidden border border-slate-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.08)] sm:p-6">
@@ -175,7 +186,7 @@ export const PipelineTrendChart: React.FC<PipelineTrendProps> = ({ timeframe }) 
                 axisLine={false}
                 tickFormatter={(val) => (metricMode === "capacity" ? `${val}k` : val)}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<PipelineTooltip metricMode={metricMode} />} />
               <Legend
                 verticalAlign="top"
                 align="right"

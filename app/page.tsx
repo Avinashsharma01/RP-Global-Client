@@ -24,6 +24,18 @@ export default function HomePage() {
   const [selectedPlant, setSelectedPlant] = useState<string | undefined>(undefined);
   const [selectedCapacity, setSelectedCapacity] = useState<number | undefined>(undefined);
 
+  const handleOpenRFQ = (plantType?: string) => {
+    setSelectedPlant(plantType || "Sewage Treatment Plant (STP)");
+    setSelectedCapacity(100);
+    setIsModalOpen(true);
+  };
+
+  const handleSelectEstimate = (plantType: string, capacityKLD: number) => {
+    setSelectedPlant(plantType);
+    setSelectedCapacity(capacityKLD);
+    setIsModalOpen(true);
+  };
+
   useEffect(() => {
     let isMounted = true;
     api
@@ -48,18 +60,6 @@ export default function HomePage() {
       window.removeEventListener("open-quick-rfq", handleGlobalRFQ);
     };
   }, []);
-
-  const handleOpenRFQ = (plantType?: string) => {
-    setSelectedPlant(plantType || "Sewage Treatment Plant (STP)");
-    setSelectedCapacity(100);
-    setIsModalOpen(true);
-  };
-
-  const handleSelectEstimate = (plantType: string, capacityKLD: number) => {
-    setSelectedPlant(plantType);
-    setSelectedCapacity(capacityKLD);
-    setIsModalOpen(true);
-  };
 
   return (
     <>

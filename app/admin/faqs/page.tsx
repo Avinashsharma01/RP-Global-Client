@@ -8,7 +8,6 @@ import {
   Filter,
   Trash2,
   Edit3,
-  Check,
   X,
   AlertCircle,
   CheckCircle2,
@@ -17,8 +16,6 @@ import {
   EyeOff,
   Layers,
   FileQuestion,
-  Sparkles,
-  ArrowUpDown,
   Tag,
 } from "lucide-react";
 import { api } from "@/lib/api";
@@ -134,7 +131,6 @@ export default function AdminFAQsPage() {
 
   // Load FAQs from API
   const loadFAQs = async () => {
-    setLoading(true);
     try {
       const res = await api.getAdminFAQs();
       if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -148,7 +144,24 @@ export default function AdminFAQsPage() {
   };
 
   useEffect(() => {
-    loadFAQs();
+    let isCancelled = false;
+    api.getAdminFAQs()
+      .then((res) => {
+        if (!isCancelled) {
+          if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+            setFaqs(res.data);
+          }
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setLoading(false);
+        }
+      });
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   // Compute categories
@@ -367,7 +380,10 @@ export default function AdminFAQsPage() {
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             type="button"
-            onClick={loadFAQs}
+            onClick={() => {
+              setLoading(true);
+              void loadFAQs();
+            }}
             disabled={loading}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-xs hover:bg-slate-50 transition-colors"
             title="Refresh FAQs from server"
@@ -477,7 +493,7 @@ export default function AdminFAQsPage() {
           {/* Status Filter */}
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as any)}
+            onChange={(e) => setStatusFilter(e.target.value as "ALL" | "ACTIVE" | "INACTIVE")}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 focus:border-[#1a5962] focus:outline-none focus:ring-1 focus:ring-[#1a5962]"
           >
             <option value="ALL">All Statuses</option>

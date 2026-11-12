@@ -98,13 +98,15 @@ interface PartnerLogoCardProps {
 }
 
 const PartnerLogoCard: React.FC<PartnerLogoCardProps> = ({ partner }) => {
+  const [prevLogoUrl, setPrevLogoUrl] = useState(partner.logoUrl);
   const [imgSrc, setImgSrc] = useState<string>(() => resolveLogoUrl(partner.logoUrl));
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
+  if (partner.logoUrl !== prevLogoUrl) {
+    setPrevLogoUrl(partner.logoUrl);
     setImgSrc(resolveLogoUrl(partner.logoUrl));
     setHasError(false);
-  }, [partner.logoUrl]);
+  }
 
   const handleError = () => {
     const defaultPartner = FALLBACK_PARTNERS.find(

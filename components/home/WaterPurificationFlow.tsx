@@ -101,13 +101,8 @@ export const WaterPurificationFlow: React.FC<WaterPurificationFlowProps> = ({ da
   const [isSurgeActive, setIsSurgeActive] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  useEffect(() => {
-    if (stages.length > 0 && !stages.some((s) => s.id === selectedId)) {
-      setSelectedId(stages[0].id);
-    }
-  }, [stages, selectedId]);
-
-  const stage = stages.find((s) => s.id === selectedId) || stages[0];
+  const activeId = stages.some((s) => s.id === selectedId) ? selectedId : (stages[0]?.id || "etp");
+  const stage = stages.find((s) => s.id === activeId) || stages[0];
 
   // Canvas fluid particle animation
   useEffect(() => {

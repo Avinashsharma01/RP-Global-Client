@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import {
   BarChart,
   Bar,
@@ -13,6 +13,8 @@ import {
 } from "recharts";
 import { Factory, Droplets } from "lucide-react";
 
+const emptySubscribe = () => () => {};
+
 interface SectorData {
   sector: string;
   shortName: string;
@@ -22,13 +24,42 @@ interface SectorData {
   color: string;
 }
 
-export const SectorCapacityBarChart: React.FC = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [activeSector, setActiveSector] = useState<SectorData | null>(null);
+interface SectorTooltipProps {
+  active?: boolean;
+  payload?: Array<{ payload: SectorData }>;
+}
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+const SectorCapacityTooltip: React.FC<SectorTooltipProps> = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
+        <div className="flex items-center gap-2 border-b border-slate-700 pb-1 font-semibold text-slate-100">
+          <Factory className="h-3.5 w-3.5 text-cyan-300" />
+          <span>{data.sector}</span>
+        </div>
+        <div className="mt-1.5 space-y-1 font-mono text-[11px]">
+          <div className="flex justify-between gap-3 text-slate-300">
+            <span>Required Capacity:</span>
+            <span className="font-bold text-cyan-300">{data.capacityKLD.toLocaleString()} KLD</span>
+          </div>
+          <div className="flex justify-between gap-3 text-slate-300">
+            <span>Active Leads:</span>
+            <span className="font-bold text-white">{data.inquiries} inquiries</span>
+          </div>
+          <div className="pt-1 text-[10px] text-slate-400 font-sans">
+            <span className="text-slate-500 font-mono">Tech:</span> {data.primaryTech}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+export const SectorCapacityBarChart: React.FC = () => {
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [activeSector, setActiveSector] = useState<SectorData | null>(null);
 
   const sectors: SectorData[] = [
     {
@@ -81,34 +112,6 @@ export const SectorCapacityBarChart: React.FC = () => {
     },
   ];
 
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload as SectorData;
-      return (
-        <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
-          <div className="flex items-center gap-2 border-b border-slate-700 pb-1 font-semibold text-slate-100">
-            <Factory className="h-3.5 w-3.5 text-cyan-300" />
-            <span>{data.sector}</span>
-          </div>
-          <div className="mt-1.5 space-y-1 font-mono text-[11px]">
-            <div className="flex justify-between gap-3 text-slate-300">
-              <span>Required Capacity:</span>
-              <span className="font-bold text-cyan-300">{data.capacityKLD.toLocaleString()} KLD</span>
-            </div>
-            <div className="flex justify-between gap-3 text-slate-300">
-              <span>Active Leads:</span>
-              <span className="font-bold text-white">{data.inquiries} inquiries</span>
-            </div>
-            <div className="pt-1 text-[10px] text-slate-400 font-sans">
-              <span className="text-slate-500 font-mono">Tech:</span> {data.primaryTech}
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div className="flex flex-col justify-between overflow-hidden border border-slate-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.08)] sm:p-6">
       <div>
@@ -142,11 +145,6 @@ export const SectorCapacityBarChart: React.FC = () => {
               <BarChart
                 data={sectors}
                 margin={{ top: 10, right: 6, left: -26, bottom: 0 }}
-                onMouseMove={(state: any) => {
-                  if (state.isTooltipActive && state.activePayload) {
-                    setActiveSector(state.activePayload[0].payload);
-                  }
-                }}
                 onMouseLeave={() => setActiveSector(null)}
               >
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
@@ -164,7 +162,7 @@ export const SectorCapacityBarChart: React.FC = () => {
                   axisLine={false}
                   tickFormatter={(val) => `${val}`}
                 />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<SectorCapacityTooltip />} />
                 <Bar dataKey="capacityKLD" radius={[4, 4, 0, 0]} maxBarSize={38}>
                   {sectors.map((entry, index) => (
                     <Cell
@@ -172,6 +170,7 @@ export const SectorCapacityBarChart: React.FC = () => {
                       fill={entry.color}
                       fillOpacity={activeSector?.sector === entry.sector ? 1 : 0.88}
                       className="transition-all duration-200 cursor-pointer"
+                      onMouseEnter={() => setActiveSector(entry)}
                     />
                   ))}
                 </Bar>

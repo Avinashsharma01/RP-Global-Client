@@ -80,6 +80,7 @@ export default function AdminLayout({
   const handleLogout = () => {
     localStorage.removeItem("rpglobal_admin_token");
     localStorage.removeItem("rpglobal_admin_user");
+    document.cookie = "rpglobal_admin_token=; path=/; max-age=0; SameSite=Lax";
     router.push("/admin/login");
   };
 

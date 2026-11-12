@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import {
   RadarChart,
   PolarGrid,
@@ -12,6 +12,8 @@ import {
   Legend,
 } from "recharts";
 import { ShieldCheck, BarChart2, Compass } from "lucide-react";
+
+const emptySubscribe = () => () => {};
 
 interface QualityMetric {
   parameter: string;
@@ -25,13 +27,43 @@ interface QualityMetric {
   reduction: number;
 }
 
-export const WaterQualityRadarChart: React.FC = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [viewType, setViewType] = useState<"radar" | "bars">("radar");
+interface QualityTooltipProps {
+  active?: boolean;
+  payload?: Array<{ payload: QualityMetric }>;
+}
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+const WaterQualityTooltip: React.FC<QualityTooltipProps> = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
+        <div className="flex items-center justify-between gap-3 border-b border-slate-700 pb-1 font-semibold text-slate-100">
+          <span>{data.parameter} ({data.unit})</span>
+          <span className="font-mono text-emerald-400">-{data.reduction}% Purified</span>
+        </div>
+        <div className="mt-1.5 space-y-1 font-mono text-[11px]">
+          <div className="flex justify-between gap-3 text-rose-300">
+            <span>Raw Inlet:</span>
+            <span className="font-bold">{data.rawActual.toLocaleString()} {data.unit}</span>
+          </div>
+          <div className="flex justify-between gap-3 text-emerald-300">
+            <span>RP Global Outlet:</span>
+            <span className="font-bold">{data.treatedActual} {data.unit}</span>
+          </div>
+          <div className="flex justify-between gap-3 text-slate-400">
+            <span>SPCB Legal Limit:</span>
+            <span>{data.spcbLimitActual} {data.unit}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+export const WaterQualityRadarChart: React.FC = () => {
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [viewType, setViewType] = useState<"radar" | "bars">("radar");
 
   // Normalized to 0-100 scale for intuitive radar comparison
   const metrics: QualityMetric[] = [
@@ -91,35 +123,6 @@ export const WaterQualityRadarChart: React.FC = () => {
       reduction: 96.9,
     },
   ];
-
-  const CustomRadarTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload as QualityMetric;
-      return (
-        <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
-          <div className="flex items-center justify-between gap-3 border-b border-slate-700 pb-1 font-semibold text-slate-100">
-            <span>{data.parameter} ({data.unit})</span>
-            <span className="font-mono text-emerald-400">-{data.reduction}% Purified</span>
-          </div>
-          <div className="mt-1.5 space-y-1 font-mono text-[11px]">
-            <div className="flex justify-between gap-3 text-rose-300">
-              <span>Raw Inlet:</span>
-              <span className="font-bold">{data.rawActual.toLocaleString()} {data.unit}</span>
-            </div>
-            <div className="flex justify-between gap-3 text-emerald-300">
-              <span>RP Global Outlet:</span>
-              <span className="font-bold">{data.treatedActual} {data.unit}</span>
-            </div>
-            <div className="flex justify-between gap-3 text-slate-400">
-              <span>SPCB Legal Limit:</span>
-              <span>{data.spcbLimitActual} {data.unit}</span>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <div className="flex flex-col justify-between overflow-hidden border border-slate-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.08)] sm:p-6">
@@ -182,7 +185,7 @@ export const WaterQualityRadarChart: React.FC = () => {
                   <PolarGrid stroke="#e2e8f0" />
                   <PolarAngleAxis dataKey="parameter" tick={{ fill: "#64748b", fontSize: 10 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#cbd5e1" fontSize={9} />
-                  <Tooltip content={<CustomRadarTooltip />} />
+                  <Tooltip content={<WaterQualityTooltip />} />
                   <Legend
                     verticalAlign="bottom"
                     iconType="circle"

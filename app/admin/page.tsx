@@ -3,10 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import {
-  Inbox,
   ArrowRight,
-  TrendingUp,
-  Loader2,
   Search,
   CheckCircle,
 } from "lucide-react";
@@ -133,7 +130,29 @@ export default function AdminDashboardPage() {
   };
 
   useEffect(() => {
-    fetchSummary();
+    let isCancelled = false;
+    api.getAdminSummary()
+      .then((res) => {
+        if (!isCancelled && res.success && res.data) {
+          const data = res.data;
+          if (data.metrics) setStats(data.metrics);
+          if (data.recentLeads && data.recentLeads.length > 0) {
+            setRecentLeads(data.recentLeads);
+          }
+        }
+      })
+      .catch(() => {
+        // Kept default demo metrics
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setLoading(false);
+          setIsRefreshing(false);
+        }
+      });
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   const handleRefresh = () => {

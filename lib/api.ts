@@ -6,7 +6,6 @@ import {
   Lead,
   Partner,
   FAQItem,
-  AdminFAQResponse,
   Certificate,
   LandingContentCollection,
 } from "./types";
@@ -69,6 +68,15 @@ async function fetcher<T>(
     const data = await response.json();
 
     if (!response.ok) {
+      if (response.status === 401 && typeof window !== "undefined") {
+        localStorage.removeItem("rpglobal_admin_token");
+        localStorage.removeItem("rpglobal_admin_user");
+        document.cookie = "rpglobal_admin_token=; path=/; max-age=0; SameSite=Lax";
+        if (window.location.pathname.startsWith("/admin") && window.location.pathname !== "/admin/login") {
+          window.location.href = `/admin/login?expired=true&redirect=${encodeURIComponent(window.location.pathname)}`;
+        }
+      }
+
       return {
         success: false,
         message: data.message || `Request failed with status ${response.status}`,
@@ -432,7 +440,7 @@ export const api = {
     return fetcher<T>(`/landing/${sectionKey}`);
   },
 
-  updateLandingSection: async <T>(sectionKey: string, data: any) => {
+  updateLandingSection: async <T>(sectionKey: string, data: Record<string, unknown> | Partial<T>) => {
     return fetcher<T>(`/landing/${sectionKey}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

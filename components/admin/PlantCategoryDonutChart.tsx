@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import {
   PieChart,
   Pie,
@@ -11,14 +11,7 @@ import {
 import { Layers, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-interface PlantCategoryDonutProps {
-  stats: {
-    totalLeads: number;
-    newLeads: number;
-    evaluationLeads: number;
-    wonLeads: number;
-  };
-}
+const emptySubscribe = () => () => {};
 
 interface CategoryItem {
   name: string;
@@ -30,13 +23,48 @@ interface CategoryItem {
   gradient: string;
 }
 
-export const PlantCategoryDonutChart: React.FC<PlantCategoryDonutProps> = ({ stats }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{ payload: CategoryItem }>;
+}
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+const CategoryDonutTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
+        <div className="flex items-center gap-2 font-semibold text-slate-100">
+          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: data.color }} />
+          <span>{data.name}</span>
+        </div>
+        <div className="mt-1.5 space-y-1 font-mono text-[11px]">
+          <div className="flex justify-between gap-3 text-slate-300">
+            <span>RFQ Leads:</span>
+            <span className="font-bold text-white">{data.leads} leads ({data.percentage}%)</span>
+          </div>
+          <div className="flex justify-between gap-3 text-slate-300">
+            <span>Sizing Volume:</span>
+            <span className="font-bold text-cyan-300">{data.capacityKLD.toLocaleString()} KLD</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+interface PlantCategoryDonutProps {
+  stats: {
+    totalLeads: number;
+    newLeads: number;
+    evaluationLeads: number;
+    wonLeads: number;
+  };
+}
+
+export const PlantCategoryDonutChart: React.FC<PlantCategoryDonutProps> = ({ stats }) => {
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const categories: CategoryItem[] = [
     {
@@ -88,32 +116,6 @@ export const PlantCategoryDonutChart: React.FC<PlantCategoryDonutProps> = ({ sta
 
   const currentItem = activeIndex !== null ? categories[activeIndex] : null;
 
-  // Custom sleek tooltip
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload as CategoryItem;
-      return (
-        <div className="rounded-lg border border-slate-700/60 bg-[#0f1d31] p-2.5 sm:p-3 text-xs text-white shadow-xl backdrop-blur-md">
-          <div className="flex items-center gap-2 font-semibold text-slate-100">
-            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: data.color }} />
-            <span>{data.name}</span>
-          </div>
-          <div className="mt-1.5 space-y-1 font-mono text-[11px]">
-            <div className="flex justify-between gap-3 text-slate-300">
-              <span>RFQ Leads:</span>
-              <span className="font-bold text-white">{data.leads} leads ({data.percentage}%)</span>
-            </div>
-            <div className="flex justify-between gap-3 text-slate-300">
-              <span>Sizing Volume:</span>
-              <span className="font-bold text-cyan-300">{data.capacityKLD.toLocaleString()} KLD</span>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div className="flex flex-col justify-between overflow-hidden border border-slate-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.08)] sm:p-6">
       <div>
@@ -141,7 +143,7 @@ export const PlantCategoryDonutChart: React.FC<PlantCategoryDonutProps> = ({ sta
             ) : (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Tooltip content={<CustomTooltip />} />
+                  <Tooltip content={<CategoryDonutTooltip />} />
                   <Pie
                     data={categories}
                     cx="50%"
