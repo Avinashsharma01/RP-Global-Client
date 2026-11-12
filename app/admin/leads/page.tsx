@@ -120,36 +120,31 @@ const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
 };
 
 export default function LeadsCRMPage() {
-  const [leads, setLeads] = useState<Lead[]>(DEMO_LEADS);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [newNote, setNewNote] = useState("");
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
-    const fallbackTimer = window.setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 8000);
-
     const fetchLeads = async () => {
       try {
         const res = await api.getAdminLeads();
-        if (isMounted && res.success && Array.isArray(res.data) && res.data.length > 0) {
+        if (isMounted && res.success && Array.isArray(res.data)) {
           setLeads(res.data);
         }
-      } catch {
-        // Fallback to DEMO_LEADS
+      } catch (err: unknown) {
+        setLoadError(err instanceof Error ? err.message : "Unable to load leads from the server.");
       } finally {
-        window.clearTimeout(fallbackTimer);
         if (isMounted) setLoading(false);
       }
     };
     fetchLeads();
     return () => {
       isMounted = false;
-      window.clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -217,6 +212,11 @@ export default function LeadsCRMPage() {
 
   return (
     <div className="admin-page mx-auto max-w-7xl space-y-6" aria-busy={loading}>
+      {loadError && (
+        <div role="alert" className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+          {loadError}
+        </div>
+      )}
       {/* Page Header */}
       <header className="flex flex-col gap-5 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex items-start gap-3.5">

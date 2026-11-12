@@ -217,10 +217,8 @@ export default function AdminPartnersPage() {
       if (res.success && res.data && res.data.length > 0) {
         setPartners(res.data);
       } else {
-        setPartners(DEFAULT_FALLBACK_PARTNERS);
       }
     } catch {
-      setPartners(DEFAULT_FALLBACK_PARTNERS);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -235,13 +233,11 @@ export default function AdminPartnersPage() {
           if (res.success && res.data && res.data.length > 0) {
             setPartners(res.data);
           } else {
-            setPartners(DEFAULT_FALLBACK_PARTNERS);
           }
         }
       })
       .catch(() => {
         if (!isCancelled) {
-          setPartners(DEFAULT_FALLBACK_PARTNERS);
         }
       })
       .finally(() => {

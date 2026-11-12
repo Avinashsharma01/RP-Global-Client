@@ -105,7 +105,7 @@ const DEFAULT_FALLBACK_FAQS: FAQItem[] = [
 ];
 
 export default function AdminFAQsPage() {
-  const [faqs, setFaqs] = useState<FAQItem[]>(DEFAULT_FALLBACK_FAQS);
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -137,8 +137,9 @@ export default function AdminFAQsPage() {
         setFaqs(res.data);
       }
     } catch {
-      // Keep fallback
+      setStatusMsg({ text: "Unable to load FAQs from the server.", type: "error" });
     } finally {
+      setStatusMsg({ text: "Unable to load FAQs from the server.", type: "error" });
       setLoading(false);
     }
   };

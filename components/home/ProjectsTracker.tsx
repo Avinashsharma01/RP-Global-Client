@@ -452,7 +452,7 @@ export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ data, onOpenRF
     data?.description ||
     "A verified selection of industrial treatment plants currently in progress and turnkey systems commissioned for manufacturing, power, and municipal water schemes.";
 
-  const [projects, setProjects] = useState<ProjectGallery[]>(FALLBACK_PROJECTS);
+  const [projects, setProjects] = useState<ProjectGallery[]>([]);
   const [statusFilter, setStatusFilter] = useState<"ALL" | "RUNNING" | "COMPLETED">("ALL");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [loading, setLoading] = useState(false);
@@ -502,11 +502,11 @@ export const ProjectsTracker: React.FC<ProjectsTrackerProps> = ({ data, onOpenRF
       try {
         setLoading(true);
         const res = await api.getGallery();
-        if (res.success && res.data && res.data.length > 0) {
+        if (res.success && res.data) {
           setProjects(res.data);
         }
       } catch {
-        // Fallback remains active
+        setProjects([]);
       } finally {
         setLoading(false);
       }

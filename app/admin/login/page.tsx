@@ -37,40 +37,10 @@ export default function AdminLoginPage() {
         }
         router.push("/admin");
       } else {
-        // Fallback demo login if server is offline during client evaluation
-        if (email.includes("admin") && password.length >= 6) {
-          const demoToken = "demo_token_rpglobal_2026";
-          localStorage.setItem("rpglobal_admin_token", demoToken);
-          document.cookie = `rpglobal_admin_token=${demoToken}; path=/; max-age=86400; SameSite=Lax`;
-          localStorage.setItem(
-            "rpglobal_admin_user",
-            JSON.stringify({
-              id: "admin-1",
-              email: "admin@rpglobalprojects.com",
-              fullName: "RP Global Administration Desk",
-              role: "SUPER_ADMIN",
-            })
-          );
-          router.push("/admin");
-        } else {
-          setError(res.message || "Invalid email or password credentials.");
-        }
+        setError(res.message || "Invalid email or password credentials.");
       }
-    } catch {
-      // Local fallback for offline mode
-      const demoToken = "demo_token_rpglobal_2026";
-      localStorage.setItem("rpglobal_admin_token", demoToken);
-      document.cookie = `rpglobal_admin_token=${demoToken}; path=/; max-age=86400; SameSite=Lax`;
-      localStorage.setItem(
-        "rpglobal_admin_user",
-        JSON.stringify({
-          id: "admin-1",
-          email: "admin@rpglobalprojects.com",
-          fullName: "RP Global Administration Desk",
-          role: "SUPER_ADMIN",
-        })
-      );
-      router.push("/admin");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Unable to contact authentication service.");
     } finally {
       setLoading(false);
     }

@@ -132,8 +132,8 @@ const STAGE_LABELS: Record<ApplicationStatus, string> = {
 
 export default function JobsATSPage() {
   const [activeTab, setActiveTab] = useState<"applicants" | "openings">("applicants");
-  const [jobs, setJobs] = useState<AdminJob[]>(DEMO_JOBS);
-  const [applicants, setApplicants] = useState<AdminApplicant[]>(DEMO_APPLICANTS);
+  const [jobs, setJobs] = useState<AdminJob[]>([]);
+  const [applicants, setApplicants] = useState<AdminApplicant[]>([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
@@ -151,10 +151,6 @@ export default function JobsATSPage() {
 
   useEffect(() => {
     let isMounted = true;
-    const fallbackTimer = window.setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 8000);
-
     const loadData = async () => {
       try {
         const [jobsRes, appsRes] = await Promise.allSettled([
@@ -164,7 +160,7 @@ export default function JobsATSPage() {
 
         if (!isMounted) return;
 
-        if (jobsRes.status === "fulfilled" && jobsRes.value.success && jobsRes.value.data && jobsRes.value.data.length > 0) {
+        if (jobsRes.status === "fulfilled" && jobsRes.value.success && jobsRes.value.data) {
           setJobs(
             jobsRes.value.data.map((j: JobOpening) => ({
               id: j._id || j.slug,
@@ -178,7 +174,7 @@ export default function JobsATSPage() {
           );
         }
 
-        if (appsRes.status === "fulfilled" && appsRes.value.success && Array.isArray((appsRes.value as { data?: unknown[] }).data) && ((appsRes.value as { data: unknown[] }).data.length > 0)) {
+        if (appsRes.status === "fulfilled" && appsRes.value.success && Array.isArray((appsRes.value as { data?: unknown[] }).data)) {
           const rawApps = (appsRes.value as { data: Array<{ _id?: string; id?: string; jobTitle?: string; fullName?: string; email?: string; phone?: string; currentCompany?: string; experienceYears?: string; resumeUrl?: string; status?: ApplicationStatus; createdAt?: string }> }).data;
           setApplicants(
             rawApps.map((a) => ({
@@ -195,10 +191,9 @@ export default function JobsATSPage() {
             }))
           );
         }
-      } catch (err) {
-        console.warn("Could not load live ATS data, falling back to local demo state", err);
+      } catch (err: unknown) {
+        console.error("Could not load live ATS data:", err);
       } finally {
-        window.clearTimeout(fallbackTimer);
         if (isMounted) setLoading(false);
       }
     };
@@ -207,7 +202,6 @@ export default function JobsATSPage() {
 
     return () => {
       isMounted = false;
-      window.clearTimeout(fallbackTimer);
     };
   }, []);
 

@@ -12,7 +12,6 @@ import {
   AlertCircle,
   Search,
 } from "lucide-react";
-import { PLANT_SOLUTIONS } from "@/lib/constants";
 import { api } from "@/lib/api";
 
 interface EditableProduct {
@@ -25,21 +24,8 @@ interface EditableProduct {
   specs: Array<{ label: string; value: string; unit?: string }>;
 }
 
-const INITIAL_FALLBACK_PRODUCTS: EditableProduct[] = PLANT_SOLUTIONS.map((p) => ({
-  slug: p.slug,
-  name: p.name,
-  capacity: p.capacity,
-  tagline: p.tagline,
-  isPublished: true,
-  specs: [
-    { label: "Operating Standard", value: "CPCB / SPCB Norms" },
-    { label: "Automation Level", value: "PLC / SCADA Automated" },
-    { label: "Fabrication MOC", value: "FRP / Mild Steel Rubber Lined" },
-  ],
-}));
-
 export default function ProductsCMSPage() {
-  const [products, setProducts] = useState<EditableProduct[]>(INITIAL_FALLBACK_PRODUCTS);
+  const [products, setProducts] = useState<EditableProduct[]>([]);
   const [editingProduct, setEditingProduct] = useState<EditableProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -49,14 +35,11 @@ export default function ProductsCMSPage() {
 
   useEffect(() => {
     let isMounted = true;
-    const fallbackTimer = window.setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 8000);
     api
       .getProducts()
       .then((res) => {
         if (!isMounted) return;
-        if (res.success && res.data && res.data.length > 0) {
+        if (res.success && res.data) {
           const liveProducts: EditableProduct[] = res.data.map((p) => ({
             _id: p._id,
             slug: p.slug,
@@ -80,17 +63,18 @@ export default function ProductsCMSPage() {
           setProducts(liveProducts);
         }
       })
-      .catch((err) => {
-        console.warn("Could not load products from API, using fallback data:", err);
+      .catch((err: unknown) => {
+        setBanner({
+          type: "error",
+          text: err instanceof Error ? err.message : "Unable to load products from the server.",
+        });
       })
       .finally(() => {
-        window.clearTimeout(fallbackTimer);
         if (isMounted) setLoading(false);
       });
 
     return () => {
       isMounted = false;
-      window.clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -149,11 +133,6 @@ export default function ProductsCMSPage() {
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Failed to save product specifications.";
       setBanner({ type: "error", text: msg });
-      // Still update local view
-      setProducts((prev) =>
-        prev.map((p) => (p.slug === editingProduct.slug ? editingProduct : p))
-      );
-      setEditingProduct(null);
     } finally {
       setSaving(false);
     }

@@ -36,80 +36,20 @@ export default function AdminDashboardPage() {
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [exportNotice, setExportNotice] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const [stats, setStats] = useState({
-    totalLeads: 14,
-    newLeads: 5,
-    evaluationLeads: 4,
-    wonLeads: 3,
-    totalProducts: 6,
-    totalJobs: 3,
-    activeJobs: 3,
-    totalApplications: 8,
+    totalLeads: 0,
+    newLeads: 0,
+    evaluationLeads: 0,
+    wonLeads: 0,
+    totalProducts: 0,
+    totalJobs: 0,
+    activeJobs: 0,
+    totalApplications: 0,
   });
 
-  const [recentLeads, setRecentLeads] = useState<RecentLeadItem[]>([
-    {
-      _id: "lead-1",
-      fullName: "Rajesh Singhania",
-      companyName: "Vardhman Textiles Ltd",
-      plantCategory: "Effluent Treatment Plant (ETP)",
-      requiredCapacityKLD: "250 KLD",
-      status: "NEW",
-      createdAt: "Today, 10:45 AM",
-      priority: "CRITICAL",
-    },
-    {
-      _id: "lead-2",
-      fullName: "Anand Verma",
-      companyName: "Ajnara Grand Heritage",
-      plantCategory: "Sewage Treatment Plant (STP)",
-      requiredCapacityKLD: "500 KLD",
-      status: "TECHNICAL_EVALUATION",
-      createdAt: "Yesterday, 3:20 PM",
-      priority: "HIGH",
-    },
-    {
-      _id: "lead-3",
-      fullName: "Dr. Arvind Mehta",
-      companyName: "Apex Formulations & Labs",
-      plantCategory: "Demineralization (DM) Plant",
-      requiredCapacityKLD: "50 m³/hr",
-      status: "PROPOSAL_SENT",
-      createdAt: "Oct 9, 2026",
-      priority: "HIGH",
-    },
-    {
-      _id: "lead-4",
-      fullName: "Sunil Kothari",
-      companyName: "Radisson Blu Resorts",
-      plantCategory: "Water Softening Plant",
-      requiredCapacityKLD: "30 m³/hr",
-      status: "WON",
-      createdAt: "Oct 8, 2026",
-      priority: "MEDIUM",
-    },
-    {
-      _id: "lead-5",
-      fullName: "Vikram Singhal",
-      companyName: "Indo Rama Synthetics",
-      plantCategory: "RO & Zero Liquid Discharge (ZLD)",
-      requiredCapacityKLD: "800 KLD",
-      status: "TECHNICAL_EVALUATION",
-      createdAt: "Oct 6, 2026",
-      priority: "CRITICAL",
-    },
-    {
-      _id: "lead-6",
-      fullName: "Harish Chandra",
-      companyName: "Haldiram Snacks Pvt Ltd",
-      plantCategory: "Effluent Treatment Plant (ETP)",
-      requiredCapacityKLD: "150 KLD",
-      status: "NEW",
-      createdAt: "Oct 5, 2026",
-      priority: "MEDIUM",
-    },
-  ]);
+  const [recentLeads, setRecentLeads] = useState<RecentLeadItem[]>([]);
 
   const fetchSummary = async () => {
     try {
@@ -121,8 +61,8 @@ export default function AdminDashboardPage() {
           setRecentLeads(data.recentLeads);
         }
       }
-    } catch {
-      // Kept default demo metrics
+    } catch (err: unknown) {
+      setLoadError(err instanceof Error ? err.message : "Unable to load dashboard data.");
     } finally {
       setLoading(false);
       setIsRefreshing(false);
@@ -141,8 +81,10 @@ export default function AdminDashboardPage() {
           }
         }
       })
-      .catch(() => {
-        // Kept default demo metrics
+      .catch((err: unknown) => {
+        if (!isCancelled) {
+          setLoadError(err instanceof Error ? err.message : "Unable to load dashboard data.");
+        }
       })
       .finally(() => {
         if (!isCancelled) {
@@ -245,6 +187,11 @@ export default function AdminDashboardPage() {
         isRefreshing={isRefreshing}
         onExport={handleExport}
       />
+      {loadError && (
+        <div role="alert" className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+          {loadError}
+        </div>
+      )}
 
       {/* 4 KPI Summary Cards with Interactive Live Sparklines */}
       <KPICardsWithSparklines stats={stats} timeframe={timeframe} />

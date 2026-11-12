@@ -186,7 +186,7 @@ const CATEGORIES = [
 ];
 
 export default function GalleryPage() {
-  const [projects, setProjects] = useState<ProjectGallery[]>(FALLBACK_PROJECTS);
+  const [projects, setProjects] = useState<ProjectGallery[]>([]);
   const [statusFilter, setStatusFilter] = useState<"ALL" | "RUNNING" | "COMPLETED">("ALL");
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [selectedProject, setSelectedProject] = useState<ProjectGallery | null>(null);
@@ -198,15 +198,11 @@ export default function GalleryPage() {
       .getGallery()
       .then((res) => {
         if (!isMounted) return;
-        if (res.success && res.data && res.data.length > 0) {
+        if (res.success && res.data) {
           setProjects(res.data);
-        } else {
-          setProjects(FALLBACK_PROJECTS);
         }
       })
-      .catch(() => {
-        if (isMounted) setProjects(FALLBACK_PROJECTS);
-      })
+      .catch(() => undefined)
       .finally(() => {
         if (isMounted) setLoading(false);
       });
